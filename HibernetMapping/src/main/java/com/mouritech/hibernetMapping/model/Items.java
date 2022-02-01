@@ -26,7 +26,7 @@ public class Items {
 	@Column(name = "item_description")
 	private String itemDescription;
 	
-	@ManyToMany(mappedBy ="Items",cascade = {CascadeType.ALL})
+	@ManyToMany(mappedBy ="items",cascade = {CascadeType.ALL})
 	private List<Orders> orders = new ArrayList<Orders>();
 
 	public int getItemId() {
