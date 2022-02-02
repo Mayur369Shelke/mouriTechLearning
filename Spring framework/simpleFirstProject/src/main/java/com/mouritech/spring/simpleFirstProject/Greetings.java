@@ -1,8 +1,5 @@
 package com.mouritech.spring.simpleFirstProject;
 
-import org.springframework.stereotype.Service;
-
-@Service("gretingService")
 public class Greetings {
 
 	private String greet;

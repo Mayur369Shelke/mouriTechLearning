@@ -1,0 +1,5 @@
+package practiceDependencyInjecrion.config;
+
+public class ApplicationConfiguration {
+
+}

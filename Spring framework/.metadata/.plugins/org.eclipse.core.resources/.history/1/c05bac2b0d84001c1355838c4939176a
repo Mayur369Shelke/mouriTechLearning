@@ -1,0 +1,11 @@
+package com.mouritech.springDI.service.setterDi;
+
+import com.mouritech.springDI.service.MessageService;
+
+public class SetterBaseInjection {
+	
+	private MessageService msgService;
+	
+	
+
+}

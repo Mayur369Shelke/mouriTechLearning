@@ -1,0 +1,10 @@
+package practiceDependencyInjecrion.service;
+
+public class Square implements Shape {
+
+	public void selectShape(String shape) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

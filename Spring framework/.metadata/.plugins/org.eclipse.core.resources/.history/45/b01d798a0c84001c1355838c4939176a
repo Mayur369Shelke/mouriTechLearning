@@ -1,0 +1,10 @@
+package com.mouritech.springDI.service;
+
+public class FacebookSMSService implements MessageService {
+
+	public void sendMessage(String msg) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

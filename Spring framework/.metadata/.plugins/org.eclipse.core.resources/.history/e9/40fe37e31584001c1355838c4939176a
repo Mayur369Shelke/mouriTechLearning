@@ -1,0 +1,5 @@
+package practiceDependencyInjecrion.setterDi;
+
+public class SetterBasedInjection {
+
+}

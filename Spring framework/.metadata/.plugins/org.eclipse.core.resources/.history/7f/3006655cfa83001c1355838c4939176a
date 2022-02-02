@@ -1,0 +1,13 @@
+package tightcouplingInJava;
+
+public class Traveler {
+	
+	car car = new car();
+	
+	private void startJournery() {
+		car.move();
+		//tarveler depending on car
+
+	}
+
+}

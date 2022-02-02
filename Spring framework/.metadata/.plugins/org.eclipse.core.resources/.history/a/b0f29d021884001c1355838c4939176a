@@ -1,0 +1,5 @@
+package practiceDependencyInjecrion.main;
+
+public class TestConstructorBased {
+
+}

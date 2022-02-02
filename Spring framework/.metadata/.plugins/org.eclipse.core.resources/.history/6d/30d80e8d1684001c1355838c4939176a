@@ -1,0 +1,5 @@
+package practiceDependencyInjecrion.fieldDI;
+
+public class FieldBasedInjection {
+
+}

@@ -1,0 +1,5 @@
+package practiceDependencyInjecrion.contractorDI;
+
+public class ContructorBasedInjection {
+
+}

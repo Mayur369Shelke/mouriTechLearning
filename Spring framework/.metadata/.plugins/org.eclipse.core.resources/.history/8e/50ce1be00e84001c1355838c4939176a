@@ -1,0 +1,5 @@
+package com.mouritech.springDI.config;
+
+public class AppConfiguration {
+
+}
