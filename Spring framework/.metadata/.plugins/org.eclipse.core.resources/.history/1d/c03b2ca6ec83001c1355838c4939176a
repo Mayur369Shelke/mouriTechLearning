@@ -1,0 +1,5 @@
+package com.mouritech.spring.simpleFirstProject;
+
+public class Greetings {
+
+}

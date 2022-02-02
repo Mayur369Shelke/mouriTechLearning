@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+
+
+
+
+
+<context:componet-scan base-package=""/>
+<bean id="quationService" class="com.mouritech.spring.simpleFirstProject.Quotation">
+
+
+</bean>
+</beans>
