@@ -1,0 +1,13 @@
+package com.mouritech.seller.service;
+
+import java.util.List;
+
+import com.mouritech.seller.entity.Seller;
+
+public interface SellerService {
+
+	void saveSeller(Seller seller);
+
+	List<Seller> getAllSeller();
+
+}

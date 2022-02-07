@@ -1,0 +1,5 @@
+package com.mouritech.seller.controller;
+
+public class SellerController {
+
+}

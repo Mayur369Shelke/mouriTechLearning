@@ -1,0 +1,5 @@
+package com.mouritech.seller.dao;
+
+public interface SellerDao {
+
+}

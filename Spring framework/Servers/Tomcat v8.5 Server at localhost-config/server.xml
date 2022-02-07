@@ -153,7 +153,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="springMVC" path="/springMVC" reloadable="true" source="org.eclipse.jst.j2ee.server:springMVC"/><Context docBase="OrderManagmentSystem" path="/OrderManagmentSystem" reloadable="true" source="org.eclipse.jst.j2ee.server:OrderManagmentSystem"/><Context docBase="practicecustomer" path="/practicecustomer" reloadable="true" source="org.eclipse.jst.j2ee.server:practicecustomer"/><Context docBase="springMVCAndDataJPA" path="/springMVCAndDataJPA" reloadable="true" source="org.eclipse.jst.j2ee.server:springMVCAndDataJPA"/></Host>
+      <Context docBase="springMVC" path="/springMVC" reloadable="true" source="org.eclipse.jst.j2ee.server:springMVC"/><Context docBase="OrderManagmentSystem" path="/OrderManagmentSystem" reloadable="true" source="org.eclipse.jst.j2ee.server:OrderManagmentSystem"/><Context docBase="practicecustomer" path="/practicecustomer" reloadable="true" source="org.eclipse.jst.j2ee.server:practicecustomer"/><Context docBase="springMVCAndDataJPA" path="/springMVCAndDataJPA" reloadable="true" source="org.eclipse.jst.j2ee.server:springMVCAndDataJPA"/><Context docBase="seller" path="/seller" reloadable="true" source="org.eclipse.jst.j2ee.server:seller"/></Host>
     </Engine>
   </Service>
 </Server>

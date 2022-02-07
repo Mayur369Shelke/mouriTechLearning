@@ -1,0 +1,18 @@
+package onlineFoodOrder.entity;
+
+import javax.persistence.CascadeType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+public class Category {
+	
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long categoryId;
+	
+	@OneToMany (cascade = CascadeType.ALL)
+	private Food food;
+}

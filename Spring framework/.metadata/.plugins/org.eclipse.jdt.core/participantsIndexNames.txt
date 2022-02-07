@@ -21,3 +21,5 @@ D:\java training\Spring framework\.metadata\.plugins\org.eclipse.jst.jsp.core\js
 \springMVC\src\main\java
 D:\java training\Spring framework\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\4012134374.index
 \OrderManagmentSystem\src\main\java
+D:\java training\Spring framework\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3811626099.index
+\seller\src\main\resources

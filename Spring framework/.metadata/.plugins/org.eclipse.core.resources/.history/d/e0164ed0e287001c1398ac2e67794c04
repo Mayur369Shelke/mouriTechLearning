@@ -1,0 +1,21 @@
+package com.mouritech.seller.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.mouritech.seller.dao.SellerDao;
+import com.mouritech.seller.entity.Seller;
+
+@Service
+public class SellerServiceImpl implements SellerService {
+	
+	@Autowired
+	private SellerDao sellerDao;
+
+	public void saveSeller(Seller seller) {
+		
+		sellerDao.save(seller);
+		
+	}
+
+}
