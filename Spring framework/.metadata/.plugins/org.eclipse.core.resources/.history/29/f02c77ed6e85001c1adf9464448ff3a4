@@ -1,0 +1,9 @@
+package com.mouritech.ordermanagmentsystem.dao;
+
+public interface OrderDao {
+	
+		List<Order> getAllOrders();
+
+
+
+}

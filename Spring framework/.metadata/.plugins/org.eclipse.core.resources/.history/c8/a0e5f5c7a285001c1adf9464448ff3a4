@@ -1,0 +1,5 @@
+package com.mourity.OrderManagmentSystem.springMVCAndDataJPA.exception;
+
+public class OrderNotFoundException {
+
+}
