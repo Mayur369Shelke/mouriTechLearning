@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;com.contact.entity.ContactEntity&apos; to &apos;Contact&apos;&#x0D;&#x0A;- Original project: &apos;contact_service&apos;&#x0D;&#x0A;- Original element: &apos;com.contact.entity.ContactEntity&apos;&#x0D;&#x0A;- Renamed element: &apos;com.contact.entity.Contact&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;ContactEntity&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.contact.entity{ContactEntity.java[ContactEntity" matchStrategy="1" name="Contact" qualified="false" references="true" similarDeclarations="false" stamp="1639722515206" textual="false" version="1.0"/>
+</session>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<typeInfoHistroy>
+    <typeInfo handle="=user_service/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.user.service{UserService.java[UserService" modifiers="513" timestamp="1639720884774"/>
+    <typeInfo handle="=user_service/C:\/Users\/mayurs\/.m2\/repository\/org\/springframework\/data\/spring-data-jpa\/2.6.0\/spring-data-jpa-2.6.0.jar=/maven.pomderived=/true=/=/maven.pomderived=/true=/=/maven.groupId=/org.springframework.data=/=/maven.artifactId=/spring-data-jpa=/=/maven.version=/2.6.0=/=/maven.scope=/compile=/&lt;org.springframework.data.jpa.repository(JpaRepository.class[JpaRepository" modifiers="1537" timestamp="1638429760529"/>
+    <typeInfo handle="=contact_service/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.contact.service{ContactService.java[ContactService" modifiers="513" timestamp="1639725562333"/>
+</typeInfoHistroy>
