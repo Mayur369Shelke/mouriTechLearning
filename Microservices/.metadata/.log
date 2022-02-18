@@ -1,0 +1,85 @@
+
+!ENTRY Activator 1 0 2022-02-18 12:16:45.461
+!MESSAGE Has main method computation for project 'profilemanagement'
+
+!ENTRY Activator 1 0 2022-02-18 12:16:45.888
+!MESSAGE Has main method computation for project 'profilemanagement'
+
+!ENTRY Activator 1 0 2022-02-18 12:16:46.396
+!MESSAGE Has main method computation for project 'profilemanagement'
+
+!ENTRY Activator 1 0 2022-02-18 12:16:46.586
+!MESSAGE Has main method computation for project 'profilemanagement'
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-02-18 12:16:46.587
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-02-18 12:16:46.589
+!MESSAGE classpath=0 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-02-18 12:16:46.590
+!MESSAGE buffering callback sts4.classpath.GKCJhHgp discoveryserver false 0
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-02-18 12:16:46.592
+!MESSAGE executing callback sts4.classpath.GKCJhHgp 1 batched events
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-02-18 12:16:46.614
+!MESSAGE executing callback sts4.classpath.GKCJhHgp SUCCESS [done]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-02-18 12:16:46.751
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-02-18 12:16:46.754
+!MESSAGE classpath=1 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-02-18 12:16:46.754
+!MESSAGE buffering callback sts4.classpath.GKCJhHgp discoveryserver false 1
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-02-18 12:16:46.756
+!MESSAGE executing callback sts4.classpath.GKCJhHgp 1 batched events
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-02-18 12:16:46.761
+!MESSAGE executing callback sts4.classpath.GKCJhHgp SUCCESS [done]
+
+!ENTRY Activator 1 0 2022-02-18 12:16:46.943
+!MESSAGE Has main method computation for project 'profilemanagement'
+
+!ENTRY Activator 1 0 2022-02-18 12:16:47.158
+!MESSAGE Has main method computation for project 'profilemanagement'
+
+!ENTRY org.eclipse.m2e.logback.appender 4 0 2022-02-18 12:21:45.658
+!MESSAGE Can't write workspace state
+!STACK 0
+java.io.FileNotFoundException: D:\java training\mouriTechLearning\Microservices\.metadata\.plugins\org.eclipse.m2e.core\workspaceState.ser (The system cannot find the path specified)
+	at java.base/java.io.FileOutputStream.open0(Native Method)
+	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:291)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:234)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:184)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryReader.writeWorkspaceState(ProjectRegistryReader.java:128)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.writeWorkspaceState(ProjectRegistryManager.java:996)
+	at org.eclipse.m2e.core.internal.MavenPluginActivator$1.saving(MavenPluginActivator.java:143)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:387)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:204)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:207)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1164)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1143)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:55)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.core.resources 4 568 2022-02-18 12:21:46.098
+!MESSAGE Could not write metadata for '/.org.eclipse.egit.core.cmp'.
+!STACK 0
+java.io.FileNotFoundException: D:\java training\mouriTechLearning\Microservices\.metadata\.plugins\org.eclipse.core.resources\.projects\.org.eclipse.egit.core.cmp\.markers.snap (The system cannot find the path specified)
+	at java.base/java.io.FileOutputStream.open0(Native Method)
+	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:291)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:234)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:155)
+	at org.eclipse.core.internal.localstore.SafeChunkyOutputStream.<init>(SafeChunkyOutputStream.java:48)
+	at org.eclipse.core.internal.localstore.SafeChunkyOutputStream.<init>(SafeChunkyOutputStream.java:44)
+	at org.eclipse.core.internal.resources.SaveManager.visitAndSnap(SaveManager.java:1765)
+	at org.eclipse.core.internal.resources.SaveManager.visitAndSnap(SaveManager.java:1846)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1202)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1143)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:55)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
