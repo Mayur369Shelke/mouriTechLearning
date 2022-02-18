@@ -1,0 +1,89 @@
+@GetMapping("/getAllStaffdetails/{staffId}")
+public ResponseEntity<StaffDetailsDto> getAllStaffDetails(@PathVariable(name = "staffId") String staffId)throws Exception
+{
+	StaffDetailsDto dto = staffDetailsService.getStaffDetailsById(staffId);
+	return new ResponseEntity<StaffDetailsDto>(dto, HttpStatus.OK);
+	
+}
+
+public StaffDetailsDto getStaffDetailsById(String staffId) {
+		Optional<StaffDetails> staffDetailsEntity = staffDetailsRepository.findById(staffId);
+		if (staffDetailsEntity.isPresent())
+		{
+			StaffDetailsDto staffDetailsDto = staffDetailsMapper.convertEntityToDto(staffDetailsEntity.get());
+			return staffDetailsDto;
+		}
+		else {
+			throw new RuntimeException("staff dretails not found");
+			
+		}
+	}
+	
+	now i am working on task which was given by harshada and also i am inform you to work one anather task which is import Excel shell
+	import Excel sheet project 
+	1) read all Excel sheel
+	2) validate all excel sheet data
+	3) validate data store in database 
+	2) unvalidate data export in to anather excel sheet
+	
+	if i need any help i will ping you 
+	
+	
+	now I am working on a task which was given by harshada and also I am informing you to work on another task which is import Excel shell
+	import Excel sheet project 
+	1) read all Excel sheet
+	2) validate all excel sheet data
+	3) validate data stored in the database 
+	2) invalidate data export in into another excel sheet
+	
+	if I need any help i will ping you 
+	
+	now I am understanding hibernate queries also i am interested to learn more about spring boot so i am inform you to work on another task which is import Excel shell
+	
+	import Excel sheet project (task)
+	1) read all Excel sheel
+	2) validate all excel sheet data
+	3) validate data store in database 
+	2) unvalidate data export in to anather excel sheet
+	
+	first, I will complete this task then I will add more features to the project, if I need any help I will ping you, I will try to complete this task within 2 days
+	
+	have you worked on any project like import excel sheet and validate data store in database,  unvalidate data export in to anather excel sheet
+	
+	
+	Communication Skills
+	Verbal and written communication
+	Team communication
+	
+	Deliverables
+	On time delivery
+	Quality of delivery
+	Coding Standard
+	
+	i am working on both tasks simultaneously, which was task given by harshada on mellowmushroom project and another is read excel sheet project.
+	for excel sheet project i have complited 
+	1) read all Excel sheel
+	2) validate all excel sheet data
+	3) validate data store in database 
+	4) invalidate data export in to anather excel sheet
+	i have shown the work done to harshada on today morning. now i am working on invalidate data excel sheet send it through mail
+	
+	
+	I have completed both tasks for the mellow mushroom project and another is the read excel sheet project. 
+	for the excel sheet project I have 
+	1) read all Excel sheel, validate all excel sheet data & validate data store in database , invalidate data export in to anather excel sheet
+	2) invalidate data excel sheet send it through mail
+	
+	To validate data store in data base I have used
+	
+	@Query(
+	  value = 
+	    "insert into Informations (first_name, last_name, email_id, phone_number) values (:firstName, :lastName, :email, :PhoneNumber)",
+	  nativeQuery = true)
+	  
+	  when i used informationRepository.save() or informationRepository.saveAll() method getting error like
+	  
+	  Could not commit JPA transaction; nested exception is javax.persistence.RollbackException: Error while committing the transaction",
+	  now i am trying to resolve this
+
+	

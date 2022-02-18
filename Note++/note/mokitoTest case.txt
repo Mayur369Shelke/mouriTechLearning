@@ -1,0 +1,86 @@
+package com.equinoxfitness.member.controller;
+
+import static org.junit.Assert.*;
+import static org.mockito.Matchers.anyString;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+import org.springframework.http.MediaType;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
+import com.equinoxfitness.commons.utils.RestResponse;
+import com.equinoxfitness.dao.MemberDAO;
+import com.equinoxfitness.member.mapper.CorpEmployerMapper;
+import com.equinoxfitness.member.service.MemberService;
+import com.equinoxfitness.member.service.impl.MemberServiceImpl;
+import com.equinoxfitness.membership.contract.CorpEmployer;
+import com.equinoxfitness.membership.contract.MemberProfileDetails;
+
+public class MemberControllerTest {
+	
+	private MockMvc mockMvc;
+
+	@InjectMocks
+	private MemberController mockMemberController;
+
+	@Mock
+	MemberServiceImpl mockMemberServiceImpl;
+	
+	@Mock
+	MemberService memberService;
+	
+	@Mock
+	JdbcTemplate jdbcTemplate;
+	
+	@Mock
+	MemberDAO memberDAO;
+	
+	@Mock
+	RestResponse restResponse;
+	
+	@Before
+	public void setUp() throws Exception {
+		MockitoAnnotations.initMocks(this);
+		mockMvc = MockMvcBuilders.standaloneSetup(mockMemberController).build();
+	}
+	
+	@Test
+	public void testMemberDetailSuccessCase() throws Exception {
+		
+		String memberid = "1003373592";
+		
+		MemberProfileDetails MeResponse = new MemberProfileDetails();
+		MeResponse.setFirstName("test");
+		MeResponse.setLastName("test");
+		MeResponse.setEmail("test@gmail.com");
+		MeResponse.setPhoneNumber("testphone");
+		MeResponse.setMemberId("1003373592");
+		
+		Mockito.when(mockMemberServiceImpl.getMemberDetails(memberid, true)).thenReturn(MeResponse);
+
+		//check here later
+		//Mockito.when(restResponse.populateSuccessResponse(response, HttpStatus.OK)).thenReturn(null);
+		
+		MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/v1/employer-detail/1003373592").contentType(MediaType.APPLICATION_JSON_VALUE)).andReturn();
+		System.out.println("result::::::::::" +result);
+		assertNotEquals(null, result);
+	
+	}
+
+}
+
+
+//Mockito.when(jdbcTemplate.queryForObject(Mockito.anyString(), Mockito.any(Object[].class),
+	//	Mockito.any(MemberServiceImpl.class))).thenReturn(response);
+
+//Mockito.when(memberDAO.getCorpEmployerDetail(memberid)).thenReturn(response);
+
+//Mockito.when(memberService.getCorpEmployerDetail(anyString())).thenReturn(response);

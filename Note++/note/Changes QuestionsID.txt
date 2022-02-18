@@ -1,0 +1,77 @@
+ {source:"EQUIFIT",version:"0.80",categoryName:"Medical Orthopedic History"}
+ 
+ (CHANGE 6 -> 7)
+ 
+ Changes questionid and question
+ 
+ 5e2035c5f5a0ea62eced0dd1 - 
+
+ 5e16b4aff5a0ea4d889431b3= 5e17b4aff5a0ea4d889431b3 - question : "Do you experience an irregular or racing heart rate during rest or exercise?",
+ 5e16b4aff5a0ea4d889431b4= "5e17b4aff5a0ea4d889431b4" - question : "Has a doctor ever said you have a heart condition and that you should only do physical activity recommended by a doctor?",
+ 5e16b4b0f5a0ea4d889431b5= 5e17b4b0f5a0ea4d889431b5 - question :"Do you feel pain in your chest when you do physical activity?"
+ 5e16b4b0f5a0ea4d889431b6= 5e17b4b0f5a0ea4d889431b6- question :"Is your doctor currently prescribing drugs (for example, water pills) ..."
+
+ 5e2035c6f5a0ea62eced0dd2
+ 
+ 5e16b4b1f5a0ea4d889431b7= 5e17b4b1f5a0ea4d889431b7 - question: "Do you lose your balance because of dizziness or do you ever lose cons..."
+ 5e16b4b1f5a0ea4d889431b8 =  Result not found
+ 5e16b4b2f5a0ea4d889431b9= 5e17b4b2f5a0ea4d889431b9 - question : "Are you over 65 and not accustomed to vigorous exercise?"
+ 5e16b4b2f5a0ea4d889431ba= 5e17b4b2f5a0ea4d889431ba- question : "Are you diabetic? "
+ 5e16b4b3f5a0ea4d889431bb= 5e17b4b3f5a0ea4d889431bb- question : "Are you pregnant?"
+ 
+ 5e2035c8f5a0ea62eced0dd3
+ 
+ 5e16b4b3f5a0ea4d889431bc= 5e17b4b3f5a0ea4d889431bc- question : "Do you have any current or past injuries or have you had any surgeries..."
+ 5e16b4b7f5a0ea4d889431bd= 5e17b4b7f5a0ea4d889431bd - question : "Have you ever been diagnosed with a specific medical condition? (Check..."
+ 5e16b4b8f5a0ea4d889431be= 5e17b4b8f5a0ea4d889431be - question : "Comments: Date of onset, Treatment, Physician clearance? (Y/N)"
+ 5e16b4b8f5a0ea4d889431bf= 5e17b4b8f5a0ea4d889431bf - question : "Are you currently taking any medications that may be relevant to physi..."
+ 5e16b4baf5a0ea4d889431c0= 5e17b4baf5a0ea4d889431c0 - question : "Do you know of any other reason why you should not do physical activit..."
+ 5e3cf6376f70d9501423b2d4= 5e4cf6376f70d9501423b2d4 - question : "Page Notes"
+ ------------------------------------------------------------------------------------------------------------------------------------------
+ ------------------------------------------------------------------------------------------------------------------------------------------
+ 
+ {source:"EQUIFIT",version:"0.80",categoryName:"Exercise History"}
+ 
+ Changes questionid (CHANGE 6 -> 7)
+ 
+ 5e16b4a1f5a0ea4d889431a9 = 5e17b4a1f5a0ea4d889431a9
+ 5e16b4a1f5a0ea4d889431aa = 5e17b4a1f5a0ea4d889431aa
+ 5e16b4a1f5a0ea4d889431ab = 5e17b4a1f5a0ea4d889431ab
+ 5e16b4a3f5a0ea4d889431ac = 5e17b4a3f5a0ea4d889431ac
+ 5e16b4a6f5a0ea4d889431ad = 5e17b4a6f5a0ea4d889431ad
+ --------------------------------------------------------------------------------------------------------------------------
+ --------------------------------------------------------------------------------------------------------------------------
+ {source:"EQUIFIT",version:"0.80",categoryName:"Goals"}
+ 
+ Changes questionid (CHANGE 6 -> 7)
+ 
+ 5e16b497f5a0ea4d889431a3 = 5e17b497f5a0ea4d889431a3
+ 5e16b499f5a0ea4d889431a4 = 5e17b499f5a0ea4d889431a4
+ 5e16b49af5a0ea4d889431a5 = 5e17b49af5a0ea4d889431a5
+ 5e16b49bf5a0ea4d889431a6 = 5e17b49bf5a0ea4d889431a6
+ 5e16b49df5a0ea4d889431a7 = 5e17b49df5a0ea4d889431a7
+ 5e16b49ff5a0ea4d889431a8 = 5e17b49ff5a0ea4d889431a8
+ --------------------------------------------------------------------------------------------------------------------------
+ --------------------------------------------------------------------------------------------------------------------------
+ 
+ {source:"EQUIFIT",version:"0.80",categoryName:"General Information"}
+ 
+ Changes questionid (CHANGE 6 -> 7)
+ 
+ 5e2035bbf5a0ea62eced0dc8
+ 
+ 5e16b495f5a0ea4d8894319f = 5e17b495f5a0ea4d8894319f
+ 5e16b496f5a0ea4d889431a0 = 5e17b496f5a0ea4d889431a0
+ 5e16b496f5a0ea4d889431a3 = 5e17b496f5a0ea4d889431a3
+ 5e16b496f5a0ea4d889431a4 = 5e17b496f5a0ea4d889431a4
+ 5e16b496f5a0ea4d889431a5 = 5e17b496f5a0ea4d889431a5
+ 
+ 5e20351ef5a0ea62eced0de0
+ 
+ 5e16b496f5a0ea4d889431a1 = 5e17b496f5a0ea4d889431a1
+ 5e16b496f5a0ea4d889431a2 = 5e17b496f5a0ea4d889431a2
+ 
+ -------------------------------------------------------------------------------------------------------------------------------
+ -------------------------------------------------------------------------------------------------------------------------------
+ 
+ 

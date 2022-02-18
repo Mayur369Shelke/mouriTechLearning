@@ -1,0 +1,99 @@
+Adding questions for EQUFIT (Lifestyle)
+
+Category = {source:"EQUIFIT",categoryName:"Lifestyle",version:"1.00"}
+{source:"EQUIFIT",_id:ObjectId('60f1e2d6ff7928efecf9d14b')}
+{sources:"EQUIFIT",_id:ObjectId('5e993ee9f6a0ea4d10043464')}
+
+5e993ee9f6a0ea4d10043464 = 5e993ee9f6a0ea4d10043465 "seqNo": 10
+
+99, 195, 196 = blank 
+"optionId": "Lifestyle099-1",
+            "value": "1 cup or less",
+            "seqNum": "1"
+        }, {
+            "optionId": "Lifestyle096-2",
+            "value": "2-4 cups",
+            "seqNum": "2"
+        }, {
+            "optionId": "Lifestyle096-3",
+            "value": "5-6 cups",
+            "seqNum": "3"
+        }, {
+            "optionId": "Lifestyle096-4",
+            "value": "7-8 cups",
+            "seqNum": "4"
+        }, {
+            "optionId": "Lifestyle096-5",
+            "value": "Other",
+            "seqNum": "5"
+			
+			
+			Green (e.g. lettuce, kale, broccoli, Brussels sprouts, green beans); Red/Purple (e.g. peppers, tomatoes, chard, potatoes, beets); Orange/Yellow (e.g. sweet potatoes, squash, peppers, carrots, corn); Rainbow (combination of all of the above); Other...
+Fewer than 1; 1-2; 3-4; 5 or more
+Berries; Citrus; Melon/Pineapple; Apples/Pears/Nectarines; Mango/Papaya; Other...
+Fewer than 1; 1-2; 3-4; 5 or more
+Oils; Nuts/Seeds; Ghee; Fish; Avocado; Other...
+Red meat (e.g. beef, lamb, pork); Poultry (e.g. chicken, turkey); Seafood (e.g. fish, shellfish); Soy/tofu; Vegetable proteins (e.g. beans, plant-based protein powder); Grain proteins (e.g. seitan, quinoa); Other...
+
+Milk; Yogurt; Cheese; Butter; ice Cream; Other...
+
+Every day; 3-5 days a week; 1-2 days a week; Only on special occasions; I do not drink
+
+9-10; 7-8; 6-7; 5-6; less than 5; Other...
+
+1 - Never; 2 - Almost never; 3 - Sometimes; 4 - Often; 5 - Always
+
+        "tags": ["life133"],
+        "options": [{
+            "optionId": "Lifestyle133-1",
+            "value": "1 - Never",
+            "seqNum": "1"
+        }, {
+            "optionId": "Lifestyle133-2",
+            "value": "2 - Almost never",
+            "seqNum": "2"
+        }, {
+            "optionId": "Lifestyle133-3",
+            "value": "3 - Sometimes",
+            "seqNum": "3"
+        }, {
+            "optionId": "Lifestyle133-4",
+            "value": "4 - Often",
+            "seqNum": "4"
+        }, {
+            "optionId": "Lifestyle133-5",
+            "value": "5 - Always",
+            "seqNum": "5" 
+
+Work; Family; Travel; Anxiety; Sleep disorder (apnea/snoring); Pets; Other...
+
+1 - Not effective; 2 - Rarely effective; 3 - Somewhat effective; 4 - Effective; 5 - Very effective
+
+Fewer than 1; 1-2; 3-4; 5 or more
+
+Red meat (e.g. beef, lamb, pork); Poultry (e.g. chicken, turkey); Seafood (e.g. fish, shellfish); Soy/tofu; Vegetable proteins (e.g. beans, plant-based protein powder); Grain proteins (e.g. seitan, quinoa); Other...
+
+Milk; Yogurt; Cheese; Butter; ice Cream; Other...
+
+Every day; 3-5 days a week; 1-2 days a week; Only on special occasions; I do not drink
+
+9-10; 7-8; 6-7; 5-6; less than 5; Other...
+
+1 - Never; 2 - Almost never; 3 - Sometimes; 4 - Often; 5 - Always
+
+Work; Family; Travel; Anxiety; Sleep disorder (apnea/snoring); Pets; Other...
+
+1 - Not effective; 2 - Rarely effective; 3 - Somewhat effective; 4 - Effective; 5 - Very effective
+
+Meditation/mindfulness; Body work (massage/acupuncture); Light exercise (yoga/walking); Intense Exercise (running/boxing); Rest; Other
+
+
+
+
+
+
+
+
+
+
+

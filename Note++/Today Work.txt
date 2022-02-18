@@ -1,0 +1,35 @@
+i have complited all task 
+1)used JPA repository
+2)used phone number as String and changed in other reflected class
+3)other method created in the util package
+4)while writing excel sheet data and sheet title will be created dynamically
+5) if data is already present in data base then don't save (avoid duplicated)
+
+i have created two end pointes 
+1)@PostMapping("/uploadFile") // Method 1
+2)@PostMapping("/validateFile") // method 2
+
+please check and let me know which end point is right way
+
+both end points are working end to end no coding stuff just uploading file saving valid records in db and invalid records excel should be sent via email.
+
+hi saurabh . in my keka portal i got this message , should i add any information fro my side
+
+
+Hi good evening 
+i have complited gradle project and endpoints are working end to end perfectly like just uploading file saving valid records in DB and invalid records excel should be sent via email.
+
+Hi good morning
+I have completed first level microservices tutorials 
+
+now I am working on better understanding the microservices concept i am developing small project on microservices, if i need any help i will ping here. thank you
+
+
+Hi Good Morning
+I have completed the microservices project. and its working 
+i have used 1) one service port = 9001
+			2) other service port = 9002
+			3) eureka port = 8761
+			4)end api gate way port = 8999
+
+please check where I am going in the right direction? now I am adding more functionality to project

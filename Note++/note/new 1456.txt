@@ -1,0 +1,52 @@
+i have changed
+1) seperated all controllers for each entity( for ench entity end point having separate controller)
+2)service and cerviceimpl in defferent package
+3)complited end points for all entities
+
+but when i test the project getting database issue like  - Error executing DDL (run time error)
+
+Error executing DDL "create table `audit_instance` (`audit_id` varchar(255) not null, `audit_date` date, `audit_type` varchar(255), `contact_person` varchar(255), `evaluator` varchar(255), `field_coach` varchar(255), `health_inspection_date` date, `health_inspection_score` integer, `hours_of_operation` `BOOLEAN`, `notes` varchar(255), `sales_during_evaluation` integer, `store_id` varchar(255), `total_managers_on_duty` integer, `id_store` varchar(255), primary key (`audit_id`)) engine=InnoDB" via JDBC Statement
+
+i am tring to resolve it , if didnt resolve by me i will ping here.
+
+
+i have complited maven and gradle project . now i am working on one issue which is when i am exporting all invalid data dynamically some data is not exporting .just i am checking logic . i will complete it with in 2 hr .if i need any help i will ping here. thank you
+
+Hi good morning, i have complited all task. if have any task for me then please let me know for project 
+
+Hi Good Morning,
+complited task
+1) rade spring documentation
+2)applied pagination concept on excel sheet project
+
+Now i am working on 
+1) apply sorting (pagination) concept on existing project
+2) look into microservice architecture for that i am watching javabrain videos and practices also which are
+		a)https://youtu.be/cZ7tUuHjiQM (23 videos) level-1
+		b)https://youtu.be/o8RO38KbWvA (23 videos) level-2
+		c)https://youtu.be/upoIwn4rWCo (14 videos) level-3
+		
+		
+Hi Good Morning,
+completed task
+1) read spring documentation
+2)applied pagination concept on excel sheet project
+
+Now i am working on 
+1) apply sorting (pagination) concept on existing project
+2) look into microservice architecture for that i am watching javabrain videos and practices also which are
+		a)https://youtu.be/cZ7tUuHjiQM (23 videos) level-1
+		b)https://youtu.be/o8RO38KbWvA (23 videos) level-2
+		c)https://youtu.be/upoIwn4rWCo (14 videos) level-3
+		if i am going in wrong direction please let me know
+		
+		First task complited which is apply sorting (pagination) concept on existing project
+		
+		for accending sorting order
+		for descending sorting order
+		
+		
+		The first task completed is to apply the sorting (pagination) concept to an existing project
+		
+		for accending sorting order
+		for descending sorting order

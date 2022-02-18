@@ -1,0 +1,797 @@
+[{
+        "questionId": "Lifestyle107",
+        "questionType": "Radio",
+        "question": "How many servings of protein do you consume a day ? (1 serving = 1 palm size)",
+        "sequence": {
+            "source": ["EQUIFIT"],
+            "seqNo": 20
+        },
+        "status": "I",
+        "version": "1.00",
+        "action": {
+            "actionType": "NoEvent"
+        },
+        "tags": ["life107"],
+        "options": [{
+            "optionId": "Lifestyle107-1",
+            "value": "Fewer than 1",
+            "seqNum": "1"
+        }, {
+            "optionId": "Lifestyle107-2",
+            "value": "1-2",
+            "seqNum": "2"
+        }, {
+            "optionId": "Lifestyle107-3",
+            "value": "3-4",
+            "seqNum": "3"
+        }, {
+            "optionId": "Lifestyle107-4",
+            "value": "5 or more",
+            "seqNum": "4"
+        }],
+        "sources": ["EQUIFIT"],
+        "components": ["PreAssessment"],
+        "createdDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        },
+        "modifiedDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        },
+        "activatedDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        }
+    },
+    {
+        "questionId": "Lifestyle106",
+        "questionType": "Radio",
+        "question": "What proteins do you choose the most ? (Check all that apply.)",
+        "sequence": {
+            "source": ["EQUIFIT"],
+            "seqNo": 21
+        },
+        "status": "I",
+        "version": "1.00",
+        "action": {
+            "actionType": "NoEvent"
+        },
+        "tags": ["life106"],
+        "options": [{
+            "optionId": "Lifestyle106-1",
+            "value": "Red meat (e.g. beef, lamb, pork)",
+            "seqNum": "1"
+        }, {
+            "optionId": "Lifestyle106-2",
+            "value": "Poultry (e.g. chicken, turkey)",
+            "seqNum": "2"
+        }, {
+            "optionId": "Lifestyle106-3",
+            "value": "Seafood (e.g. fish, shellfish)",
+            "seqNum": "3"
+        }, {
+            "optionId": "Lifestyle106-4",
+            "value": "Soy/tofu",
+            "seqNum": "4"
+        }, {
+            "optionId": "Lifestyle106-5",
+            "value": "Vegetable proteins (e.g. beans, plant-based protein powder)",
+            "seqNum": "5"
+        }, {
+            "optionId": "Lifestyle106-6",
+            "value": "Grain proteins (e.g. seitan, quinoa)",
+            "seqNum": "6"
+        }, {
+            "optionId": "Lifestyle106-7",
+            "value": "Other",
+            "seqNum": "7"            
+        }],
+        "sources": ["EQUIFIT"],
+        "components": ["PreAssessment"],
+        "createdDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        },
+        "modifiedDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        },
+        "activatedDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        }
+    },
+{
+        "questionId": "Lifestyle109",
+        "questionType": "Radio",
+        "question": "How many servings of dairy do you consume a day ?",
+        "sequence": {
+            "source": ["EQUIFIT"],
+            "seqNo": 22
+        },
+        "status": "I",
+        "version": "1.00",
+        "action": {
+            "actionType": "NoEvent"
+        },
+         "tags": ["life109"],
+        "options": [{
+            "optionId": "Lifestyle109-1",
+            "value": "Fewer than 1",
+            "seqNum": "1"
+        }, {
+            "optionId": "Lifestyle109-2",
+            "value": "1-2",
+            "seqNum": "2"
+        }, {
+            "optionId": "Lifestyle109-3",
+            "value": "3-4",
+            "seqNum": "3"
+        }, {
+            "optionId": "Lifestyle109-4",
+            "value": "5 or more",
+            "seqNum": "4"
+        }],
+        "sources": ["EQUIFIT"],
+        "components": ["PreAssessment"],
+        "createdDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        },
+        "modifiedDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        },
+        "activatedDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        }
+    },
+{
+        "questionId": "Lifestyle108",
+        "questionType": "Radio",
+        "question": "What dairy products do you choose the most ? (Check all that apply.)",
+        "sequence": {
+            "source": ["EQUIFIT"],
+            "seqNo": 23
+        },
+        "status": "I",
+        "version": "1.00",
+        "action": {
+            "actionType": "NoEvent"
+        },
+        "tags": ["life108"],
+        "options": [{
+            "optionId": "Lifestyle108-1",
+            "value": "Milk",
+            "seqNum": "1"
+        }, {
+            "optionId": "Lifestyle108-2",
+            "value": "Yogurt",
+            "seqNum": "2"
+        }, {
+            "optionId": "Lifestyle108-3",
+            "value": "Cheese",
+            "seqNum": "3"
+        }, {
+            "optionId": "Lifestyle108-4",
+            "value": "Butter",
+            "seqNum": "4"
+        }, {
+            "optionId": "Lifestyle108-5",
+            "value": "ice Cream",
+            "seqNum": "5"
+        }, {
+            "optionId": "Lifestyle108-6",
+            "value": "Other",
+            "seqNum": "6"            
+        }],
+        "sources": ["EQUIFIT"],
+        "components": ["PreAssessment"],
+        "createdDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        },
+        "modifiedDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        },
+        "activatedDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        }
+    },
+{
+        "questionId": "Lifestyle110",
+        "questionType": "Radio",
+        "question": "On average, how many servings of high-fiber foods(e.g. beans, whole grains, cereals, fruits, vegetables) do you eat each day?",
+        "sequence": {
+            "source": ["EQUIFIT"],
+            "seqNo": 24
+        },
+        "status": "I",
+        "version": "1.00",
+        "action": {
+            "actionType": "NoEvent"
+        },
+        "tags": ["life110"],
+        "options": [{
+            "optionId": "Lifestyle110-1",
+            "value": "Fewer than 1",
+            "seqNum": "1"
+        }, {
+            "optionId": "Lifestyle110-2",
+            "value": "1-2",
+            "seqNum": "2"
+        }, {
+            "optionId": "Lifestyle110-3",
+            "value": "3-4",
+            "seqNum": "3"
+        }, {
+            "optionId": "Lifestyle110-4",
+            "value": "5 or more",
+            "seqNum": "4"
+        }],
+        "sources": ["EQUIFIT"],
+        "components": ["PreAssessment"],
+        "createdDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        },
+        "modifiedDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        },
+        "activatedDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        }
+    },
+{
+        "questionId": "Lifestyle111",
+        "questionType": "Radio",
+        "question": "Are there any foods that you can't or won't eat (due to allergies, ethical or religious reasons, etc.)?",
+        "sequence": {
+            "source": ["EQUIFIT"],
+            "seqNo": 25
+        },
+        "status": "I",
+        "version": "1.00",
+        "action": {
+            "actionType": "NoEvent"
+        },
+        "tags": ["life111"],
+        "options": [{
+            "optionId": "Lifestyle111-1",
+            "value": "Yes",
+            "seqNum": "1"
+        }, {
+            "optionId": "Lifestyle111-2",
+            "value": "No",
+            "seqNum": "2"
+        }],
+        "sources": ["EQUIFIT"],
+        "components": ["PreAssessment"],
+        "createdDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        },
+        "modifiedDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        },
+        "activatedDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        }
+    },
+{
+        "questionId": "Lifestyle195",
+        "questionType": "String",
+        "question": "Please explain:",
+        "sequence": {
+            "source": ["EQUIFIT"],
+            "seqNo": 26
+        },
+        "status": "I",
+        "version": "1.00",
+        "action": {
+            "actionType": "NoEvent"
+        },
+        "tags": ["life195"],
+        "options": [{
+          
+        }],
+        "sources": ["EQUIFIT"],
+        "components": ["PreAssessment"],
+        "createdDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        },
+        "modifiedDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        },
+        "activatedDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        }
+    },
+{
+        "questionId": "Lifestyle122",
+        "questionType": "Radio",
+        "question": "How often do you consume alcohol?",
+        "sequence": {
+            "source": ["EQUIFIT"],
+            "seqNo": 27
+        },
+        "status": "I",
+        "version": "1.00",
+        "action": {
+            "actionType": "NoEvent"
+        },
+        "tags": ["life122"],
+        "options": [{
+            "optionId": "Lifestyle122-1",
+            "value": "Every day",
+            "seqNum": "1"
+        }, {
+            "optionId": "Lifestyle122-2",
+            "value": "3-5 days a week",
+            "seqNum": "2"
+        }, {
+            "optionId": "Lifestyle122-3",
+            "value": "1-2 days a week",
+            "seqNum": "3"
+        }, {
+            "optionId": "Lifestyle122-4",
+            "value": "Only on special occasions",
+            "seqNum": "4"
+        }, {
+            "optionId": "Lifestyle122-5",
+            "value": "I do not drink",
+            "seqNum": "5"            
+        }],
+        "sources": ["EQUIFIT"],
+        "components": ["PreAssessment"],
+        "createdDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        },
+        "modifiedDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        },
+        "activatedDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        }
+    },
+{
+        "questionId": "Lifestyle125",
+        "questionType": "Radio",
+        "question": "How many hours of sleep do you average per night?",
+        "sequence": {
+            "source": ["EQUIFIT"],
+            "seqNo": 28
+        },
+        "status": "I",
+        "version": "1.00",
+        "action": {
+            "actionType": "NoEvent"
+        },
+        "tags": ["life125"],
+        "options": [{
+            "optionId": "Lifestyle125-1",
+            "value": "9-10",
+            "seqNum": "1"
+        }, {
+            "optionId": "Lifestyle125-2",
+            "value": "7-8",
+            "seqNum": "2"
+        }, {
+            "optionId": "Lifestyle125-3",
+            "value": "6-7",
+            "seqNum": "3"
+        }, {
+            "optionId": "Lifestyle125-4",
+            "value": "5-6",
+            "seqNum": "4"
+        }, {
+            "optionId": "Lifestyle125-5",
+            "value": "less than 5",
+            "seqNum": "5"
+        }, {
+            "optionId": "Lifestyle125-5",
+            "value": "Other",
+            "seqNum": "5"            
+        }],
+        "sources": ["EQUIFIT"],
+        "components": ["PreAssessment"],
+        "createdDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        },
+        "modifiedDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        },
+        "activatedDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        }
+    },
+{
+        "questionId": "Lifestyle133",
+        "questionType": "Radio",
+        "question": "Do you have trouble falling asleep?",
+        "sequence": {
+            "source": ["EQUIFIT"],
+            "seqNo": 29
+        },
+        "status": "I",
+        "version": "1.00",
+        "action": {
+            "actionType": "NoEvent"
+        },
+        "tags": ["life133"],
+        "options": [{
+            "optionId": "Lifestyle133-1",
+            "value": "Never",
+            "seqNum": "1"
+        }, {
+            "optionId": "Lifestyle133-2",
+            "value": "Almost never",
+            "seqNum": "2"
+        }, {
+            "optionId": "Lifestyle133-3",
+            "value": "Sometimes",
+            "seqNum": "3"
+        }, {
+            "optionId": "Lifestyle133-4",
+            "value": "Often",
+            "seqNum": "4"
+        }, {
+            "optionId": "Lifestyle133-5",
+            "value": "Always",
+            "seqNum": "5"            
+        }],
+        "sources": ["EQUIFIT"],
+        "components": ["PreAssessment"],
+        "createdDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        },
+        "modifiedDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        },
+        "activatedDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        }
+    },
+{
+        "questionId": "Lifestyle138",
+        "questionType": "Radio",
+        "question": "Do you wake up feeling rested?",
+        "sequence": {
+            "source": ["EQUIFIT"],
+            "seqNo": 30
+        },
+        "status": "I",
+        "version": "1.00",
+        "action": {
+            "actionType": "NoEvent"
+        },
+       "tags": ["life138"],
+        "options": [{
+            "optionId": "Lifestyle138-1",
+            "value": "Never",
+            "seqNum": "1"
+        }, {
+            "optionId": "Lifestyle138-2",
+            "value": "Almost never",
+            "seqNum": "2"
+        }, {
+            "optionId": "Lifestyle138-3",
+            "value": "Sometimes",
+            "seqNum": "3"
+        }, {
+            "optionId": "Lifestyle138-4",
+            "value": "Often",
+            "seqNum": "4"
+        }, {
+            "optionId": "Lifestyle138-5",
+            "value": "Always",
+            "seqNum": "5"  
+        }],
+        "sources": ["EQUIFIT"],
+        "components": ["PreAssessment"],
+        "createdDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        },
+        "modifiedDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        },
+        "activatedDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        }
+    },
+{
+        "questionId": "Lifestyle139",
+        "questionType": "Radio",
+        "question": "Do you wake up earlier than you would like?",
+        "sequence": {
+            "source": ["EQUIFIT"],
+            "seqNo": 31
+        },
+        "status": "I",
+        "version": "1.00",
+        "action": {
+            "actionType": "NoEvent"
+        },
+      "tags": ["life139"],
+        "options": [{
+            "optionId": "Lifestyle139-1",
+            "value": "Never",
+            "seqNum": "1"
+        }, {
+            "optionId": "Lifestyle139-2",
+            "value": "Almost never",
+            "seqNum": "2"
+        }, {
+            "optionId": "Lifestyle139-3",
+            "value": "Sometimes",
+            "seqNum": "3"
+        }, {
+            "optionId": "Lifestyle139-4",
+            "value": "Often",
+            "seqNum": "4"
+        }, {
+            "optionId": "Lifestyle139-5",
+            "value": "Always",
+            "seqNum": "5"  
+        }],
+        "sources": ["EQUIFIT"],
+        "components": ["PreAssessment"],
+        "createdDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        },
+        "modifiedDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        },
+        "activatedDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        }
+    },
+{
+        "questionId": "Lifestyle140",
+        "questionType": "Radio",
+        "question": "What things impact your ability to get quality sleep? (Check all that apply.)",
+        "sequence": {
+            "source": ["EQUIFIT"],
+            "seqNo": 32
+        },
+        "status": "I",
+        "version": "1.00",
+        "action": {
+            "actionType": "NoEvent"
+        },
+        "tags": ["life140"],
+        "options": [{
+            "optionId": "Lifestyle140-1",
+            "value": "Work",
+            "seqNum": "1"
+        }, {
+            "optionId": "Lifestyle140-2",
+            "value": "Family",
+            "seqNum": "2"
+        }, {
+            "optionId": "Lifestyle140-3",
+            "value": "Travel",
+            "seqNum": "3"
+        }, {
+            "optionId": "Lifestyle140-4",
+            "value": "Anxiety",
+            "seqNum": "4"
+        }, {
+            "optionId": "Lifestyle140-5",
+            "value": "Sleep disorder (apnea/snoring)",
+            "seqNum": "5"
+        }, {
+            "optionId": "Lifestyle140-6",
+            "value": "Pets",
+            "seqNum": "6"
+        }, {
+            "optionId": "Lifestyle140-7",
+            "value": "Other",
+            "seqNum": "7"            
+        }],
+        "sources": ["EQUIFIT"],
+        "components": ["PreAssessment"],
+        "createdDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        },
+        "modifiedDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        },
+        "activatedDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        }
+    },
+{
+        "questionId": "Lifestyle196",
+        "questionType": "",
+        "question": "In what ways do you think your sleep patterns affect your ability or motivation to achieve your goals?",
+        "sequence": {
+            "source": ["EQUIFIT"],
+            "seqNo": 33
+        },
+        "status": "I",
+        "version": "1.00",
+        "action": {
+            "actionType": "NoEvent"
+        },
+        "tags": ["life196"],
+        "options": [{
+          
+        }],
+        "sources": ["EQUIFIT"],
+        "components": ["PreAssessment"],
+        "createdDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        },
+        "modifiedDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        },
+        "activatedDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        }
+    },
+{
+        "questionId": "Lifestyle155",
+        "questionType": "Radio",
+        "question": "How effective do you think you are in dealing with the stress in your life?",
+        "sequence": {
+            "source": ["EQUIFIT"],
+            "seqNo": 34
+        },
+        "status": "I",
+        "version": "1.00",
+        "action": {
+            "actionType": "NoEvent"
+        },
+        "tags": ["life155"],
+        "options": [{
+            "optionId": "Lifestyle155-1",
+            "value": "Not effective",
+            "seqNum": "1"
+        }, {
+            "optionId": "Lifestyle155-2",
+            "value": "Rarely effective",
+            "seqNum": "2"
+        }, {
+            "optionId": "Lifestyle155-3",
+            "value": "Somewhat effective",
+            "seqNum": "3"
+        }, {
+            "optionId": "Lifestyle155-4",
+            "value": "Effective",
+            "seqNum": "4"
+        }, {
+            "optionId": "Lifestyle155-5",
+            "value": "Very effective",
+            "seqNum": "5"            
+        }],
+        "sources": ["EQUIFIT"],
+        "components": ["PreAssessment"],
+        "createdDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        },
+        "modifiedDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        },
+        "activatedDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        }
+    },
+{
+        "questionId": "Lifestyle152",
+        "questionType": "String",
+        "question": "What are the biggest stressors in your life? (Please explain.)",
+        "sequence": {
+            "source": ["EQUIFIT"],
+            "seqNo": 35
+        },
+        "status": "I",
+        "version": "1.00",
+        "action": {
+            "actionType": "NoEvent"
+        },
+        "tags": ["life152"],
+        "options": [{
+          
+        }],
+        "sources": ["EQUIFIT"],
+        "components": ["PreAssessment"],
+        "createdDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        },
+        "modifiedDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        },
+        "activatedDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        }
+    },
+{
+        "questionId": "Lifestyle157",
+        "questionType": "Radio",
+        "question": "How often you prioritize regeneration in an average week?",
+        "sequence": {
+            "source": ["EQUIFIT"],
+            "seqNo": 36
+        },
+        "status": "I",
+        "version": "1.00",
+        "action": {
+            "actionType": "NoEvent"
+        },
+        "tags": ["life157"],
+        "options": [{
+            "optionId": "Lifestyle157-1",
+            "value": "1 day",
+            "seqNum": "1"
+        }, {
+            "optionId": "Lifestyle157-2",
+            "value": "2 days",
+            "seqNum": "2"
+        }, {
+            "optionId": "Lifestyle157-3",
+            "value": "3 days",
+            "seqNum": "3"
+        }, {
+            "optionId": "Lifestyle157-4",
+            "value": "4 days",
+            "seqNum": "4"
+        }, {
+            "optionId": "Lifestyle157-5",
+            "value": "5 or more days",
+            "seqNum": "5"            
+        }],
+        "sources": ["EQUIFIT"],
+        "components": ["PreAssessment"],
+        "createdDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        },
+        "modifiedDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        },
+        "activatedDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        }
+    },    
+    {
+        "questionId": "Lifestyle156",
+        "questionType": "Radio",
+        "question": "What stress management behaviors do you currently practice? (Check all that apply.)",
+        "sequence": {
+            "source": ["EQUIFIT"],
+            "seqNo": 37
+        },
+        "status": "I",
+        "version": "1.00",
+        "action": {
+            "actionType": "NoEvent"
+        },
+        "tags": ["life156"],
+        "options": [{
+            "optionId": "Lifestyle156-1",
+            "value": "Meditation/mindfulness",
+            "seqNum": "1"
+        }, {
+            "optionId": "Lifestyle156-2",
+            "value": "Body work (massage/acupuncture)",
+            "seqNum": "2"
+        }, {
+            "optionId": "Lifestyle156-3",
+            "value": "Light exercise (yoga/walking)",
+            "seqNum": "3"
+        }, {
+            "optionId": "Lifestyle156-4",
+            "value": "Intense Exercise (running/boxing)",
+            "seqNum": "4"
+        }, {
+            "optionId": "Lifestyle156-5",
+            "value": "Rest",
+            "seqNum": "5"
+        }, {
+            "optionId": "Lifestyle156-6",
+            "value": "Other",
+            "seqNum": "6"            
+        }],
+        "sources": ["EQUIFIT"],
+        "components": ["PreAssessment"],
+        "createdDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        },
+        "modifiedDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        },
+        "activatedDate": {
+            "$date": "2021-07-13T11:48:30.065Z"
+        }
+    }
+]

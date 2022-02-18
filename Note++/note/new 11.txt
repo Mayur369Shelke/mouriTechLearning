@@ -1,0 +1,97 @@
+	@GetMapping("/getInfoById/{id}")
+	public ResponseEntity<Information> getInfoById(@PathVariable(value="id") long id) {
+		
+		Information info = infoService.getInformationById(id);
+		System.out.println("");
+
+		if(info==null) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			
+		}
+		else {
+			return ResponseEntity.of(Optional.of(info));
+			
+		}
+		
+	}
+	
+	pi/v1/products?id=1,2,3
+	
+	
+	
+	/*
+	 * @PutMapping("/updateInformation/{id}")
+	 *  public void update(@RequestBody Information information , @PathVariable("id") long id) {
+	 * 
+	 * infoService.updateid(id,information.getId());
+	 * infoService.updateFirstName(id,information.getFirstName());
+	 * infoService.updateLastName(id, information.getLastName());
+	 * infoService.updateAge(id, information.getAge()); 
+	 * infoService.updateCourse(id,
+	 * information.getCourse());
+	 * infoService.updateCollegeName(id,information.getCourse() );
+	 * 
+	 * return infoService.updateInformation(information,id);
+	 * 
+	 * }
+	 */
+	 
+	 
+	 @Service layer method 
+	 @Override
+	public List<Information> deleteInformation(long id)
+	{
+		
+		try {
+			
+			if(modeldao.existsById(id)==true)
+			{
+				logger.info("calling DAO layer method");
+				List<Information> info = modeldao.findById(id);
+				modeldao.deleteById(id);
+				return info;
+				
+			}
+			else {
+				logger.error("given ID is not present in database please check id");
+				return null;
+				
+			}
+			
+		} catch (Exception e) {
+			logger.error("check database connection", e.fillInStackTrace());
+			return null;
+		}
+		
+	}
+	
+	@Controller layer method
+	
+	@DeleteMapping("/deleteInformation/{id}")
+		public ResponseEntity<List<Information>>  deleteInfo(@PathVariable(value="id") long id) {
+				
+
+			long count = modeldao.count();
+			try {
+				
+				if(id==0 || id>count)
+				{
+					logger.error("id is not available in database");
+					return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+					
+				}
+				
+				else {
+					logger.info("calling service layer mathod");
+					List<Information> info = infoService.deleteInformation(id);	
+					return ResponseEntity.of(Optional.of(info));
+					}
+				
+				}
+				 catch (Exception e) {
+					 
+               logger.error("check service layer method ", e.fillInStackTrace());
+				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();}
+			 
+			 
+		}

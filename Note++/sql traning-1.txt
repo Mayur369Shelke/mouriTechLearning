@@ -1,0 +1,1219 @@
+Alter.sql
+=========
+
+use moritech;
+
+alter table student add studentpercentage float after studentmarks;
+
+-- Modify a column type
+
+alter table student modify  studentpercentage double;
+
+-- describe table
+
+desc student;
+
+-- rename the column name
+alter table student rename column stud_per to studentpercentage;
+
+alter table student change column studentpercentage studper float;
+
+-- drop a column
+# drop a column
+alter table student drop studentnationality;
+
+-- alter the table name
+alter table student rename to student_data;
+
+
+constrains
+==========
+
+-- adding constraints while creating table
+create table course(courseid int,coursename varchar(20) not null);
+
+-- drop the table
+drop table course;
+
+-- adding multiple  constraints on single column while creating table
+create table course(courseid int not null unique,
+						coursename varchar(20) not null );
+
+-- describe command
+desc course;
+
+-- adding constraint while altering table
+alter table course add column coursefees float not null;
+
+-- adding new constraint 
+
+alter table course modify coursename varchar(20) not null;
+
+-- adding two constraints using alter
+alter table course modify coursename varchar(20) not null unique;
+
+-- alter table drop constraint
+alter table course drop constraint coursen; 
+
+-- ALTER TABLE table_name ADD CONSTRAINT constraint_name not null
+-- alter the table to add a new column
+alter table course add column courseduration int;
+alter table course add CONSTRAINT  course_nt_nl unique (courseduration);
+
+-- drop the constraint using constraint name
+alter table course drop constraint  course_nt_nl;
+
+-- create table the constraint and constraint name
+create table instructor(instructorid int,
+						instructorname varchar(50) ,
+                        constraint cns_name unique(instructorname));
+
+-- describe
+desc instructor;
+
+database
+=======
+
+-- create a database
+create database demo1;
+
+-- create a table in above database
+
+use demo1;
+
+create table sample(sampleid int,samplename varchar(32));
+
+# drop a database
+
+drop database demo1;
+
+
+
+use moritech;
+
+drop table instructordetails;
+
+-- creating table using specific engine type
+
+create table instructordetails
+(instr_details_id int,instr_id int,specialization varchar(20))
+engine=MyISAM;
+
+
+truncate
+========
+
+-- truncate is to delete all rows
+-- truncate will drop the table to delete all rows and recreates the empty table
+-- to fastly delete all rows instead of deleting row by row
+
+-- syntax for truncating the table
+truncate table instructordetails;
+
+-- or [table] keyword is optional
+truncate course;
+
+-- drop table to see the difference between truncate and drop
+drop table instructordetails;
+
+
+
+
+DataBase?
+
+Organized Collection of interrelated data stored in a server/computer.
+
+ACID Properties
+=============
+Atomicity
+Consistency
+Isolation
+Durability
+
+Relationships TYpes among the data to store effectively using ACID properties and retrieve easily
+
+1.  One to One Relationship
+2.  Many to One Relationship
+3. One to Many Relationship
+4. Many to Many Relationship
+
+Importance of DB?
+===============
+- For handlng large amount of different types of data with ease.
+- Systematically we can retrieve,filter and sort and update data efficiently and    accurately
+
+Types of DB Model
+===============
+defining logical structure of the database to store ,organize and manipulate the data
+
+There are 4 common types of db model
+================================
+Hierarchial DBs
+Network DBs
+Relational DBs
+Object Oriented DBs
+
+Hierarchial DBs
+============
+It oldest db model developed by IBM for information management.
+
+
+Network DBs
+==========
+Hierarchial Model + many to many relationshihp
+it is officially stated by CODASYL (Conference on Data Systems Lanuage)
+
+Relational DBs or SQL databases
+===========================
+MySql
+DB2 (IBM)
+Postgre
+Oracle
+H2
+HSQL
+SQLServer etc.,
+
+Here Data is categorized in to different tables called as Relations
+Each Relation or Table or Entity includes set of rows and columns.
+Each column holds attribute of the entity
+
+Example
+=======
+Customer => customerid,customername,customeremail,customermobileno etc.,
+
+In above example
+
+Customer => Entity => Table => Relation
+customerid,customername etc,m => attributes of entity => columns
+values of above attributes are stored as row => tuple => which holds all the details of a entity as a row
+Degree of a Table or Relation => number of attributes in a table
+cardinality => number of rows/tuples in the table
+
+The above generates all relationships or Associations  like 
+one to one
+one to many
+many to one
+many to many
+
+This database follows certain rules to store the data across different tables called as Normalization
+
+Normalization helps to reduce the redundancy(repetition/duplicate) of the data (ACID)
+
+in 1970 by E.F.Codd
+
+
+Object Oriented DBs
+================
+OOD follows all the principles of OOPS like class,object,inheritance,polymorphism,encapsulation and abstraction
+
+What is DBMS?
+============
+an application software to create,delete,update and administer data
+
+Components of DBMS
+=================
+Hardware => DIsk and RAM,keyboard,monitor etc,
+Software => Mysql or Oracle
+Data => information collected 
+Procedures => rules that help in using DBMS
+DB Access Language => Query Language to perform operations like create,read,update and delete
+
+characteristics of DBMS
+===================
+
+DBMS supports ACID Properties
+it stores any kind of data like images,videos,files etc,
+BackUp and Recovery
+Duplicate data can be reduced
+sharing of data is easy
+supports data security and restriction to unauthorized access
+
+Application of DBMS
+================
+Banking System
+Telecom
+Airlines
+Online shoppling
+Education etc.
+
+Advantages of DBMS
+================
+DBMS Duplicate data (data redundancy) is very less or not present
+In DBMS  data stored is consistent (Inconsistency is removed)
+we can share data among different applications and users
+we can search and fetch the data from different servers
+ we can limit the access to the data by defining privileges or permissions
+DBMS uses software locking mechanism that prevents the same set of data from being changed by two people at the same time
+DBMS can integrate the data from different locations
+DBMS supports in quality business decisions
+DBMS provides set or commands to reduce the time for access of data by writing simple queries using this commands
+DBMS restores the data to previous state if case of any crash
+DBMS support tuning techniques to improve the performance
+Data loss is almost eliminated
+Any trasaction to dbms will be treated  as atomic transaction,to complete the transaction or rollback transaction 
+
+
+
+DBMS Disadvantages
+=================
+Cost of hardware and software
+technical staff
+Managing the complexity of DB
+Frequent upgrade or Management of Data 
+
+Types of DBMS
+============
+NoSQL
+ER Model
+SQL
+Document
+Network
+Graph database
+Hierarchial DB 
+
+Normalization in DBMS
+==================
+
+Normalization is defined as process to remove duplicate/redundant data among different tables to ensure data integrity.
+Which supports the CRUD (Cread,Read update and Delete)
+Normalization removes anomalies like
+    insert anamoly
+    delete anamoly
+    update anamoly
+
+
+
+
+
+SQL
+====
+Structured Query Language
+
+which is set of commands to manipulate the database
+these set of comands are divided into 4 parts
+
+1.DDL (Data Definition Language) => create or remove and change the table in database
+====================================================================
+create
+alter
+drop
+truncate
+2.DML (Data Manipulation Language) => create or remove or change values in the table
+===================================================================
+insert
+update and
+delete
+3.DCL (Data Control Language) => to set the privileges for accessing db
+======================================================
+grant
+revoke
+4.TCL (Transaction Control Language) 
+======================================
+=> to commit or roll back the database transactions(create,read,update and delete) of data in table
+commit
+rollback
+savepoint
+
+5. DQL (Data Query Language) => to retrieve the data using select statment
+============================================================
+select
+
+DataTypes in MySQL
+================
+Numeric DataTypes
+=================
+int ,tinyint,smallint,mediumint,bigint,float(m,d),double(m,d),decimal(m,d),bit(m),bool,boolean
+String DataTypes
+=================
+char(size),varchar(size),Tinytext,text,mediumtext,longtext,binary,varbinday,enum,et
+
+BLOB (Binary Large Object Data Types)
+================================
+Tinybolb = 255 bytes
+blob = 65,535 bytes
+mediumblob = 16,777,215 bytes
+longblob = 4gb
+
+Date Data Types
+=============
+Year [(2|4)]  => 2 digit or 4 digit => by default 4 digits are stored
+DATE => 'yyyy-mm-dd' => 1000 -01-01 to 9999-12-31
+TIME => 'HH:MM:SS'
+DATETIME => 'yyyy-mm-dd HH:MM:SS'
+TIMESTAMP => 'YYYY-MM-DD HH:MM:SS'
+
+Constraints in MySQL
+=================
+rule on data 
+
+to specify or restrict data values to store in the table
+
+Constraints are defined on table to ensure data accuracy and integrity.
+
+Example
+=======
+
+studentage cannot be > 120 => column level constraint
+
+
+Two Types of Constraints
+====================
+Column level Constraints => constraints that limits to a particular column to insert particular data
+Table level Constraints => constraints that are applied on entire table that limits the data insertion on whole table
+
+
+List of Constraints in MySQL
+======================
+NOT NULL
+CHECK
+DEFAULT
+PRIMARY KEY
+AUTO_INCREMENT
+ENUM
+FOREIGN KEY
+INDEX
+UNIQUE 
+
+Adding Constraint while creating the table
+=================================
+create table course(courseid int,coursename varchar(20) not null);
+
+MySQL Engines
+============
+
+MyISAM
+======
+   ISAM storage (indexed sequential access method)
+   SIze of the MYISAM table 256TB
+   MYISAM tables compressed and readonly
+  MYISAM tables are not transaction safe
+
+MYISAM is the default engine before version 5.5
+  
+InnoDB
+======
+This is the default engine after version 5.5
+
+supports all ACID properties
+optimal for performance
+it supports portablity across different platforms and OS
+supports foreign keys,commit,rollback operations
+SIze of the MYISAM table 64TB
+
+
+MERGE
+======
+
+MEMORY(HEAP)
+ARCHIVE
+CSV
+FEDERATED
+
+
+
+==============================================================================================
+SQL basic
+=========
+
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.23 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database moritech;
+Query OK, 1 row affected (0.27 sec)
+
+mysql> show databases;
++---------------------+
+| Database            |
++---------------------+
+| bfs_hibdemo         |
+| bfs_jdbcdemo        |
+| binge               |
+| canteen             |
+| cgi                 |
+| classboxes          |
+| classicmodels       |
+| cms                 |
+| cmsdemo             |
+| cmshib              |
+| coursemanagement    |
+| demo                |
+| expensetracker      |
+| hexawaredigital     |
+| hibinheritance      |
+| information_schema  |
+| jdbcdemo            |
+| jdbctemplateexample |
+| jdbiexample         |
+| joins               |
+| learntek            |
+| lims                |
+| lmsdemo             |
+| meanexample         |
+| mlp173              |
+| mlp191              |
+| mlp312              |
+| moritech            |
+| mysql               |
+| mysql_training      |
+| onlineecomapp       |
+| performance_schema  |
+| practice            |
+| profile_management  |
+| quinoxx             |
+| restassured         |
+| restsample          |
+| sakila              |
+| shoppingweb         |
+| springbootreactapp  |
+| springbootsecurity  |
+| sys                 |
+| testdb              |
+| torris              |
+| tutorialdemo        |
+| usermanagement      |
+| world               |
++---------------------+
+47 rows in set (1.27 sec)
+
+mysql> use moritech;
+Database changed
+mysql> create table student(studentid varchar(20),studentname varchar(100),studentemail varchar(30),
+    -> studentage int);
+Query OK, 0 rows affected (2.21 sec)
+
+mysql> desc student;
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| studentid    | varchar(20)  | YES  |     | NULL    |       |
+| studentname  | varchar(100) | YES  |     | NULL    |       |
+| studentemail | varchar(30)  | YES  |     | NULL    |       |
+| studentage   | int          | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+4 rows in set (0.23 sec)
+
+mysql> alter table student add studentdob date;
+Query OK, 0 rows affected (2.24 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| studentid    | varchar(20)  | YES  |     | NULL    |       |
+| studentname  | varchar(100) | YES  |     | NULL    |       |
+| studentemail | varchar(30)  | YES  |     | NULL    |       |
+| studentage   | int          | YES  |     | NULL    |       |
+| studentdob   | date         | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+5 rows in set (0.42 sec)
+
+mysql> drop table student;
+Query OK, 0 rows affected (1.84 sec)
+
+mysql> desc student;
+ERROR 1146 (42S02): Table 'moritech.student' doesn't exist
+mysql> create table student(studentid varchar(20),studentname varchar(100),studentemail varchar(30),
+    -> studentage int);
+Query OK, 0 rows affected (1.64 sec)
+
+mysql> alter table student add studentdob date;
+Query OK, 0 rows affected (1.71 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| studentid    | varchar(20)  | YES  |     | NULL    |       |
+| studentname  | varchar(100) | YES  |     | NULL    |       |
+| studentemail | varchar(30)  | YES  |     | NULL    |       |
+| studentage   | int          | YES  |     | NULL    |       |
+| studentdob   | date         | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+5 rows in set (0.07 sec)
+
+mysql> alter table student add studentjd datetime;
+Query OK, 0 rows affected (0.50 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| studentid    | varchar(20)  | YES  |     | NULL    |       |
+| studentname  | varchar(100) | YES  |     | NULL    |       |
+| studentemail | varchar(30)  | YES  |     | NULL    |       |
+| studentage   | int          | YES  |     | NULL    |       |
+| studentdob   | date         | YES  |     | NULL    |       |
+| studentjd    | datetime     | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> alter table student add studentmarks float;
+Query OK, 0 rows affected (0.49 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| studentid    | varchar(20)  | YES  |     | NULL    |       |
+| studentname  | varchar(100) | YES  |     | NULL    |       |
+| studentemail | varchar(30)  | YES  |     | NULL    |       |
+| studentage   | int          | YES  |     | NULL    |       |
+| studentdob   | date         | YES  |     | NULL    |       |
+| studentjd    | datetime     | YES  |     | NULL    |       |
+| studentmarks | float        | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> alter table student drop studentmarks;
+Query OK, 0 rows affected (2.34 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| studentid    | varchar(20)  | YES  |     | NULL    |       |
+| studentname  | varchar(100) | YES  |     | NULL    |       |
+| studentemail | varchar(30)  | YES  |     | NULL    |       |
+| studentage   | int          | YES  |     | NULL    |       |
+| studentdob   | date         | YES  |     | NULL    |       |
+| studentjd    | datetime     | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+6 rows in set (0.09 sec)
+
+mysql> alter table student add studentmarks float, add studentgrade char(3);
+Query OK, 0 rows affected (1.95 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| studentid    | varchar(20)  | YES  |     | NULL    |       |
+| studentname  | varchar(100) | YES  |     | NULL    |       |
+| studentemail | varchar(30)  | YES  |     | NULL    |       |
+| studentage   | int          | YES  |     | NULL    |       |
+| studentdob   | date         | YES  |     | NULL    |       |
+| studentjd    | datetime     | YES  |     | NULL    |       |
+| studentmarks | float        | YES  |     | NULL    |       |
+| studentgrade | char(3)      | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+8 rows in set (2.41 sec)
+
+mysql> alter table student add studentpercentage float after studentmarks float;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'float' at line 1
+mysql> alter table student add studentpercentage float after studentmarks;
+ERROR 1060 (42S21): Duplicate column name 'studentpercentage'
+mysql> alter table student add studentnationality varchar first studentage;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'first studentage' at line 1
+mysql> alter table student add studentnationality varchar(30) first studentage;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'studentage' at line 1
+mysql> alter table student add studentnationality varchar(30) first;
+Query OK, 0 rows affected (2.27 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++--------------------+--------------+------+-----+---------+-------+
+| Field              | Type         | Null | Key | Default | Extra |
++--------------------+--------------+------+-----+---------+-------+
+| studentnationality | varchar(30)  | YES  |     | NULL    |       |
+| studentid          | varchar(20)  | YES  |     | NULL    |       |
+| studentname        | varchar(100) | YES  |     | NULL    |       |
+| studentemail       | varchar(30)  | YES  |     | NULL    |       |
+| studentage         | int          | YES  |     | NULL    |       |
+| studentdob         | date         | YES  |     | NULL    |       |
+| studentjd          | datetime     | YES  |     | NULL    |       |
+| studentmarks       | float        | YES  |     | NULL    |       |
+| studentpercentage  | float        | YES  |     | NULL    |       |
+| studentgrade       | char(3)      | YES  |     | NULL    |       |
++--------------------+--------------+------+-----+---------+-------+
+10 rows in set (2.00 sec)
+
+mysql>
+
+
+=============================================================================
+
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.23 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database moritech;
+Query OK, 1 row affected (0.27 sec)
+
+mysql> show databases;
++---------------------+
+| Database            |
++---------------------+
+| bfs_hibdemo         |
+| bfs_jdbcdemo        |
+| binge               |
+| canteen             |
+| cgi                 |
+| classboxes          |
+| classicmodels       |
+| cms                 |
+| cmsdemo             |
+| cmshib              |
+| coursemanagement    |
+| demo                |
+| expensetracker      |
+| hexawaredigital     |
+| hibinheritance      |
+| information_schema  |
+| jdbcdemo            |
+| jdbctemplateexample |
+| jdbiexample         |
+| joins               |
+| learntek            |
+| lims                |
+| lmsdemo             |
+| meanexample         |
+| mlp173              |
+| mlp191              |
+| mlp312              |
+| moritech            |
+| mysql               |
+| mysql_training      |
+| onlineecomapp       |
+| performance_schema  |
+| practice            |
+| profile_management  |
+| quinoxx             |
+| restassured         |
+| restsample          |
+| sakila              |
+| shoppingweb         |
+| springbootreactapp  |
+| springbootsecurity  |
+| sys                 |
+| testdb              |
+| torris              |
+| tutorialdemo        |
+| usermanagement      |
+| world               |
++---------------------+
+47 rows in set (1.27 sec)
+
+mysql> use moritech;
+Database changed
+mysql> create table student(studentid varchar(20),studentname varchar(100),studentemail varchar(30),
+    -> studentage int);
+Query OK, 0 rows affected (2.21 sec)
+
+mysql> desc student;
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| studentid    | varchar(20)  | YES  |     | NULL    |       |
+| studentname  | varchar(100) | YES  |     | NULL    |       |
+| studentemail | varchar(30)  | YES  |     | NULL    |       |
+| studentage   | int          | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+4 rows in set (0.23 sec)
+
+mysql> alter table student add studentdob date;
+Query OK, 0 rows affected (2.24 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| studentid    | varchar(20)  | YES  |     | NULL    |       |
+| studentname  | varchar(100) | YES  |     | NULL    |       |
+| studentemail | varchar(30)  | YES  |     | NULL    |       |
+| studentage   | int          | YES  |     | NULL    |       |
+| studentdob   | date         | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+5 rows in set (0.42 sec)
+
+mysql> drop table student;
+Query OK, 0 rows affected (1.84 sec)
+
+mysql> desc student;
+ERROR 1146 (42S02): Table 'moritech.student' doesn't exist
+mysql> create table student(studentid varchar(20),studentname varchar(100),studentemail varchar(30),
+    -> studentage int);
+Query OK, 0 rows affected (1.64 sec)
+
+mysql> alter table student add studentdob date;
+Query OK, 0 rows affected (1.71 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| studentid    | varchar(20)  | YES  |     | NULL    |       |
+| studentname  | varchar(100) | YES  |     | NULL    |       |
+| studentemail | varchar(30)  | YES  |     | NULL    |       |
+| studentage   | int          | YES  |     | NULL    |       |
+| studentdob   | date         | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+5 rows in set (0.07 sec)
+
+mysql> alter table student add studentjd datetime;
+Query OK, 0 rows affected (0.50 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| studentid    | varchar(20)  | YES  |     | NULL    |       |
+| studentname  | varchar(100) | YES  |     | NULL    |       |
+| studentemail | varchar(30)  | YES  |     | NULL    |       |
+| studentage   | int          | YES  |     | NULL    |       |
+| studentdob   | date         | YES  |     | NULL    |       |
+| studentjd    | datetime     | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> alter table student add studentmarks float;
+Query OK, 0 rows affected (0.49 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| studentid    | varchar(20)  | YES  |     | NULL    |       |
+| studentname  | varchar(100) | YES  |     | NULL    |       |
+| studentemail | varchar(30)  | YES  |     | NULL    |       |
+| studentage   | int          | YES  |     | NULL    |       |
+| studentdob   | date         | YES  |     | NULL    |       |
+| studentjd    | datetime     | YES  |     | NULL    |       |
+| studentmarks | float        | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> alter table student drop studentmarks;
+Query OK, 0 rows affected (2.34 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| studentid    | varchar(20)  | YES  |     | NULL    |       |
+| studentname  | varchar(100) | YES  |     | NULL    |       |
+| studentemail | varchar(30)  | YES  |     | NULL    |       |
+| studentage   | int          | YES  |     | NULL    |       |
+| studentdob   | date         | YES  |     | NULL    |       |
+| studentjd    | datetime     | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+6 rows in set (0.09 sec)
+
+mysql> alter table student add studentmarks float, add studentgrade char(3);
+Query OK, 0 rows affected (1.95 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| studentid    | varchar(20)  | YES  |     | NULL    |       |
+| studentname  | varchar(100) | YES  |     | NULL    |       |
+| studentemail | varchar(30)  | YES  |     | NULL    |       |
+| studentage   | int          | YES  |     | NULL    |       |
+| studentdob   | date         | YES  |     | NULL    |       |
+| studentjd    | datetime     | YES  |     | NULL    |       |
+| studentmarks | float        | YES  |     | NULL    |       |
+| studentgrade | char(3)      | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+8 rows in set (2.41 sec)
+
+mysql> alter table student add studentpercentage float after studentmarks float;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'float' at line 1
+mysql> alter table student add studentpercentage float after studentmarks;
+ERROR 1060 (42S21): Duplicate column name 'studentpercentage'
+mysql> alter table student add studentnationality varchar first studentage;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'first studentage' at line 1
+mysql> alter table student add studentnationality varchar(30) first studentage;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'studentage' at line 1
+mysql> alter table student add studentnationality varchar(30) first;
+Query OK, 0 rows affected (2.27 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++--------------------+--------------+------+-----+---------+-------+
+| Field              | Type         | Null | Key | Default | Extra |
++--------------------+--------------+------+-----+---------+-------+
+| studentnationality | varchar(30)  | YES  |     | NULL    |       |
+| studentid          | varchar(20)  | YES  |     | NULL    |       |
+| studentname        | varchar(100) | YES  |     | NULL    |       |
+| studentemail       | varchar(30)  | YES  |     | NULL    |       |
+| studentage         | int          | YES  |     | NULL    |       |
+| studentdob         | date         | YES  |     | NULL    |       |
+| studentjd          | datetime     | YES  |     | NULL    |       |
+| studentmarks       | float        | YES  |     | NULL    |       |
+| studentpercentage  | float        | YES  |     | NULL    |       |
+| studentgrade       | char(3)      | YES  |     | NULL    |       |
++--------------------+--------------+------+-----+---------+-------+
+10 rows in set (2.00 sec)
+
+mysql>
+
+===================================================================================================================
+
+
+SQL
+DBMS
+DATAMART
+DATAWAREHOUSE
+
+
+Group of datamarts=datalake=datawarehouse
+                                                                
+EDL=          extraction,transformation,loading
+ELT =   it is the process which can directly load the data
+
+
+Types of databases and models:
+NO sql
+sql
+
+
+
+database?
+
+organized collection of interrelated data stored in a server/computer.
+
+ACID Properties:
+===============
+ATOMICITY
+CONSISTENCY
+ISOLATION
+DURA
+
+imp of DB
+============
+
+FOr handling large amount of diff types of data with ease.
+systamatically we cam retreive ,filter and sort and update data efficiently and accurately.
+
+
+types of DB Model:
+==================
+flat model and flat file
+
+
+DBs
+===========
+Hierarrchical           db and model
+network model      db and model
+relational model   db and model
+Dimensional model it is model not db
+object oriented       db and model
+
+
+RELATIONSHIPS:
+================
+ONE TO ONE
+ONE TO MANY
+MANY TO ONE
+MANY TO MANY
+
+Hierarchical DB's:
+=================
+
+
+Network DB's:
+==============
+Hierarchical model+many to many relationship
+it is officially stated by CODASYL(Conference on data systems language)
+
+Relational DBs
+==============
+MYSql
+DB2(IBM)
+Postgre
+Oracle
+H2
+HSQL etc...
+
+
+object Oriented DBs
+===================
+
+OOD follows all the pronciples of OOPS like class,objects,inheritance,polymorphism,encapsulation and abstraction.
+
+main advantages of oops is reusability
+
+
+What is DBMS?
+===============
+an application software to create,delete,update and administer data
+for manipulting the data
+
+
+Components of DBMS
+====================
+hardware=>Disk and RAM ,Keyboard,monitor etc..
+software=> MySQL or Oracle
+data=> information collected
+procedure=>rules that help in using DBMS
+DB Access Language=> Query Language to perform operations like create,read,update and delete
+
+
+characters of DBMS
+==================
+DBMS supports ACID Properties
+it stores any kind of data like images,videos,files etc,
+BackUp and Recovery
+Duplicate data can be reduced
+sharing of data is easy
+supports data security and restriction to unauthorized access
+
+Application of DBMS
+===================
+Banking System
+telecom
+airlines
+online shopping
+education etc,..
+
+Advantages of DBMS
+===================
+DBMS Duplicate data(data redundancy) is very less or not present
+In DBMS data stored in consistent(inconsistency is removed)
+we can share data among diff applications and users
+we can search and fetch data from different servers
+we can limit the access to the data by defining privileges or permissions
+DBMS uses software locking mechanism that prevents the same set of data from being changed by 2 people at the same time
+DBMS can integrate the data from diff locations
+DBMS supports in quality business decisions
+DBMS provide set or commands to reduce the time for acess of data by writing simple queries using this commands
+DBMS restores the data to previous state in case of any crash
+DBMS support tuning techniques to improve the performance
+Data loss is almost eliminated
+Any transaction to DBMS will be treated atomic transaction
+
+Disadvantages
+==============
+Cost of hardware and software
+technical staff
+managing the complexity of DB
+Frequent upgrade or management of data
+
+Types of DBMS
+==============
+No SQL
+ER Model
+SQL
+Document
+Network
+Graph database
+Hierarchical DB
+
+
+
+Normalization in DBMS
+=====================
+set of rules to prevent data redundancy
+
+It is defined as process to remove to remove/redundant data among diff tables to ensure data integrity
+which supplies the CRUD(Create,Read,update and delete)
+it removes anamolies like
+   insert anamoly
+   update anamoly
+   delete anamoly
+
+SQL
+====
+SET of commands to manipulate the database
+these set of commands are divided 4 parts
+
+1.DDL=> create or remove and change the table in databas
+==========
+create
+alterr
+drop
+truncate
+
+2.DML=>create or remove or change values in the table
+insert
+update
+delete
+
+3.DCL=> to set the privilleges for accessing db
+grant
+revoke
+4.TCL=> to commit or roll back the database transactions(create,read,update and delete) od the data in table
+==========
+commit
+rollback
+savepoint
+
+
+5.DQL=>to retreive the data using select statement
+==========
+select 
+
+
+Datatypes in MySQL
+==================
+
+Numeric: int,tiyint,smallint,mediumint,bigint,float(m,d),double(m,d),decimal(m,d),bit(m),bool,boolen
+
+String Datatypes
+===============
+char(size),varchar(size),Tinytext,text,mediumtext,longtext,binary,varbinary,enum,et
+
+BOOB(binary Larhe Object Data Types)
+===================================
+Tinybolb=255bytes
+blob=65,635 bytes
+mediumnlob=16,777,216 bytes
+longblob=4gb
+
+Date Data Type
+==============
+Year[(2|4)]=> 2 digit or 4 digit=> by default 4 digits are stored
+DATE=>'yyyy-mm-dd'=>1000-01-01 to 9999-12-31
+TIME=>'HH-MM:SS'
+DATETIME=>'yyyy-mm-dd HH:MM:SS'
+TIMESTAMP=>'YYYY-MM-DD HH:MM:SS'
+
+constrains:
+===========
+2 types  column level,table level constrains
+
+rule on data
+
+to specify or restrict data values to store in the table
+
+Constrains are defined on table to ensure data accuracy and integrity
+
+Example
+========
+
+studentage cannot be=>120=>column level constraint
+
+2 types  constrains
+================
+column level=> that limits to a particular column to insert particular data
+table level =>that are applied on entire table that limits the data insertion on whole table
+
+
+List of Constrains
+================
+NOTNULL
+CHECK
+DEFAULT
+PRIMARYKEY
+AUTO INCREMENT
+ENUM
+FORIEGN KEY
+INDEX
+UNIQUE
+
+
+MYSQL Engines
+==============
+
+MyISAM
+INNODB
+MERGE
+ARCHIVE
+
+===========================================================
+
+timestamp
+
+USE mt;
+CREATE TABLE Bonus(WORKER_REF_ID INT, BONUS_DATE TIMESTAMP, BONUS_AMOUNT INT);
+INSERT INTO Bonus(WORKER_REF_ID, BONUS_DATE, BONUS_AMOUNT)
+VALUES(1, '2016-02-20 00:00:00', 5000),
+      (2, '2016-06-11 00:00:00', 3000),
+      (3, '2016-02-20 00:00:00', 4000),
+      (1, '2016-06-02 00:00:00', 4500),
+      (2, '2016-02-11 00:00:00', 3500);
+SELECT * FROM Bonus;
+
+======================================
+USE mt;
+CREATE TABLE Worker(WORKER_ID INT, FIRST_NAME VARCHAR(20), LAST_NAME VARCHAR(20), SALARY INT, JOINING_DATE TIMESTAMP, DEPARTMENT VARCHAR(20));
+INSERT INTO WORKER(WORKER_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT)
+VALUES('001', 'Monika', 'Arora', '100000', '2014-02-20 09:00:00', 'HR'),
+      ('002', 'Niharika', 'Verma', '80000', '2014-06-11 09:00:00', 'Admin'),
+	  ('003', 'Vishal', 'Singhal', '300000', '2014-02-20 09:00:00', 'HR'),
+	  ('004', 'Amitabh', 'Singh', '500000', '2014-02-20 09:00:00', 'Admin'),
+	  ('005', 'Vivek', 'Bhatia', '500000', '2014-06-11 09:00:00', 'Admin'),
+	  ('006', 'Vipul', 'Diwan', '200000', '2014-06-11 09:00:00', 'Account'),
+	  ('007', 'Satish', 'Kumar', '75000', '2014-01-20 09:00:00', 'Account'),
+	  ('008', 'Geetika', 'Chauhan', '90000', '2014-04-11 09:00:00', 'Admin');
+SELECT * FROM Worker;
+
+================================================
+
+create database mouritech;
+
+show databases;
+
+use mouritech;
+
+create table Worker(WORKER_ID int(10), FIRST_NAME varchar(20), LAST_NAME varchar(20), SALARY float(20), JOINING_DATE datetime, DEPARTMENT VARCHAR(20));
+
+desc Worker;
+
+insert into Worker values(001, 'Monika', 'Arora', 100000, '2014-02-20 09:00:00', 'HR');
+insert into Worker values(002, 'Niharika', 'Verma', 80000, '2014-06-11 09:00:00', 'Admin');
+insert into Worker values(003, 'Vishal', 'Singhal', 300000, '2014-02-20 09:00:00', 'HR');
+insert into Worker values(004, 'Amitabh', 'Singh', 500000, '2014-02-20 09:00:00', 'Admin');
+insert into Worker values(005, 'Vivek', 'Bhati', 500000, '2014-06-11 09:00:00', 'Admin');
+insert into Worker values(006, 'Vipul', 'Diwan', 200000, '2014-06-11 09:00:00', 'Account');
+insert into Worker values(007, 'Satish', 'Kumar', 75000, '2014-01-20 09:00:00', 'Account');
+insert into Worker values(008, 'Geetika', 'Chauhan', 90000, '2014-04-11 09:00:00', 'Admin');
+
+select * from Worker;
+
+
+create table Bonus(WORKER_REF_ID int(20), BONUS_DATE datetime, BONUS_AMOUNT float(20));
+
+insert into Bonus values(1, '2016-02-20 00:00:00', 5000);
+insert into Bonus values(2, '2016-06-11 00:00:00', 3000);
+insert into Bonus values(3, '2016-02-20 00:00:00', 4000);
+insert into Bonus values(1, '2016-02-20 00:00:00', 4500);
+insert into Bonus values(2, '2016-06-11 00:00:00', 3500);
+
+select * from Bonus;
+
+create table Title(WORKER_REF_ID int(20), WORKER_TITLE varchar(20), AFFECTED_FROM datetime);
+
+desc Title;
+
+insert into Title values(1, 'Manager', '2016-02-20 00:00:00');
+insert into Title values(2, 'Executive', '2016-06-11 00:00:00');
+insert into Title values(8, 'Executive', '2016-06-11 00:00:00');
+insert into Title values(5, 'Manager', '2016-06-11 00:00:00');
+insert into Title values(4, 'Asst. Manager', '2016-06-11 00:00:00');
+insert into Title values(7, 'Executive', '2016-06-11 00:00:00');
+insert into Title values(6, 'Lead', '2016-06-11 00:00:00');
+insert into Title values(3, 'Lead', '2016-06-11 00:00:00');
+
+select * from Title;

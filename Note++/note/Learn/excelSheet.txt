@@ -1,0 +1,289 @@
+
+public class FileUploadServiceImpl implements FileUploadService {
+	
+	@Autowired
+	InformationRepository informationRepository;
+	
+	@Autowired
+	InformationMapper informationMapper;
+
+	
+	
+	private static final Logger logger = LoggerFactory.getLogger(FileUploadServiceImpl.class);
+
+
+	
+	@Override
+	public List<Information> readFile(MultipartFile file) throws IOException, ResourceNotFoundException
+	{
+		
+		
+		XSSFWorkbook workbook = new XSSFWorkbook(file.getInputStream());
+		XSSFSheet worksheet = workbook.getSheetAt(0);
+	
+		//get excel sheet all information
+		List<Information> informations = new ArrayList<Information>();
+		
+		for (int i = 1; i<= worksheet.getPhysicalNumberOfRows()-1; i++) 
+		{
+			Information information = new Information();		
+			XSSFRow row = worksheet.getRow(i);
+			
+			information.setFirstName(row.getCell(0).getStringCellValue());
+			//logger.info("first name = "+information.getFirstName()+", at row "+i);
+			
+			information.setLastName(row.getCell(1).getStringCellValue());
+			//logger.info("last name = "+information.getLastName()+", at row "+i);
+			
+			information.setEmail(row.getCell(2).getStringCellValue());
+			//logger.info("email id = "+information.getEmail()+", at row "+i);
+			
+			DataFormatter formatter = new DataFormatter();
+			String text = formatter.formatCellValue(row.getCell(3));
+			//logger.info("phone number string  = "+text+", at row "+i);
+			information.setPhoneNumber(text);
+			//logger.info("phone number = "+information.getPhoneNumber()+", at row "+i);
+			
+			logger.info("first name = "+information.getFirstName()+" , last name = "+information.getLastName()+" , email id = "+information.getEmail()+" , phone number = "+information.getPhoneNumber());
+			
+			informations.add(information);	
+					
+		}
+		workbook.close();
+
+	
+		if(informations.isEmpty() || informations.size()!=worksheet.getLastRowNum())
+		{
+			throw new ResourceNotFoundException("Please check Excel sheet data");
+		}
+		
+		logger.info("returning excel sheet data in to list");
+		return informations;
+	}
+	
+
+	@Override
+	public Map<String, List<Information>> applyValidationOnFile(List<Information> fileListObject) throws IOException,Exception
+	{
+		Map<String, List<Information>> finalValidateData = new HashedMap<>();
+		List<Information> validateInformation = new ArrayList<Information>();
+		List<Information> invalidateInformation = new ArrayList<Information>();
+		
+		for(Information information : fileListObject)
+		{
+			if (information.getFirstName().matches("[A-Z][a-z]*") && information.getLastName().matches("[A-Z][a-z]*") && information.getEmail().matches("^[A-Za-z0-9+_.-]+@(.+)$") && information.getPhoneNumber().matches("^\\d{10}$"))
+			{
+				validateInformation.add(information);
+			
+			}
+			
+			else {
+				invalidateInformation.add(information);
+		
+			}
+		
+		}
+		
+		finalValidateData.put("invalidData", invalidateInformation);
+		finalValidateData.put("validateData", validateInformation);
+		logger.info("returning map of valid data and invalid data");
+		return finalValidateData;
+	}
+
+
+	@Override
+	@Transactional
+	public List<InformationDto> validateDataSaveInDatabase(List<Information> validList) throws ResourceNotFoundException {
+		
+		
+		
+		List<Informations> informations = validList.stream().map(e -> new Informations(e.getFirstName(), e.getLastName(), e.getEmail(), e.getPhoneNumber())).collect(Collectors.toList());
+		
+		
+		
+		/*
+		 * Iterable<Informations> list = informationRepository.saveAll(informations);
+		 * 
+		 * List<InformationDto> dtos = new ArrayList<InformationDto>(); for(Informations
+		 * entity :list ) { dtos.add(informationMapper.convertEntityToDto(entity)); }
+		 * 
+		 * return dtos;
+		 */
+		  
+		  
+		  
+		
+		  for(Informations entity :informations ) {
+		  
+		  logger.info("first name = "+entity.getFirstName()+" , last name = "+entity.
+		  getLastName()+" , email id = "+entity.getEmail()+" , phone number = "+entity.
+		  getPhoneNumber());
+		  
+		  informationRepository.save(entity);
+		 
+		  }
+		return null;
+			 
+			 
+			
+			/*
+			 * String firstName = entity.getFirstName(); String lastName =
+			 * entity.getLastName(); String email = entity.getEmail(); Integer PhoneNumber =
+			 * entity.getPhoneNumber();
+			 * 
+			 * logger.info(firstName+lastName+email+PhoneNumber);
+			 * 
+			 * informationRepository.insertInformation(firstName, lastName, email,
+			 * PhoneNumber);
+			 * //return null;
+			 * //}
+			 */
+			
+		
+		
+		 
+	
+		 
+		
+	}
+
+
+	@Override
+	public Boolean invalidateDataExport(List<Information> invalidList) throws IOException,ResourceNotFoundException, Exception
+	{
+		boolean result = false;
+		XSSFWorkbook workbook = new XSSFWorkbook();
+		XSSFSheet spreadsheet = workbook.createSheet(" Student Data ");
+		XSSFRow row;
+		int rowid = 1;
+		int cellid = 0;
+		row = spreadsheet.createRow(0);
+		Cell cell = row.createCell(0);
+		cell.setCellValue("First Name");
+		cell = row.createCell(1);
+		cell.setCellValue("Last Name");
+		cell = row.createCell(2);
+		cell.setCellValue("Email");
+		cell = row.createCell(3);
+		cell.setCellValue("Phone No");
+		
+		  for (Information model : invalidList) 
+		  {
+		  
+		  row = spreadsheet.createRow(rowid++); 
+		  cell = row.createCell(cellid++);
+		  cell.setCellValue(model.getFirstName()); 
+		  cell = row.createCell(cellid++);
+		  cell.setCellValue(model.getLastName()); 
+		  cell = row.createCell(cellid++);
+		  cell.setCellValue(model.getEmail()); 
+		  cell = row.createCell(cellid++);
+		  cell.setCellValue(model.getPhoneNumber());
+		  cellid=0; 
+		  }
+		  
+		 
+		FileOutputStream out = new FileOutputStream(new File("D:/GFGsheet.xlsx"));
+
+		workbook.write(out);
+		out.close();
+		workbook.close();
+	return result=true;
+
+	}
+
+
+	@Override
+	public boolean sendInvalidDataExcelThroughMail() throws MessagingException ,Exception
+	
+	{
+		
+		Boolean flag = false;
+		String message = "Sending invalid data excel sheet , please find attachnemt";
+		String subject = "invalid data excel sheet";
+		String to = "shelke.mayur@gmail.com"; 
+		String from = "mangalshelke1956@gmail.com";
+		
+		//variable for mail
+		String host ="smtp.gmail.com";
+		
+		// get the system properties
+		Properties properties	= System.getProperties();
+
+	//setting important importation to properties object
+	//host set
+	properties.put("mail.smtp.host", host);
+	properties.put("mail.smtp.port", "465"); 
+	properties.put("mail.smtp.ssl.enable", "true");
+	properties.put("mail.smtp.auth", "true");
+
+	//Step 1: to get session object (having session object and passwordAuthentication)
+
+	 Session session = Session.getInstance(properties, new Authenticator() {
+
+		@Override
+		protected PasswordAuthentication getPasswordAuthentication() {
+			
+			return new PasswordAuthentication("mangalshelke1956@gmail.com", "7875464060");
+		}
+		 
+		 
+	});
+	 
+	 session.setDebug(true);
+
+	//Step 2 : compose the message[text,attachment]
+
+	MimeMessage mimeMessage = new MimeMessage(session);
+		
+		//from email
+		mimeMessage.setFrom(from);
+		
+		//adding recipient to message
+		mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+		
+		// adding subject to message
+		mimeMessage.setSubject(subject);
+		 
+		//send attachment
+				// path
+				String path = "D:\\GFGsheet.xlsx";
+				
+				MimeMultipart mimeMultipart = new MimeMultipart();
+				
+				MimeBodyPart textMime = new MimeBodyPart();
+				MimeBodyPart fileMine = new MimeBodyPart();
+				textMime.setText(message);
+				File file = new File(path);
+				fileMine.attachFile(file);
+				mimeMultipart.addBodyPart(textMime);
+				mimeMultipart.addBodyPart(fileMine);
+				
+				mimeMessage.setContent(mimeMultipart);
+					
+		//send
+		
+		//Step 3 : send the message using transport class
+		Transport.send(mimeMessage);
+		
+		flag = true;
+		return flag;
+}
+
+
+	@Override
+	@Transactional
+	public void saveData(List<Information> validList) throws ResourceNotFoundException {
+		
+		List<Informations> informations = validList.stream().map(e -> new Informations(e.getFirstName(), e.getLastName(), e.getEmail(),e.getPhoneNumber())).collect(Collectors.toList());
+	try {
+		informationRepository.saveAll(informations);
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+		
+	
+	}
+	}
+	
+	

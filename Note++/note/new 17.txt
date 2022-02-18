@@ -1,0 +1,29 @@
+i have completed 
+1) all mapper classes for each entity with seperat package (uses modelmapper object)
+2) all end points for franchisee and other(change- get/post/put/delete only one object  insted of getting list of object)
+
+Today i am working on creating exception and handle that
+
+Today task(26 nov)
+1)get API = only fetch userlogin type data
+2)remove foreign key in use and also remove mapping between those two tables
+3) create user API - if user name and password is present in data base get sucess message other wise get incoreect message 
+
+Today task
+1) change pathvariable to request param
+2) add type of login 
+3) use query in hibernate repository like findByName,findByPassword.
+
+i have completed send invalid data excel sheet file through mail but when hit request through postman getting error like [javax.mail.AuthenticationFailedException: 535-5.7.8 Username and Password not accepted. Learn more at<LF>535 5.7.8  https://support.google.com/mail/?p=BadCredentials na15sm5048798pjb.31 - gsmtp<LF>
+
+i found solution it is - could be the problem in your task if you are using Gmail Server.
+
+Two Step Verification should be turned off.
+Allow Less Secure App(should be turned on).
+
+when i am tring to allow less secure app turned On i am geting this problem.
+
+
+i have complited both task for 
+
+Hi good morning, i have complited all task. if have any task for me then please let me know for project mellowmushroom or any change requireed for export Excel sheet project , now i am reading core spring documentation and learning its concept

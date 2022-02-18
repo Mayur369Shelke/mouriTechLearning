@@ -1,0 +1,251 @@
+package com.equinoxfitness.purchase.junit;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.function.Supplier;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.catalina.filters.CorsFilter;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.context.MessageSource;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.test.util.ReflectionTestUtils;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
+import com.equinoxfitness.commons.service.EventsService;
+import com.equinoxfitness.commons.utils.FacilityUtils;
+import com.equinoxfitness.commons.utils.RestResponse;
+import com.equinoxfitness.purchase.contract.BillingInformation;
+import com.equinoxfitness.purchase.contract.FindTB12PTPackagesResponse;
+import com.equinoxfitness.purchase.contract.Item;
+import com.equinoxfitness.purchase.contract.MemberFacilityDetails;
+import com.equinoxfitness.purchase.contract.PurchaseItemResponse;
+import com.equinoxfitness.purchase.contract.PurchaseTB12ItemRequest;
+import com.equinoxfitness.purchase.contract.TB12Package;
+import com.equinoxfitness.purchase.contract.TransactionTender;
+import com.equinoxfitness.purchase.message.PurchaseExceptionMessage;
+import com.equinoxfitness.purchase.v3.controller.PurchaseTB12ControllerV3;
+import com.equinoxfitness.purchase.v3.service.TB12Service;
+import com.equinoxfitness.purchase.v3.validators.TB12PurchaseInputValidator;
+import com.equinoxfitness.redis.contract.member.Member;
+import com.equinoxfitness.redis.contract.member.Membership;
+import com.equinoxfitness.redis.contract.trainer.Trainer;
+import com.equinoxfitness.redis.service.RedisApiService;
+import com.google.gson.Gson;
+
+@RunWith(MockitoJUnitRunner.class)
+public class PurchaseTB12ControllerV3Test {
+
+	private MockMvc mockMvc;
+
+	@InjectMocks
+	private PurchaseTB12ControllerV3 purchaseTB12ControllerV3;
+
+	@InjectMocks
+	private RestResponse restResponse;
+
+	@InjectMocks
+	private FacilityUtils facilityUtils;
+
+	@Mock
+	private TB12Service tb12Service;
+
+	@Mock
+	private HttpServletRequest httpServletRequest;
+
+	@Mock
+	private MessageSource messageSource;
+
+	@Mock
+	private EventsService eventsService;
+	
+	@Mock
+	private RedisApiService redisApiService;
+	
+	@Mock
+	private TB12PurchaseInputValidator PurchaseInputValidator;
+	
+	private static Map<String, String> accountingCodeToFacilityIdMap = new HashMap<String, String>();
+	
+
+	@Before
+	public void setup() {
+		accountingCodeToFacilityIdMap.put("950", "950");
+		mockMvc = MockMvcBuilders.standaloneSetup(purchaseTB12ControllerV3).addFilters(new CorsFilter()).build();
+		ReflectionTestUtils.setField(facilityUtils, "accountingCodeToFacilityIdMap", accountingCodeToFacilityIdMap);
+		ReflectionTestUtils.setField(facilityUtils, "facilityByIdUrl", "");
+		ReflectionTestUtils.setField(facilityUtils, "facilityApiKey", "key");
+		ReflectionTestUtils.setField(purchaseTB12ControllerV3, "restResponse", restResponse);
+		
+	}
+
+	@Test
+	public void tb12DefaultPackages_Success() throws Throwable {
+		String correlationId = RandomStringUtils.randomAlphanumeric(10);
+		when(tb12Service.getTB12Trainer()).thenReturn(getTB12Trainer());
+		Function<MemberFacilityDetails, FindTB12PTPackagesResponse> test = str -> {
+			FindTB12PTPackagesResponse tb12Package = new FindTB12PTPackagesResponse();
+			Map<String, List<TB12Package>> TB12Packages = new HashMap<>();
+			List<TB12Package> ptPack = new ArrayList<>();
+			TB12Package pack = new TB12Package();
+			pack.setFacilityId("930");
+			ptPack.add(pack);			
+			TB12Packages.put("Tier1", ptPack);			
+			return tb12Package;
+		};
+		when(tb12Service.getTB12Packages()).thenReturn(test);
+		Gson gson = new Gson();
+		MvcResult result = mockMvc.perform(
+				MockMvcRequestBuilders.get("/v3/tb12/packages").contentType(MediaType.APPLICATION_JSON)
+				.header("Correlation-ID", correlationId).accept(MediaType.APPLICATION_JSON))
+				.andReturn();
+		assertEquals(HttpStatus.OK.value(), result.getResponse().getStatus());
+		FindTB12PTPackagesResponse response = gson.fromJson(result.getResponse().getContentAsString(),
+				FindTB12PTPackagesResponse.class);
+		assertNotNull(response);
+	}
+
+	@Test
+	public void tb12DefaultPackages_Failure() throws Throwable {
+		String correlationId = RandomStringUtils.randomAlphanumeric(10);
+		Function<MemberFacilityDetails, FindTB12PTPackagesResponse> test = details -> {
+			FindTB12PTPackagesResponse tb12Package = new FindTB12PTPackagesResponse();
+			Map<String, List<TB12Package>> TB12Packages = new HashMap<>();
+			List<TB12Package> ptPack = new ArrayList<>();
+			TB12Package pack = new TB12Package();
+			pack.setFacilityId("930");
+			ptPack.add(pack);
+			TB12Packages.put("Tier1", ptPack);			
+			return null;
+		};
+
+		when(tb12Service.getTB12Trainer()).thenReturn(getTB12Trainer());
+		when(tb12Service.getTB12Packages()).thenReturn(test);
+		Gson gson = new Gson();
+		MvcResult result = mockMvc.perform(
+				MockMvcRequestBuilders.get("/v3/tb12/packages").contentType(MediaType.APPLICATION_JSON)
+				.header("Correlation-ID", correlationId).accept(MediaType.APPLICATION_JSON))
+				.andReturn();
+		assertEquals(HttpStatus.BAD_REQUEST.value(), result.getResponse().getStatus());
+		FindTB12PTPackagesResponse response = gson.fromJson(result.getResponse().getContentAsString(),
+				FindTB12PTPackagesResponse.class);
+		assertEquals("PACKAGE_NOT_FOUND", response.getMessages()[0].getErrorMessage());
+		assertEquals("VALIDATION", response.getMessages()[0].getMessageType());
+	}
+
+	public Supplier<Trainer> getTB12Trainer() {
+		return () -> {
+			Trainer trainer = new Trainer();
+			com.equinoxfitness.redis.contract.trainer.Profile trainerProfile = new com.equinoxfitness.redis.contract.trainer.Profile();
+			trainerProfile.setFacilityId("930");
+			trainerProfile.setTier(1);
+			trainer.setProfile(trainerProfile);
+			return trainer;
+		};
+	}
+
+	@Test
+	public void asyncTB12PurchaseTest() throws Throwable {
+
+		String memberId = "1000066296";
+		String correlationId = RandomStringUtils.randomAlphanumeric(10);
+		PurchaseItemResponse output = new PurchaseItemResponse();
+		output.setSuccess(false);
+		
+		
+		PurchaseTB12ItemRequest request = new PurchaseTB12ItemRequest();
+		request.setItems(Collections.singletonList(new Item()));
+		request.setTransactionTender(new TransactionTender());
+		request.setBillingInformation(new BillingInformation());
+		request.setFacilityId("950");
+		request.setThreadId(correlationId);
+		request.setInvokeAsync(true);
+		when(httpServletRequest.getHeader(anyString())).thenReturn(correlationId);
+
+		
+		Membership membership = new Membership();
+		membership.setMemberId("1000066296");
+		Member member = new Member();
+		member.setMembership(membership);
+		when(redisApiService.getMemberV2ForceRefresh(memberId)).thenReturn(member);
+		when(PurchaseInputValidator.validateRedisMembership(member)).thenReturn(PurchaseExceptionMessage.REPEATED_REQUEST);
+		
+		
+		
+		Gson gson = new Gson();
+		
+		MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/v3/tb12/asyncTB12Purchase/"+memberId)
+				.contentType(MediaType.APPLICATION_JSON).content(gson.toJson(request))
+				.header("Correlation-ID", correlationId).accept(MediaType.APPLICATION_JSON)).andReturn();
+		assertEquals(HttpStatus.BAD_REQUEST.value(), result.getResponse().getStatus());
+		PurchaseItemResponse response = gson.fromJson(result.getResponse().getContentAsString(),
+				PurchaseItemResponse.class);
+		System.out.println("=========="+response.getMessages()[0].getMessageType());
+		assertEquals("REPEATED_REQUEST", response.getMessages()[0].getErrorMessage());
+		assertEquals("VALIDATION", response.getMessages()[0].getMessageType());
+		}
+		
+		
+			@Test
+	public void purchaseTB12VptForMemberTest() throws Throwable {
+
+		String memberId = "1000066296";
+		String correlationId = RandomStringUtils.randomAlphanumeric(10);
+		PurchaseItemResponse output = new PurchaseItemResponse();
+		output.setSuccess(false);
+		
+		
+		PurchaseTB12ItemRequest request = new PurchaseTB12ItemRequest();
+		request.setItems(Collections.singletonList(new Item()));
+		request.setTransactionTender(new TransactionTender());
+		request.setBillingInformation(new BillingInformation());
+		request.setFacilityId("950");
+		request.setThreadId(correlationId);
+		request.setInvokeAsync(true);
+		when(httpServletRequest.getHeader(anyString())).thenReturn(correlationId);
+
+		
+		Membership membership = new Membership();
+		membership.setMemberId("1000066296");
+		Member member = new Member();
+		member.setMembership(membership);
+		when(redisApiService.getMemberV2ForceRefresh(memberId)).thenReturn(member);
+		when(PurchaseInputValidator.validateRedisMembership(member)).thenReturn(PurchaseExceptionMessage.REPEATED_REQUEST);
+		
+		
+		
+		Gson gson = new Gson();
+		
+		MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/v3/tb12/asyncTB12Purchase/"+memberId)
+				.contentType(MediaType.APPLICATION_JSON).content(gson.toJson(request))
+				.header("Correlation-ID", correlationId).accept(MediaType.APPLICATION_JSON)).andReturn();
+		assertEquals(HttpStatus.BAD_REQUEST.value(), result.getResponse().getStatus());
+		PurchaseItemResponse response = gson.fromJson(result.getResponse().getContentAsString(),
+				PurchaseItemResponse.class);
+		System.out.println("=========="+response.getMessages()[0].getMessageType());
+		assertEquals("REPEATED_REQUEST", response.getMessages()[0].getErrorMessage());
+		assertEquals("VALIDATION", response.getMessages()[0].getMessageType());
+		}
+}
+
+}

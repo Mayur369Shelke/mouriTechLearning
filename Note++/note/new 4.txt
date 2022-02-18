@@ -1,0 +1,114 @@
+<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.7.RELEASE</version>
+	</parent>
+	
+	
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.4.10</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	
+	
+	
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+	
+	
+	
+	{
+    "fname": "labhesh",
+    "lname": "kokate",
+    "email": "labhesh123@gmail.com",
+    "password": "labhesh@123"
+}
+
+
+
+package com.springrestAPI.springrestAPI.service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.springrestAPI.springrestAPI.dao.InformationDao;
+import com.springrestAPI.springrestAPI.entity.information;
+
+@Service
+public class informationserviceimpl implements informationservice {
+	
+	@Autowired
+	private InformationDao informationDao;
+
+	
+	//List<information> info;
+	 
+	public informationserviceimpl() {
+	
+		//info=new ArrayList<>();
+		
+			//info.add(new information("mayur","shelke","shelke.mayur@gmail.com","mayur@123"));
+			//info.add(new information("aksha","patil","akshay.patil@gmail.com","akshay123"));
+			
+		
+	}
+	@Override
+	public List<information> getinformation() {
+		return informationDao.findAll();
+	}
+	@Override
+	public information getinfo(String fname) {
+		// TODO Auto-generated method stub
+//		information c=null;
+//		for(information information:info)
+//		{
+//			if(information.getFname()==fname);
+//			{
+//				c=information;
+//				break;
+				
+//			}
+//		}
+		
+		return informationDao.getOne(fname);
+	}
+	@Override
+	public information addinfo(information information) {
+//	 info.add(information);
+		informationDao.save(information);
+			return information;
+	}
+	@Override
+	public information updateinfo(information information)
+	{
+	//	info.forEach(e ->{
+	//		if(e.getFname()==information.getFname()) {
+	//			e.setLname(information.getLname());
+	//			e.setEmail(information.getEmail());
+	//			e.setPassword(information.getPassword());
+	//		}
+	//});
+		
+		informationDao.save(information);
+		return information;
+	}
+	
+//	}
+	@Override
+	public void deleteinfo(String fname) {
+	//	info=this.info.stream().filter(e->e.getFname()!=fname).collect(Collectors.toList());
+		
+	information entity = informationDao.getOne(fname);
+	informationDao.delete(entity);
+	
+	}
+
+}

@@ -1,0 +1,91 @@
+        // <dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>slf4j-log4j12</artifactId>
+    <scope>test</scope>
+</dependency>
+
+
+
+
+String memberId = "1000066296";
+String source = "EQUIFIT";
+
+MemberSummary member = new MemberSummary();
+		member.setFirstName("Antoinette");
+		member.setLastName("Harrington");
+		member.setMosoMemberId(memberId);
+		
+		
+		
+		
+		
+		package com.equinoxfitness.globalassessments.V2.junit;
+
+import static org.junit.Assert.assertEquals;
+
+import org.apache.catalina.filters.CorsFilter;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
+import com.equinoxfitness.domain.MemberSummary;
+import com.equinoxfitness.globalassessment.v2.controller.GlobalAssessmentControllerV2;
+import com.equinoxfitness.globalassessment.v2.service.GlobalAssessmentServiceV2;
+
+@SpringBootTest
+public class GolbalAssesmentControllerV2Test {
+
+	private MockMvc mockMvc;
+	
+	@InjectMocks
+	private GlobalAssessmentControllerV2 globalAssessmentControllerV2;
+	
+	@Mock
+	private GlobalAssessmentServiceV2 globalAssessmentService;
+	
+
+	
+	@Before
+	public void init() throws Exception {
+		MockitoAnnotations.initMocks(this);
+		mockMvc = MockMvcBuilders.standaloneSetup(globalAssessmentControllerV2).addFilters(new CorsFilter()).build();
+	}
+	
+	@Test
+	public void getCategoryListTest()throws Exception
+	
+	{		
+	
+		MemberSummary member = new MemberSummary();
+				member.setFirstName("Antoinette");
+				member.setLastName("Harrington");
+	
+		Mockito.when(globalAssessmentService.getMemberSummary(Mockito.anyInt())).thenReturn(member);
+		
+		//RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
+			//	"/v2/assessments/user/290753/category").accept(
+				//MediaType.APPLICATION_JSON);
+				//.andExpect(status().isOk()).andReturn();
+		//MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+	//	assertEquals(HttpStatus.OK.value(), result.getResponse().getStatus());
+		
+		MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get(
+                "/v2/assessments/user/290753/category?source=EQUIFIT,Tier X,Kickstart")
+                .accept(MediaType.APPLICATION_JSON)).andReturn();
+		assertEquals(HttpStatus.OK.value(), result.getResponse().getStatus());
+		}
+	
+	
+}

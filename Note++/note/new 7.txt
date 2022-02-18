@@ -1,0 +1,151 @@
+package com.springrestAPI.springrestAPI.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.io.*;
+import org.apache.*;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.fasterxml.jackson.databind.ser.std.FileSerializer;
+import com.springrestAPI.springrestAPI.dao.InformationDao;
+import com.springrestAPI.springrestAPI.entity.information;
+import com.springrestAPI.springrestAPI.service.IExcelDataService;
+import com.springrestAPI.springrestAPI.service.IFileUploaderService;
+
+@Controller
+public class Mycontroller {
+
+	@Autowired
+	IFileUploaderService fileService;
+
+	@Autowired
+	IExcelDataService excelservice;
+
+	@Autowired
+	InformationDao repo;
+
+	@GetMapping("/")
+	public String index() {
+		return "uploadPage";
+	}
+
+	@PostMapping("/uploadFile")
+	public String uploadFile(@RequestParam("file") MultipartFile file) {
+		fileService.uploadFile(file);
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+
+		}
+		return "success";
+	}
+
+	/*
+	 * @GetMapping("/saveData")
+	 * 
+	 * public String saveExcelData(Model model) {
+	 * 
+	 * List<information> excelDataAsList = excelservice.getExcelDataAsList(); int
+	 * noOfRecords = excelservice.saveExcelData(excelDataAsList); return "success";
+	 * }
+	 */
+	@PostMapping("/import")
+	
+	public void mapReapExcelDatatoDB(@RequestParam("file") MultipartFile reapExcelDataFile) throws Exception {
+		
+		
+	boolean flag=false;
+		
+		information tempStudent = new information();
+
+		List<information> tempStudenttrue = new ArrayList<information>();
+		List<information> tempStudentfalse = new ArrayList<information>();
+		
+		XSSFWorkbook workbook = new XSSFWorkbook(reapExcelDataFile.getInputStream());
+		XSSFSheet worksheet = workbook.getSheetAt(0);
+		
+
+		for (int i = 1; i < worksheet.getPhysicalNumberOfRows(); i++) {
+
+			XSSFRow row = worksheet.getRow(i);
+
+			for (int j = 0; j <= row.getLastCellNum(); j++) 
+			{
+
+				if(row.getCell(j)==null) 
+				{
+					System.out.println(row.getCell(j));
+					System.out.println("hi i am blank");
+					/*
+					 * XSSFRow row1 = worksheet.getRow(i);
+					 * 
+					 * tempStudent.setId(row1.getCell(0).getStringCellValue());
+					 * tempStudent.setFname(row1.getCell(1).getStringCellValue());
+					 * tempStudent.setLname(row1.getCell(2).getStringCellValue());
+					 * tempStudent.setEmail(row1.getCell(3).getStringCellValue());
+					 * tempStudent.setPassword(row1.getCell(4).getStringCellValue());
+					 * tempStudentfalse.add(tempStudent);
+					 */
+				  
+				  //flag=true;
+				//break; 
+				}
+				 
+			}
+		
+			//if(flag==false)
+			//{
+				//System.out.println("hi i am present");
+				/*
+				 * XSSFRow row2 = worksheet.getRow(i);
+				 * 
+				 * tempStudent.setId(row2.getCell(0).getStringCellValue());
+				 * tempStudent.setFname(row2.getCell(1).getStringCellValue());
+				 * tempStudent.setLname(row2.getCell(2).getStringCellValue());
+				 * tempStudent.setEmail(row2.getCell(3).getStringCellValue());
+				 * tempStudent.setPassword(row2.getCell(4).getStringCellValue());
+				 * tempStudenttrue.add(tempStudent);
+				 * 
+				 * System.out.println("hi i am present");
+				 */
+			//}
+			
+		//	flag=false;
+		}
+		
+		
+		
+		//for (information model : tempStudenttrue) {
+          //  System.out.println(model.getId());
+
+		// System.out.println(row.getCell(0));
+		// System.out.println(row.getCell(1));
+		// System.out.println(row.getCell(2));
+		// System.out.println(row.getCell(3));
+		/*
+		 * tempStudent.setId((int) row.getCell(0).getNumericCellValue()); //
+		 * tempStudent.setFlag((int)
+		 * row.getCell(0).getNumericCellValue()==0?true:false);
+		 * tempStudent.setLname(row.getCell(2).getStringCellValue());
+		 * //tempStudent.setFlag(row.getCell(2).getStringCellValue()!=""?true:false);
+		 * tempStudent.setEmail(row.getCell(3).getStringCellValue());
+		 * tempStudent.setPassword(row.getCell(4).getStringCellValue());
+		 * 
+		 * tempStudentList.add(tempStudent); System.out.println(tempStudentList);
+		 */
+		
+	
+		
+	}
+	
+}

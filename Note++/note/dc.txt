@@ -1,0 +1,46 @@
+package com.mellowmushroom.com.mellowedoutapi.entity;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+import lombok.Data;
+
+@Entity
+@Table(name = "store",uniqueConstraints = {@UniqueConstraint(columnNames = "store_id"),@UniqueConstraint(columnNames = "store_name")})
+@Data
+
+public class Store {
+	
+	
+		//@GeneratedValue(strategy = GenerationType.IDENTITY)
+		@Column(name = "store_id", unique = true,nullable = false)
+		private String storeId;
+		//@Column(name = "franchisee_id", unique = true,nullable = false)
+		//private String franchiseeId;
+		@Column(name = "store_name", unique = true,nullable = false)
+		private String StoreName;
+		@ManyToOne
+		@JoinColumn(name = "franchisee_id")
+		private Franchisee franchisee;
+		
+
+}
+
+@Table(name = "franchisee",uniqueConstraints = {@UniqueConstraint(columnNames = "franchisee_id"),@UniqueConstraint(columnNames = "franchisee_name")})
+, unique = true,nullable = fal
+
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@JsonInclude(Include.NON_NULL)
+
+
+franchisee

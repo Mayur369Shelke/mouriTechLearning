@@ -1,0 +1,90 @@
+<dependency>
+             <groupId>com.h2database</groupId>
+             <artifactId>h2</artifactId>
+             <scope>runtime</scope>
+         </dependency>
+		 
+		 <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-log4j2</artifactId>
+</dependency>
+
+
+
+package com.Excel.file;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Iterator;
+
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.poifs.filesystem.POIFSFileSystem;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import com.Excel.model.User_details;
+
+public class ReadExcelFile {
+
+	public static void main(String[] args) throws IOException {
+		
+		  try {
+	            File excel = new File("E:\\Eclipse\\Write Data To Execl File\\User_Detail.xlsx");
+	            FileInputStream fis = new FileInputStream(excel);
+	            XSSFWorkbook book = new XSSFWorkbook(fis);
+	            XSSFSheet sheet = book.getSheetAt(0);
+	           
+	            
+	            Iterator<Row> itr = sheet.iterator();
+
+	            // Iterating over Excel file in Java
+	            while (itr.hasNext()) {
+	                Row row = itr.next();
+
+	                // Iterating over each column of Excel file
+	                Iterator<Cell> cellIterator = row.cellIterator();
+	                while (cellIterator.hasNext()) {
+
+	                    Cell cell = cellIterator.next();
+
+	                    
+	                    switch (cell.getCellType()) {
+	                    case Cell.CELL_TYPE_STRING:
+	                    	
+	                        System.out.print(cell.getStringCellValue() + "\t");
+	                        break;
+	                    case Cell.CELL_TYPE_NUMERIC:
+	                        System.out.print(cell.getNumericCellValue() + "\t");
+	                        break;
+	                    case Cell.CELL_TYPE_BOOLEAN:
+	                        System.out.print(cell.getBooleanCellValue() + "\t");
+	                        break;
+	                    default:
+
+	                    }
+                    	
+	                }
+	                System.out.println("");
+	            }
+            	
+		 
+		  }catch(Exception e)
+		  {
+			  e.printStackTrace();
+		  }
+
+	}
+}
+

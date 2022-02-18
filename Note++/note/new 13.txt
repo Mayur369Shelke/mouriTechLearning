@@ -1,0 +1,34 @@
+@PostMapping("/createstaffDetails") //Adding new 
+	public ResponseEntity<StaffDetailsDto> addStaffDetails(@RequestBody StaffDetailsDto staffDetailsDtos){
+
+		try {
+			if(staffDetailsDtos==null)
+			{
+				logger.error("list is empty");
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			}
+			
+			else {
+				logger.info("calling service layer ");
+				 StaffDetailsDto resultDto = staffDetailsService.addStaffDetails(staffDetailsDtos);
+				return ResponseEntity.of(Optional.of(resultDto));
+			}
+			
+			
+			
+		} catch (Exception e) {
+			logger.error("check service layer method ",e.fillInStackTrace());
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
+		
+		public StaffDetailsDto addStaffDetails(StaffDetailsDto staffDetailsDtos)
+	{
+		StaffDetails staffDetailsEntity = staffDetailsMapper.convertDtoToEntity(staffDetailsDtos);
+		staffDetailsRepository.save(staffDetailsEntity);
+		StaffDetailsDto staffDetailsDto = staffDetailsMapper.convertEntityToDto(staffDetailsEntity);
+		
+		if(staffDetailsDto!=null)
+		return staffDetailsDto;
+		else
+			throw new RuntimeException("bad request");
+	}

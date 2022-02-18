@@ -1,0 +1,68 @@
+	// process to get the parent and child question relationship
+			Multimap<String, Object> questionRelationMap = questionHierarchyGenerator
+					.questionRelationIdentifier(assessmentDetails.getQuestionList());
+			aggregation = Aggregation.newAggregation(
+					match(where("assessmentId").is(assessmentId)),
+					Aggregation.group("assessmentId","question.questionId").last("question").as("question")
+					.last("memberId").as("memberId")
+					.last("assessmentId").as("assessmentId")
+					.last("source").as("source")
+					.last("question").as("question")
+					.last("createdDate").as("createdDate")
+					.last("modifiedDate").as("modifiedDate")
+					);		 
+			List<AssessmentAnswer> results = mongoTemplate
+					.aggregate(aggregation, "answer", AssessmentAnswer.class).getMappedResults();
+			List<AssessmentAnswer> wrapperList = new ArrayList<>();
+			Object answers = answerProcessV2.answerProcess(assessmentDetails, answerDbOperationRequest,
+					questionRelationMap);
+			if(!results.isEmpty()) {
+				List<AssessmentAnswer> ans = (List<AssessmentAnswer>)answers;
+				wrapperList = ans.stream()
+						.flatMap(jr -> results.stream()
+								.filter(sr -> jr.getQuestion().getQuestionId().equals(sr.getQuestion().getQuestionId())
+										&& jr.getQuestion().getAnswers().equals(sr.getQuestion().getAnswers()))).collect(Collectors.toList());
+			}else {
+				wrapperList = (List<AssessmentAnswer>)answers;
+			}
+			if (answers == null) {
+				String exceptionMessage = "Failed to process request for assessmentId  :: "+assessmentId;
+				ExceptionMessage message = new ExceptionMessage();
+				setExceptionMessage(message, err.name(), exceptionMessage, ERROR_TAG, err.getCode());
+				response.setMessages(new ExceptionMessage[] { message });
+				response.setStatus(false);
+				return response;
+			} else if (answers instanceof ExceptionMessage) {
+				response.setMessages(new ExceptionMessage[] { (ExceptionMessage) answers });
+				return response;
+			} else if (answers instanceof List) {
+				if(wrapperList != null) {
+					boolean answerDBOperationStatus = globalAssessmentDao.upsertAnswer(wrapperList,
+							assessmentId, answerDbOperationRequest);
+					if (!answerDBOperationStatus) {
+						String exceptionMessage = "Failed to save/delete/update answers in answer collection";
+						ExceptionMessage message = new ExceptionMessage();
+						setExceptionMessage(message, err.name(), exceptionMessage, ERROR_TAG, err.getCode());
+						response.setMessages(new ExceptionMessage[] { message });
+						response.setStatus(false);
+						return response;
+					}
+				}
+
+			}
+			response.setStatus(true);
+			return response;
+
+		} catch (Exception ex) {
+			logger.error("Failed to process request for saving answers for userId {}, {}", userId, ex.getMessage());
+			logger.error("stack trace {}", ExceptionUtils.getStackTrace(ex));
+			
+			String exceptionMessage = "Failed to saving answers for userid  :: " +userId;
+			ExceptionMessage message = new ExceptionMessage();
+			setExceptionMessage(message, err.name(), exceptionMessage, ERROR_TAG, err.getCode());
+			response.setMessages(new ExceptionMessage[] { message });
+			response.setStatus(false);
+			return response;
+		}
+	}
+

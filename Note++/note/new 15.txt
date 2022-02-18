@@ -1,0 +1,22 @@
+@DeleteMapping("/deleteStaffDetailsbyID/{staffId}")
+public ResponseEntity<String> deleteStaffDetailsbyID(@PathVariable(name = "staffId") String staffId) throws Exception
+{
+	staffDetailsService.deleteStaffDetailsBySingleID(staffId);
+	return new ResponseEntity<String>("Locations has been Deleted Successfully", HttpStatus.OK);
+}
+
+
+public boolean deleteStaffDetailsBySingleID(String staffId) {
+		
+		List<StaffDetails> staffDetailsEntity = staffDetailsRepository.findAllByStaffId(staffId);
+		if (!(staffDetailsEntity.isEmpty())) {
+			staffDetailsRepository.deleteByStaffId(staffId);
+			return true;
+			}
+		else
+		{
+			throw new RuntimeException("Record not found");
+			
+		}
+		
+	}

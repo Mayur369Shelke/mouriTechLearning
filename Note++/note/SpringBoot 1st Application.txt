@@ -1,0 +1,319 @@
+Application.java
+----------------
+package com.springrestAPI.springrestAPI;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class SpringrestApiApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SpringrestApiApplication.class, args);
+	}
+
+}
+
+======================================================================
+Controller
+----------
+package com.springrestAPI.springrestAPI.controller;
+import java.util.List;
+
+import javax.validation.Valid;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+import com.springrestAPI.springrestAPI.entity.information;
+@RestController
+public class Mycontroller {
+	
+ 	Logger log = LoggerFactory.getLogger(Mycontroller.class);
+
+	@Autowired
+	private com.springrestAPI.springrestAPI.service.informationservice informationservice;
+	
+	@GetMapping("/information")
+	public List<information> getInformation() 
+	
+	{
+		log.info("send get resquest and all informations in table");
+		return this.informationservice.getinformation();
+	}
+	
+	
+	@GetMapping("/information/{fname}")
+	public information getinfo(@PathVariable String fname)
+	{
+	return this.informationservice.getinfo(fname);
+	}
+	
+	@PostMapping("/information")
+
+	public information addinfo(@Valid @RequestBody information information)
+	{
+		log.info("send post resquest and adding new information"+information);
+	return this.informationservice.addinfo(information);
+		
+	}
+	
+
+	@PutMapping("/information")
+
+	public information updateinfo(@Valid @RequestBody information information)
+	{
+		log.info("send put resquest and updating new information"+information);
+		return this.informationservice.updateinfo(information);
+	}
+	
+	@DeleteMapping("/information/{fname}")
+	
+	public void deleteinfo(@PathVariable String fname){
+		
+		log.info("send delete resquest and deleted information of"+fname);
+			this.informationservice.deleteinfo(fname);
+			
+		}
+}
+
+//}
+
+//public ResponseEntity<HttpStatus>deleteinformation(@PathVariable String fname){
+	//try {
+		//this.informationservice.deleteinfo(fname);
+		//return new ResponseEntity<>(HttpStatus.OK);
+	//}
+	//catch(Exception e) {
+	//	return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	//}
+
+
+//@PostMapping("/information")
+
+//public ResponseEntity<information> addinfo(@RequestBody information information)
+//{
+//information info = new information();
+//if(information.getFname() == null||information.getLname() == null) {
+	//String exceptionMessage = "Requird parameter first and last name is missing";
+	//}
+//}
+
+==============================================================================================
+DAO
+-----
+package com.springrestAPI.springrestAPI.dao;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.springrestAPI.springrestAPI.entity.information;
+
+@Repository
+public interface InformationDao extends JpaRepository<information, String> {
+
+}
+==================================================================================
+Entity
+------
+
+package com.springrestAPI.springrestAPI.entity;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+@Entity
+public class information {
+	@Id
+	@NotNull(message = "first name should not be empty")
+	private String fname;
+	@NotNull(message = "last name should not be empty")
+	private String lname;
+	@NotBlank
+	private String email;
+	@NotNull(message = "password should not be empty")
+	private String password;
+	public information(String fname, String lname, String email, String password) {
+		super();
+		this.fname = fname;
+		this.lname = lname;
+		this.email = email;
+		this.password = password;
+	}
+	public information() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public String getFname() {
+		return fname;
+	}
+	public void setFname(String fname) {
+		this.fname = fname;
+	}
+	public String getLname() {
+		return lname;
+	}
+	public void setLname(String lname) {
+		this.lname = lname;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	@Override
+	public String toString() {
+		return "information [fname=" + fname + ", lname=" + lname + ", email=" + email + ", password=" + password + "]";
+	}
+	
+
+}
+
+
+====================================================================
+Service-interface
+-------
+package com.springrestAPI.springrestAPI.service;
+
+import java.util.List;
+
+import com.springrestAPI.springrestAPI.entity.information;
+
+public interface informationservice 
+{
+	public List<information> getinformation();
+
+	public information getinfo(String fname);
+
+	public information addinfo(information information);
+
+	public information updateinfo(information information);
+
+	public void deleteinfo(String fname);
+	
+}
+=========================================================
+Service-impl
+
+package com.springrestAPI.springrestAPI.service;
+
+
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.springrestAPI.springrestAPI.dao.InformationDao;
+import com.springrestAPI.springrestAPI.entity.information;
+import com.springrestAPI.springrestAPI.exception.TechanicalException;
+
+@Service
+public class informationserviceimpl implements informationservice {
+	
+	Logger log = LoggerFactory.getLogger(informationserviceimpl.class);
+	
+	
+	@Autowired
+	private InformationDao informationDao;
+	 
+	public informationserviceimpl() {
+	
+	}
+	@Override
+	public List<information> getinformation() {
+		
+		return informationDao.findAll();
+	}
+	@Override
+	public information getinfo(String fname) {		
+		return informationDao.getOne(fname);
+	}
+	@Override
+	public information addinfo(information information)
+	{
+		try {
+			if (information.getFname() == null || information.getLname() == null || information.getEmail() == null || information.getPassword() == null) {
+				throw new IllegalArgumentException("invalid data ");
+			
+				
+			}
+				else 
+				{
+					informationDao.save(information);
+				}
+			
+		} catch (Exception e) {
+			throw new TechanicalException("All information needs to be filled out");
+		}
+		return information;
+	}
+	
+	@Override
+	public void deleteinfo(String fname) 
+	{
+		try 
+		//{
+			//information information = new information();
+			
+			//if(information.getFname()!=fname) 
+			//{
+				//throw new TechanicalException("Please inter valid First name");
+			//}
+			//else 
+			{
+			log.info("information is deleted");
+				information entity = informationDao.getOne(fname);
+				informationDao.delete(entity);
+			
+			}
+			
+		//} 
+		catch (Exception e) 
+		{
+			throw new TechanicalException("Please Check input data");
+		}
+	}
+	
+			
+
+	
+	
+	@Override
+	public information updateinfo(information information)
+	{
+		try {
+			if (information.getFname() == null || information.getLname() == null || information.getEmail() == null || information.getPassword() == null) {
+				throw new IllegalArgumentException("invalid data ");
+			}
+				else 
+				{
+					informationDao.save(information);
+				}
+			
+		} catch (Exception e) 
+		{
+			throw new TechanicalException("All information needs to be filled out");
+		}
+		return information;
+	}
+
+
+}
+	

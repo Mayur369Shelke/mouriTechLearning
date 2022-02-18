@@ -1,0 +1,37 @@
+	@PutMapping("/updatestaffDetails") //updating
+	public ResponseEntity<StaffDetailsDto> updateStaffDetails(@RequestBody StaffDetailsDto staffDetailsDtos){
+	
+		try {
+			if(staffDetailsDtos==null)
+			{
+				logger.error("list is empty");
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			}
+			
+			else {
+				logger.info("calling service layer ");
+				StaffDetailsDto resultDto  = staffDetailsService.updateStaffDetails(staffDetailsDtos);
+				return ResponseEntity.of(Optional.of(resultDto));
+			}
+			
+			
+			
+		} catch (Exception e) {
+			logger.error("check service layer method ",e.fillInStackTrace());
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
+	
+	}
+	public StaffDetailsDto updateStaffDetails(StaffDetailsDto staffDetailsDtos) {
+		String id = staffDetailsDtos.getAuditId();
+		if(staffDetailsRepository.findById(id).isPresent()) {
+			StaffDetails staffDetailsEntity = staffDetailsMapper.convertDtoToEntity(staffDetailsDtos);
+			staffDetailsEntity = staffDetailsRepository.save(staffDetailsEntity);
+			StaffDetailsDto staffDetailsDto = staffDetailsMapper.convertEntityToDto(staffDetailsEntity);
+			return staffDetailsDto;
+		}
+		else {
+			throw new RuntimeException("resourse not found");
+			
+		}
+	}

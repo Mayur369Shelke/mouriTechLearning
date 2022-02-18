@@ -1,0 +1,324 @@
+Skip to content
+Search or jump to…
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@Mayur369Shelke 
+Swapna-Mori
+/
+GIT-Notes
+Public
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+GIT-Notes/Day 1.txt
+@Swapna-Mori
+Swapna-Mori Day 1 Git notes
+Latest commit d2c8abc yesterday
+ History
+ 1 contributor
+283 lines (224 sloc)  7.1 KB
+   
+what is version control?
+===================
+practice of tracking and managing changes to software code.
+
+software tools that help software teams manage changes to source code over the time.
+
+Examples
+=========
+SVN, (Apache SubVersioN)
+Mercurial
+GIT etc., (Global Information Tracking) - Linus Torvalds in 2005 for Linux Kernel
+
+Why is it important?
+
+keep every team member working on the right version 
+Helps in team collaboration
+Accelerated product delivery
+
+types of Version Control Systems?
+=============================
+Local Version Control System => if you are storing the files like file 1.0,file1.2 etc.,
+			     this type is error prone means the chances of accidentally writing to a wrong file is higher.
+Centralized Version Control System => Example := SVN
+Distributed Version Control System => Example := GIT
+
+GIT
+===
+GIT is a DVCS(Distributed Version Control System)
+GIT helps to track the code changes
+GIT can also be used to  collaborate the code
+GIT is open source and free
+
+GIT functionalities
+===============
+Manage Project using Repositories
+push the update code to the Repository
+pull the latest version of code to the local machine
+tracking and contraolling changes of code using staging and committing
+clone the existing project in to local machind
+we can work on same file using branching and merging in GIT
+
+GIT Bash
+=======
+Microsoft Window Environment which provides an support for GIT command line experience
+GIT (Global Tracking Information) Bash (Bourne Again Shell)
+A shell terminal used to interface with OS through commands
+
+Some linux commands
+==================
+pwd => present working directory 
+cd <directory or foldername> => change to different directory or folder
+Example: 
+=======
+cd Moritech or cd d:
+ mkdir <folder name>
+=================
+to create a folder in a drive
+ example
+=======
+ mkdir gitexamples
+ls
+===
+to list all files and folders in the directory
+example
+=======
+ls
+output
+=====
+Dell@DESKTOP-QH638OO MINGW64 /d/Moritech
+$ ls
+'Angular Topics'/                   LoginForm.css      nodedemo/
+ BoxModel.css                       LoginForm.html     npmexample/
+ BoxModelExample.html               NodejsExamples/    primengdemo/
+ Documents/                         bootstrap/         primengexample/
+ Example.html                       bootstrap-4.0.0/   promiseinjs.html
+'Introduction of JS,HTML,CSS.txt'   first.html         promisesexample.js
+'Java Full Stack'/                  gitexamples/       typescriptexamples/
+ JavaScript/                        images/            videoplayback.mp4
+
+touch
+=====
+touch is a command to create an empty file
+example
+=======
+touch file1.txt
+output
+=====
+Dell@DESKTOP-QH638OO MINGW64 /d/Moritech/gitexamples
+$ ls
+file1.txt
+
+rm
+===
+rm is used to remove a file from the directory
+
+example
+=======
+rm file11.txt
+output
+=====
+Dell@DESKTOP-QH638OO MINGW64 /d/Moritech/gitexamples
+$ rm -v file11.txt
+removed 'file11.txt'
+
+cat
+===
+concatenate
+
+cat allows us to 
+create single files,
+multiple file ,
+view file,
+concatenate the files and 
+redirect the output in terminal to files
+
+syntax
+=======
+cat <filename> => to view contents of the files
+example
+=======
+cat file2.txt
+output
+=====
+it display contents of file2.txt
+
+syntax
+=======
+cat <filename>  <filename1> => to view contents of these files
+example
+=======
+cat file2.txt file1.txt
+output
+=====
+it display contents of file2.txt and file1.txt
+
+syntax
+=======
+cat  > <filename>=> to create a file
+example
+=======
+cat > file12.txt
+
+it will ask for the content ,enter the content and press ctrl + D
+output
+=====
+it display contents of file12.txt
+
+syntax
+======
+cat > file13.txt > file14.txt to create multiple files
+=========================================================================
+how to start with GIT?
+=========================================================================
+git init
+=====
+to initialize the GIT on the current folder
+
+9de29bb2d1d6434b8b29ae775ad8c2e48c5391 => SHA - 1 (Secure Hashing Algorithm) =>
+						 to generate an unque id to store data in the local repository
+
+Step wise
+=======
+step 1:   Create a folder using following command
+======
+mkdir gitpractice
+
+step 2:   move to the above folder using following command
+======
+cd  gitpractice
+
+step 3: initialize the git on the above folder using following command
+===== 
+git init
+
+the above command Initializes empty Git repository  and creates
+.git folder
+
+step 4: create a file using following command in the current directory
+======
+touch file1.doc
+
+step 5:  push the above files to the staging/index using the following command
+======
+git add file1.doc 
+
+The above command is used to add a single file in to staging or index
+
+if we want to add more than one file using any of the following command
+
+git add file1.doc file11.doc file111.doc
+
+or
+git add . (to add all the files from the current working directory to staging/index)
+
+step 6: to view all git transactions(command history) use following command
+=====
+git log 
+
+or
+
+ git log --oneline
+
+to display oneline history of the transaction
+
+step 7: to view how many files are not added in to the git staging/index we can use below command
+=====
+git status
+
+step 8: to commit the files in to the local repositoy use below command
+=====
+git commit -m "any message related to files that are pushed in to local repo"
+
+step 9: create a file using touch command
+=====
+touch file23.txt
+
+step 10: to view how many files are not added in to the git staging/index we can use below command
+=====
+git status
+
+step 11: push the above files to the staging/index using the following command
+=====
+git add file23.txt
+
+step 12: to view how many files are not added in to the git staging/index we can use below command
+=====
+git status
+
+step 13: to remove a file from the staging to the working directory
+=====
+  git restore --staged file23.txt
+
+step 14: to view how many files are not added in to the git staging/index we can use below command
+======
+git status
+
+step 15: push the above files to the staging/index using the following command
+=====
+git add file23.txt
+
+step 16: modify the above file in the current working directory using the following command
+=====
+cat> file23.txt 
+dfsadfsafsadfafsdf
+
+ctrl+d (press once done with content )
+
+step 17: to find difference betweent the version of file in staging and working directory use the below command
+======
+git diff
+
+step 18:
+======
+create a remote repository using GITHUB/BIT BUCKET/AWS/Azure or etc,
+
+Let us create a github account and create the repository using following steps
+
+step 18a: open below link in the browser
+======
+https://github.com/
+
+and click signup button
+
+step 18b :
+=======
+enter the details asked in the signup
+
+Note: if gmail is not there create one gmail id and proceed for signup
+
+step 18c :
+=======
+create a remote repository in you github account
+
+using following steps
+
+step 18c(i):
+========
+click on the create repository button(green color) or 
+
+
+
+
+ git config credential.helper store => command to skip username and access token from second push 
+© 2021 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
+Loading complete

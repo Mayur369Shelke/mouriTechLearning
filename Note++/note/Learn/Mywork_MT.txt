@@ -1,0 +1,25 @@
+Work (For TB-12 EQUINOX)
+
+	1) Mokito (jUnit ) test cases
+		Package- com.equinoxfitness.member.controller
+		class - MemberController.java
+ 
+	2) Mokito (jUnit ) test cases
+		Package- com.equinoxfitness.V3.controller
+		class - PurchaseControllerV3.java
+ 
+	3) Mokito (jUnit ) test cases
+		Package- com.equinoxfitness.globalassessmentV2
+		class - GolbalAssesmentControllerV2.java
+ 
+Work (for EQUINOX database)
+ 
+	1)Changed questions ID for equifit, Kickstart, TierX (General Information,Goals,Exercise History,Lifestyle,Medical Orthopedic History)
+ 
+	2) Added questions for equifit, Kickstart, TierX (General Information,Goals,Exercise History,Lifestyle,Medical Orthopedic History)
+	
+Work( Spring Boot assignment)
+
+	1) Spring Boot assignment- CURD operations with MYSQL database
+	2)Spring Boot assignment - Import Excel sheet , read and perform validation , store data in mysql database and invalid data store in new Excel sheet
+	3)Spring Boot assignment - CURD operation with Save ,search ,delete ,update done using JPA with list of data.

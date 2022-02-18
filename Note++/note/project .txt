@@ -1,0 +1,750 @@
+package com.mellowmushroom.controller;
+
+import java.util.List;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.mellowmushroom.dto.AnswerDto;
+import com.mellowmushroom.dto.AuditInstanceDto;
+import com.mellowmushroom.dto.FranchiseeDto;
+import com.mellowmushroom.dto.StaffDetailsDto;
+import com.mellowmushroom.dto.StoreAddressDto;
+import com.mellowmushroom.dto.StoreDto;
+import com.mellowmushroom.service.AnswerService;
+import com.mellowmushroom.service.AuditInstanceService;
+import com.mellowmushroom.service.CategoryService;
+import com.mellowmushroom.service.FranchiseeService;
+import com.mellowmushroom.service.OptionService;
+import com.mellowmushroom.service.QuestionService;
+import com.mellowmushroom.service.StaffDetailsService;
+import com.mellowmushroom.service.StoreAddressService;
+import com.mellowmushroom.service.StoreService;
+
+@RestController
+public class MyController {
+	
+	
+	@Autowired
+	StaffDetailsService staffDetailsService;
+	
+	@Autowired
+	AuditInstanceService auditInstanceService;
+	
+	@Autowired
+	StoreAddressService storeAddressService;
+	
+	@Autowired
+	StoreService storeService;
+	
+	@Autowired
+	FranchiseeService franchiseeService;
+	
+	@Autowired
+	AnswerService answerService;
+	
+	@Autowired
+	OptionService optionService;
+	
+	@Autowired
+	QuestionService questionService;
+	
+	@Autowired
+	CategoryService categoryService;
+	
+	
+	private static final Logger logger = LoggerFactory.getLogger(MyController.class);
+
+	
+	@GetMapping("/getAllStaffdetails") //Getting staff details
+	public ResponseEntity<List<StaffDetailsDto>> getAllStaffDetails()
+	{
+		
+		try {
+			
+			List<StaffDetailsDto> list = staffDetailsService.getAllstaffDetails();
+			if(list.size()<=0)
+			{
+				logger.error("data is not availabe in database");
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			}
+			else {
+				logger.info("calling service layer ");
+				return ResponseEntity.of(Optional.of(list));
+			}
+			
+		} 
+		
+		catch (Exception e)
+		{
+			
+			logger.error("check database connection ",e.fillInStackTrace());
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
+	
+    }
+
+	
+	
+	@DeleteMapping("/deleteStaffDetailsbyID")//Deleting multiple records using ID
+	public ResponseEntity<List<StaffDetailsDto>> deleteStaffDetailsById(@RequestBody List<String> staffId) 
+{
+		
+	try {
+			if(staffId.size()<=0)
+			{
+				logger.error("ID list is empty");
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			}
+			
+			else 
+			{
+				logger.info("calling service layer method");
+				List<StaffDetailsDto> list =  staffDetailsService.deleteStaffDetailsByID(staffId);
+				 return ResponseEntity.of(Optional.of(list));
+			}
+			
+		} 
+	
+	catch (Exception e) 
+	{
+			logger.error("check sevice layer method", e.fillInStackTrace());
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+	}
+}
+	
+	@PostMapping("/createstaffDetails") //Adding new 
+	public ResponseEntity<List<StaffDetailsDto>> addStaffDetails(@RequestBody List<StaffDetailsDto> staffDetailsDtos){
+
+		try {
+			if(staffDetailsDtos.isEmpty())
+			{
+				logger.error("list is empty");
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			}
+			
+			else {
+				logger.info("calling service layer ");
+				 staffDetailsService.addStaffDetails(staffDetailsDtos);
+				return ResponseEntity.of(Optional.of(staffDetailsDtos));
+			}
+			
+			
+			
+		} catch (Exception e) {
+			logger.error("check service layer method ",e.fillInStackTrace());
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
+		
+		
+		
+	}
+	
+	@PutMapping("/updatestaffDetails") //updating
+	public ResponseEntity<List<StaffDetailsDto>> updateStaffDetails(@RequestBody List<StaffDetailsDto> staffDetailsDtos){
+	
+		try {
+			if(staffDetailsDtos.isEmpty())
+			{
+				logger.error("list is empty");
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			}
+			
+			else {
+				logger.info("calling service layer ");
+				 staffDetailsService.addStaffDetails(staffDetailsDtos);
+				return ResponseEntity.of(Optional.of(staffDetailsDtos));
+			}
+			
+			
+			
+		} catch (Exception e) {
+			logger.error("check service layer method ",e.fillInStackTrace());
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
+		
+		
+		
+	}
+	
+	
+	@GetMapping("/getauditdetails") //Getting audit details
+	public ResponseEntity<List<AuditInstanceDto>> getAllauditDetails()
+	{
+		
+		try {
+			
+			List<AuditInstanceDto> audit = auditInstanceService.getAllAuditDetails();
+			if(audit.size()<=0)
+			{
+				logger.error("data is not availabe in database");
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			}
+			else {
+				logger.info("calling service layer ");
+				return ResponseEntity.of(Optional.of(audit));
+			}
+			
+		} 
+		
+		catch (Exception e)
+		{
+			
+			logger.error("check database connection ",e.fillInStackTrace());
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
+	
+    }
+
+	
+	
+	@DeleteMapping("/deleteAuditDetailsbyID")//Deleting multiple records using ID
+	public ResponseEntity<List<AuditInstanceDto>> deleteauditDetailsById(@RequestBody List<String> auditId) 
+{
+		
+	try {
+			if(auditId.size()<=0)
+			{
+				logger.error("ID list is empty");
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			}
+			
+			else 
+			{
+				logger.info("calling service layer method");
+				List<AuditInstanceDto> audit =  auditInstanceService.deleteauditDetailsByID(auditId);
+				 return ResponseEntity.of(Optional.of(audit));
+			}
+			
+		} 
+	
+	catch (Exception e) 
+	{
+			logger.error("check sevice layer method", e.fillInStackTrace());
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+	}
+}
+	
+	@PostMapping("/createAuditDetails") //Adding new 
+	public ResponseEntity<List<AuditInstanceDto>> addauditDetails(@RequestBody List<AuditInstanceDto> auditInstanceDtos){
+		try {
+			if(auditInstanceDtos.isEmpty())
+			{
+				logger.error("list is empty");
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			}
+			
+			else {
+				logger.info("calling service layer ");
+				
+				 auditInstanceService.addAuditDetails(auditInstanceDtos);
+				return ResponseEntity.of(Optional.of(auditInstanceDtos));
+			}
+			
+			
+			
+		} catch (Exception e) {
+			logger.error("check service layer method ",e.fillInStackTrace());
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
+		
+		
+		
+	}
+	
+	@PutMapping("/updateAuditDetails") //updating
+	public ResponseEntity<List<AuditInstanceDto>> updateAuditDetails(@RequestBody List<AuditInstanceDto> auditInstanceDtos){
+
+		try {
+			if(auditInstanceDtos.isEmpty())
+			{
+				logger.error("list is empty");
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			}
+			
+			else {
+				logger.info("calling service layer ");
+				 auditInstanceService.addAuditDetails(auditInstanceDtos);
+				return ResponseEntity.of(Optional.of(auditInstanceDtos));
+			}
+			
+			
+			
+		} catch (Exception e) {
+			logger.error("check service layer method ",e.fillInStackTrace());
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
+		
+	}
+	
+	
+	@GetMapping("/getAllStoreAddressdetails") //Getting storeAddress details
+	public ResponseEntity<List<StoreAddressDto>> getAllStoreAddressDetails()
+	{
+		
+		try {
+			
+			List<StoreAddressDto> store = storeAddressService.getAllStoreAddressDetails();
+			if(store.size()<=0)
+			{
+				logger.error("data is not availabe in database");
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			}
+			else {
+				logger.info("calling service layer ");
+				return ResponseEntity.of(Optional.of(store));
+			}
+			
+		} 
+		
+		catch (Exception e)
+		{
+			
+			logger.error("check database connection ",e.fillInStackTrace());
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
+	
+    }
+
+	
+	
+	@DeleteMapping("/deleteStoreAddressDetailsbyID")//Deleting multiple records using ID
+	public ResponseEntity<List<StoreAddressDto>> deleteStoreAddressDetailsById(@RequestBody List<String> addressId) 
+{
+		
+	try {
+			if(addressId.size()<=0)
+			{
+				logger.error("ID list is empty");
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			}
+			
+			else 
+			{
+				logger.info("calling service layer method");
+				List<StoreAddressDto> store =  storeAddressService.deleteStoreAddressDetailsByID(addressId);
+				 return ResponseEntity.of(Optional.of(store));
+			}
+			
+		} 
+	
+	catch (Exception e) 
+	{
+			logger.error("check sevice layer method", e.fillInStackTrace());
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+	}
+}
+	
+	@PostMapping("/createStoreAddress") //Adding new 
+	public ResponseEntity<List<StoreAddressDto>> addStoreAddressDetails(@RequestBody List<StoreAddressDto> storeAddressDtos){
+
+		try {
+			if(storeAddressDtos.isEmpty())
+			{
+				logger.error("list is empty");
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			}
+			
+			else {
+				logger.info("calling service layer ");
+				 storeAddressService.addStoreAddress(storeAddressDtos);
+				return ResponseEntity.of(Optional.of(storeAddressDtos));
+			}
+			
+			
+			
+		} catch (Exception e) {
+			logger.error("check service layer method ",e.fillInStackTrace());
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
+		
+		
+		
+	}
+	
+	@PutMapping("/updateStoreAddress") //updating
+	public ResponseEntity<List<StoreAddressDto>> updateStoreAddress(@RequestBody List<StoreAddressDto> storeAddressDtos){
+	
+		try {
+			if(storeAddressDtos.isEmpty())
+			{
+				logger.error("list is empty");
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			}
+			
+			else {
+				logger.info("calling service layer ");
+				 storeAddressService.addStoreAddress(storeAddressDtos);
+				return ResponseEntity.of(Optional.of(storeAddressDtos));
+			}
+			
+			
+			
+		} catch (Exception e) {
+			logger.error("check service layer method ",e.fillInStackTrace());
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
+		
+	}
+		@GetMapping("/getAllStoredetails") //Getting store details
+		public ResponseEntity<List<StoreDto>> getAllStoreDetails()
+		{
+			
+			try {
+				
+				List<StoreDto> store = storeService.getAllStoreDetails();
+				if(store.size()<=0)
+				{
+					logger.error("data is not availabe in database");
+					return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+				}
+				else {
+					logger.info("calling service layer ");
+					return ResponseEntity.of(Optional.of(store));
+				}
+				
+			} 
+			
+			catch (Exception e)
+			{
+				
+				logger.error("check database connection ",e.fillInStackTrace());
+				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+			}
+		
+	    }
+
+		
+		
+		@DeleteMapping("/deleteStoreDetailsbyID")//Deleting multiple records using ID
+		public ResponseEntity<List<StoreDto>> deleteStoreById(@RequestBody List<String> storeId) 
+	{
+			
+		try {
+				if(storeId.size()<=0)
+				{
+					logger.error("ID list is empty");
+					return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+				}
+				
+				else 
+				{
+					logger.info("calling service layer method");
+					List<StoreDto> store =  storeService.deleteStoreByID(storeId);
+					 return ResponseEntity.of(Optional.of(store));
+				}
+				
+			} 
+		
+		catch (Exception e) 
+		{
+				logger.error("check sevice layer method", e.fillInStackTrace());
+				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
+	}
+		
+		@PostMapping("/createStore") //Adding new 
+		public ResponseEntity<List<StoreDto>> addStore(@RequestBody List<StoreDto> storeDtos){
+
+			try {
+				if(storeDtos.isEmpty())
+				{
+					logger.error("list is empty");
+					return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+				}
+				
+				else {
+					logger.info("calling service layer ");
+					 storeService.addStore(storeDtos);
+					return ResponseEntity.of(Optional.of(storeDtos));
+				}
+				
+				
+				
+			} catch (Exception e) {
+				logger.error("check service layer method ",e.fillInStackTrace());
+				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+			}
+			
+			
+			
+		}
+		
+		@PutMapping("/updateStore") //updating
+		public ResponseEntity<List<StoreDto>> updateStore(@RequestBody List<StoreDto> storeDtos){
+		
+			try {
+				if(storeDtos.isEmpty())
+				{
+					logger.error("list is empty");
+					return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+				}
+				
+				else {
+					logger.info("calling service layer ");
+					 storeService.addStore(storeDtos);
+					return ResponseEntity.of(Optional.of(storeDtos));
+				}
+				
+				
+				
+			} catch (Exception e) {
+				logger.error("check service layer method ",e.fillInStackTrace());
+				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+			}
+			
+		
+	}
+		
+		@GetMapping("/getfranchiseedetails") //Getting  details
+		public ResponseEntity<List<FranchiseeDto>> getAllfranchiseeDetails()
+		{
+			
+			try {
+				
+				List<FranchiseeDto> franchisee = franchiseeService.getAllfranchiseeDetails();
+				if(franchisee.size()<=0)
+				{
+					logger.error("data is not availabe in database");
+					return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+				}
+				else {
+					logger.info("calling service layer ");
+					return ResponseEntity.of(Optional.of(franchisee));
+				}
+				
+			} 
+			
+			catch (Exception e)
+			{
+				
+				logger.error("check database connection ",e.fillInStackTrace());
+				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+			}
+		
+	    }
+
+		
+		
+		@DeleteMapping("/deletefranchiseebyID")//Deleting multiple records using ID
+		public ResponseEntity<List<FranchiseeDto>> deletefranchiseeById(@RequestBody List<String> franchiseeId) 
+	{
+			
+		try {
+				if(franchiseeId.size()<=0)
+				{
+					logger.error("ID list is empty");
+					return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+				}
+				
+				else 
+				{
+					logger.info("calling service layer method");
+					List<FranchiseeDto> franchisee =  franchiseeService.deletefranchiseeByID(franchiseeId);
+					 return ResponseEntity.of(Optional.of(franchisee));
+				}
+				
+			} 
+		
+		catch (Exception e) 
+		{
+				logger.error("check sevice layer method", e.fillInStackTrace());
+				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
+	}
+		
+		@PostMapping("/createfranchisee") //Adding new 
+		public ResponseEntity<List<FranchiseeDto>> addfranchisee(@RequestBody List<FranchiseeDto> franchiseeDtos){
+
+			try {
+				if(franchiseeDtos.isEmpty())
+				{
+					logger.error("list is empty");
+					return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+				}
+				
+				else {
+					logger.info("calling service layer ");
+					 franchiseeService.addfranchisee(franchiseeDtos);
+					return ResponseEntity.of(Optional.of(franchiseeDtos));
+				}
+				
+				
+				
+			} catch (Exception e) {
+				logger.error("check service layer method ",e.fillInStackTrace());
+				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+			}
+			
+			
+			
+		}
+		
+		@PutMapping("/updateStore") //updating
+		public ResponseEntity<List<FranchiseeDto>> updatefranchisee(@RequestBody List<FranchiseeDto> franchiseeDtos){
+		
+			try {
+				if(franchiseeDtos.isEmpty())
+				{
+					logger.error("list is empty");
+					return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+				}
+				
+				else {
+					logger.info("calling service layer ");
+					 franchiseeService.addfranchisee(franchiseeDtos);
+					return ResponseEntity.of(Optional.of(franchiseeDtos));
+				}
+				
+				
+				
+			} catch (Exception e) {
+				logger.error("check service layer method ",e.fillInStackTrace());
+				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+			}
+			
+		
+	}
+	
+		@GetMapping("/getAnswers") //Getting  details
+		public ResponseEntity<List<AnswerDto>> getAllAnswer()
+		{
+			
+			try {
+				
+				List<AnswerDto> answerDtos = answerService.getAllAnswer();
+				if(answerDtos.size()<=0)
+				{
+					logger.error("data is not availabe in database");
+					return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+				}
+				else {
+					logger.info("calling service layer ");
+					return ResponseEntity.of(Optional.of(answerDtos));
+				}
+				
+			} 
+			
+			catch (Exception e)
+			{
+				
+				logger.error("check database connection ",e.fillInStackTrace());
+				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+			}
+		
+	    }
+
+		
+		
+		@DeleteMapping("/deleteAnswerbyID")//Deleting multiple records using ID
+		public ResponseEntity<List<AnswerDto>> deleteAnswerById(@RequestBody List<String> answerId) 
+	{
+			
+		try {
+				if(answerId.size()<=0)
+				{
+					logger.error("ID list is empty");
+					return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+				}
+				
+				else 
+				{
+					logger.info("calling service layer method");
+					List<AnswerDto> answerDtos =  answerService.deleteAnswerByID(answerId);
+					 return ResponseEntity.of(Optional.of(answerDtos));
+				}
+				
+			} 
+		
+		catch (Exception e) 
+		{
+				logger.error("check sevice layer method", e.fillInStackTrace());
+				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
+	}
+		
+		@PostMapping("/createAnswer") //Adding new 
+		public ResponseEntity<List<AnswerDto>> addAnswer(@RequestBody List<AnswerDto> answerDtos){
+
+			try {
+				if(answerDtos.isEmpty())
+				{
+					logger.error("list is empty");
+					return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+				}
+				
+				else {
+					logger.info("calling service layer ");
+					 answerService.addAnswer(answerDtos);
+					return ResponseEntity.of(Optional.of(answerDtos));
+				}
+				
+				
+				
+			} catch (Exception e) {
+				logger.error("check service layer method ",e.fillInStackTrace());
+				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+			}
+			
+			
+			
+		}
+		
+		@PutMapping("/updateAnswer") //updating
+		public ResponseEntity<List<AnswerDto>> updateAnswer(@RequestBody List<AnswerDto> answerDtos){
+		
+			try {
+				if(answerDtos.isEmpty())
+				{
+					logger.error("list is empty");
+					return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+				}
+				
+				else {
+					logger.info("calling service layer ");
+					 answerService.addAnswer(answerDtos);
+					return ResponseEntity.of(Optional.of(answerDtos));
+				}
+				
+				
+				
+			} catch (Exception e) {
+				logger.error("check service layer method ",e.fillInStackTrace());
+				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+			}
+			
+		
+	}
+		
+		
+	
+	
+}Interacting with seniors for understanding all the business requirement
+
+
+@OneToOne(mappedBy = "store")
+	private StoreAddress storeAddress;
+	
+	@OneToOne
+	@JoinColumn(name = "id_store")
+	private Store store;
+	
+	
+	@OneToMany(mappedBy = "question")
+	private List<Option> options;
+
+
+@ManyToOne
+	@JoinColumn(name = "id_question")
+	private Question question;

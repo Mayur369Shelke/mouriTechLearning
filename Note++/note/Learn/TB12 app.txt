@@ -1,0 +1,7 @@
+mongodb://administrator:pleasechange@awsdocdbibodystag.cluster-cbz12y4akwih.us-east-1.docdb.amazonaws.com:27017/assessments
+First connect to VPN
+put this url in mangodb
+Left side( assessments - category and question)
+Select question - url- {sources:"EQUIFIT",version:"0.80"} for exel search -{sources:"EQUIFIT",version:"0.80",questionId:"personal06"} or question:"Date Of Birth"
+       question - url- {sources:"Tier ",version:"0.80"}
+	   
