@@ -1,9 +1,0 @@
-package com.mouritech.springDI;
-
-import com.mouritech.springDI.service.MessageService;
-
-@Autowired
-public class FieldBasedInjection {
-	private MessageService messageService;
-
-}

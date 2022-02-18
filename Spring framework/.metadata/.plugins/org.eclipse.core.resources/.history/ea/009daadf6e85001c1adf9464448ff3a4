@@ -1,5 +1,0 @@
-package com.mouritech.ordermanagmentsystem.dao;
-
-public interface OrderDao {
-
-}

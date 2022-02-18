@@ -1,7 +1,0 @@
-package com.mouritech.ordermanagmentsystem.service;
-
-public interface OrderService {
-	
-	List<Order> getAllOrders();
-
-}

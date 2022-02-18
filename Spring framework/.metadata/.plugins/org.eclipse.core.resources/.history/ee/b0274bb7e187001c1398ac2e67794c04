@@ -1,5 +1,0 @@
-package com.mouritech.seller.service;
-
-public interface SellerService {
-
-}

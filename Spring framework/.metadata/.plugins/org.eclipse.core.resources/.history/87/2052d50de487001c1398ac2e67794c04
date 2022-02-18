@@ -1,7 +1,0 @@
-package com.mouritech.seller.exception;
-
-public class SellerNotFoundException extends Exception {
-
-
-
-}

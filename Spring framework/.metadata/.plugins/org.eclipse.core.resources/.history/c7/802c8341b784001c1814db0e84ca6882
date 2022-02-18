@@ -1,5 +1,0 @@
-package com.mouritech.firstspringmvcapp.config;
-
-public class SpringMvcDispacherServletInitializaer {
-
-}

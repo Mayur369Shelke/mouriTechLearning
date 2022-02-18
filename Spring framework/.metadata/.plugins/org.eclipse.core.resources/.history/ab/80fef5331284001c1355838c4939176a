@@ -1,5 +1,0 @@
-package com.mouritech.springDI.service.FieldDI;
-
-public class FieldBasedInjection {
-
-}

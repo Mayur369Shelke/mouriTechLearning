@@ -1,9 +1,0 @@
-package com.mouritech.seller.service;
-
-import com.mouritech.seller.entity.Seller;
-
-public interface SellerService {
-
-	void saveSeller(Seller seller);
-
-}
