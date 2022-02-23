@@ -181,15 +181,7 @@ RestaurantItemsMapper restaurantItemsMapper;
 		return oldrestaurant;
 	}
 
-	@Override
-	public Restaurant AddItems(Long restaurantId, Restaurant restaurant) throws ResourceNotFoundException {
-		
-		Restaurant oldrestaurant = restaurantRepository.findById(restaurantId).orElseThrow(() -> new ResourceNotFoundException());
-		oldrestaurant.setItems(restaurant.getItems());
-		restaurantRepository.save(oldrestaurant);
-		
-		return oldrestaurant;
-	}
+
 
 	
 

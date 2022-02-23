@@ -127,7 +127,7 @@ public Restaurant deleteRestaurant(@PathVariable(value = "restaurantId") Long re
 	return restaurantService.deleteRestaurant(restaurantId);
 }
 
-@PutMapping("/addItems/{restaurantId}")
+@PostMapping("/addItems/{restaurantId}")
 public Items addItems(@PathVariable(value = "restaurantId") Long restaurantId,@RequestBody Items items) throws ResourceNotFoundException {
 	return itemService.addItems(restaurantId,items);
 }

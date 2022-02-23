@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Items {
 
@@ -31,6 +33,7 @@ public class Items {
 		
 		@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 		@JoinColumn(name = "restaurant_id")
+		 @JsonIgnore
 		private Restaurant restaurant;
 
 		public long getItemId() {

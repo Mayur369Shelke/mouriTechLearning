@@ -71,52 +71,8 @@ public class Restaurant {
 	@Column(name = "restaurant_manager_email_id")
 	private String restaurantManagerEmail;
 	
-	@OneToMany(mappedBy = "restaurant" ,cascade = CascadeType.ALL , fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "restaurant" , orphanRemoval = true, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
 	private List<Items> items;
-
-	public Restaurant() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public Restaurant(String restaurantName, String restaurantPassword, String restaurantEmail,
-			String restaurantAddress, String restaurantCity, String restaurantState, String restaurantcountry,
-			int restaurantPincode, String restaurantManagerFirstName, String restaurantManagerLastName,
-			String restaurantManagerNumber, String restaurantManagerEmail) {
-		super();
-		this.restaurantName = restaurantName;
-		this.restaurantPassword = restaurantPassword;
-		this.restaurantEmail = restaurantEmail;
-		this.restaurantAddress = restaurantAddress;
-		this.restaurantCity = restaurantCity;
-		this.restaurantState = restaurantState;
-		this.restaurantcountry = restaurantcountry;
-		this.restaurantPincode = restaurantPincode;
-		this.restaurantManagerFirstName = restaurantManagerFirstName;
-		this.restaurantManagerLastName = restaurantManagerLastName;
-		this.restaurantManagerNumber = restaurantManagerNumber;
-		this.restaurantManagerEmail = restaurantManagerEmail;
-	}
-
-	public Restaurant(String restaurantName, String restaurantPassword, String restaurantEmail,
-			String restaurantAddress, String restaurantCity, String restaurantState, String restaurantcountry,
-			int restaurantPincode, String restaurantManagerFirstName, String restaurantManagerLastName,
-			String restaurantManagerNumber, String restaurantManagerEmail, List<Items> items) {
-		super();
-		this.restaurantName = restaurantName;
-		this.restaurantPassword = restaurantPassword;
-		this.restaurantEmail = restaurantEmail;
-		this.restaurantAddress = restaurantAddress;
-		this.restaurantCity = restaurantCity;
-		this.restaurantState = restaurantState;
-		this.restaurantcountry = restaurantcountry;
-		this.restaurantPincode = restaurantPincode;
-		this.restaurantManagerFirstName = restaurantManagerFirstName;
-		this.restaurantManagerLastName = restaurantManagerLastName;
-		this.restaurantManagerNumber = restaurantManagerNumber;
-		this.restaurantManagerEmail = restaurantManagerEmail;
-		this.items = items;
-	}
 
 	public long getRestaurantId() {
 		return restaurantId;
@@ -228,6 +184,91 @@ public class Restaurant {
 
 	public void setItems(List<Items> items) {
 		this.items = items;
+	}
+
+	public Restaurant() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Restaurant(String restaurantName, String restaurantPassword, String restaurantEmail,
+			String restaurantAddress, String restaurantCity, String restaurantState, String restaurantcountry,
+			int restaurantPincode, String restaurantManagerFirstName, String restaurantManagerLastName,
+			String restaurantManagerNumber, String restaurantManagerEmail, List<Items> items) {
+		super();
+		this.restaurantName = restaurantName;
+		this.restaurantPassword = restaurantPassword;
+		this.restaurantEmail = restaurantEmail;
+		this.restaurantAddress = restaurantAddress;
+		this.restaurantCity = restaurantCity;
+		this.restaurantState = restaurantState;
+		this.restaurantcountry = restaurantcountry;
+		this.restaurantPincode = restaurantPincode;
+		this.restaurantManagerFirstName = restaurantManagerFirstName;
+		this.restaurantManagerLastName = restaurantManagerLastName;
+		this.restaurantManagerNumber = restaurantManagerNumber;
+		this.restaurantManagerEmail = restaurantManagerEmail;
+		this.items = items;
+	}
+
+	public Restaurant(long restaurantId, String restaurantName, String restaurantPassword, String restaurantEmail,
+			String restaurantAddress, String restaurantCity, String restaurantState, String restaurantcountry,
+			int restaurantPincode, String restaurantManagerFirstName, String restaurantManagerLastName,
+			String restaurantManagerNumber, String restaurantManagerEmail, List<Items> items) {
+		super();
+		this.restaurantId = restaurantId;
+		this.restaurantName = restaurantName;
+		this.restaurantPassword = restaurantPassword;
+		this.restaurantEmail = restaurantEmail;
+		this.restaurantAddress = restaurantAddress;
+		this.restaurantCity = restaurantCity;
+		this.restaurantState = restaurantState;
+		this.restaurantcountry = restaurantcountry;
+		this.restaurantPincode = restaurantPincode;
+		this.restaurantManagerFirstName = restaurantManagerFirstName;
+		this.restaurantManagerLastName = restaurantManagerLastName;
+		this.restaurantManagerNumber = restaurantManagerNumber;
+		this.restaurantManagerEmail = restaurantManagerEmail;
+		this.items = items;
+	}
+
+	public Restaurant(String restaurantName, String restaurantPassword, String restaurantEmail,
+			String restaurantAddress, String restaurantCity, String restaurantState, String restaurantcountry,
+			int restaurantPincode, String restaurantManagerFirstName, String restaurantManagerLastName,
+			String restaurantManagerNumber, String restaurantManagerEmail) {
+		super();
+		this.restaurantName = restaurantName;
+		this.restaurantPassword = restaurantPassword;
+		this.restaurantEmail = restaurantEmail;
+		this.restaurantAddress = restaurantAddress;
+		this.restaurantCity = restaurantCity;
+		this.restaurantState = restaurantState;
+		this.restaurantcountry = restaurantcountry;
+		this.restaurantPincode = restaurantPincode;
+		this.restaurantManagerFirstName = restaurantManagerFirstName;
+		this.restaurantManagerLastName = restaurantManagerLastName;
+		this.restaurantManagerNumber = restaurantManagerNumber;
+		this.restaurantManagerEmail = restaurantManagerEmail;
+	}
+
+	public Restaurant(long restaurantId, String restaurantName, String restaurantPassword, String restaurantEmail,
+			String restaurantAddress, String restaurantCity, String restaurantState, String restaurantcountry,
+			int restaurantPincode, String restaurantManagerFirstName, String restaurantManagerLastName,
+			String restaurantManagerNumber, String restaurantManagerEmail) {
+		super();
+		this.restaurantId = restaurantId;
+		this.restaurantName = restaurantName;
+		this.restaurantPassword = restaurantPassword;
+		this.restaurantEmail = restaurantEmail;
+		this.restaurantAddress = restaurantAddress;
+		this.restaurantCity = restaurantCity;
+		this.restaurantState = restaurantState;
+		this.restaurantcountry = restaurantcountry;
+		this.restaurantPincode = restaurantPincode;
+		this.restaurantManagerFirstName = restaurantManagerFirstName;
+		this.restaurantManagerLastName = restaurantManagerLastName;
+		this.restaurantManagerNumber = restaurantManagerNumber;
+		this.restaurantManagerEmail = restaurantManagerEmail;
 	}
 
 

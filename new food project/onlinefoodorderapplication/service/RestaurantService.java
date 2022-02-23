@@ -31,8 +31,6 @@ public interface RestaurantService {
 
 	Restaurant deleteRestaurant(Long restaurantId) throws ResourceNotFoundException;
 
-	Restaurant AddItems(Long restaurantId, Restaurant restaurant) throws ResourceNotFoundException;
-
 
 
 }
