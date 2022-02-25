@@ -32,4 +32,46 @@ public class Bill {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name ="order_id" )
     private Orderdetails orderdetails;
+
+	public Long getBillId() {
+		return billId;
+	}
+
+	public void setBillId(Long billId) {
+		this.billId = billId;
+	}
+
+	public LocalDate getBillDate() {
+		return billDate;
+	}
+
+	public void setBillDate(LocalDate billDate) {
+		this.billDate = billDate;
+	}
+
+	public int getTotalItem() {
+		return totalItem;
+	}
+
+	public void setTotalItem(int totalItem) {
+		this.totalItem = totalItem;
+	}
+
+	public double getTotalCost() {
+		return totalCost;
+	}
+
+	public void setTotalCost(double totalCost) {
+		this.totalCost = totalCost;
+	}
+
+	public Orderdetails getOrderdetails() {
+		return orderdetails;
+	}
+
+	public void setOrderdetails(Orderdetails orderdetails) {
+		this.orderdetails = orderdetails;
+	}
+	
+	
 }

@@ -21,4 +21,9 @@ public interface ItemService {
 
 	Items findById(Long itemId) throws ResourceNotFoundException;
 
+	Items AddItemsByRestName(String restaurantName, Items items);
+
+
+
+	
 }

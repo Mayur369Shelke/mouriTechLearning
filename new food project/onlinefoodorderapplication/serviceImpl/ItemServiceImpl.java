@@ -73,4 +73,12 @@ public class ItemServiceImpl implements ItemService {
 		return existingItems;
 	}
 
+	@Override
+	public Items AddItemsByRestName(String restaurantName, Items items) {
+		Restaurant restaurant = restaurantRepository.findByRestaurantName(restaurantName);
+		items.setRestaurant(restaurant);
+		Items finalItems = itemsRepository.save(items);
+		return finalItems;
+	}
+
 }
