@@ -20,7 +20,7 @@ public class Orderdetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "order_id")
-	private int orderId;
+	private Long orderId;
 	@Column(name = "order_date")
 	private LocalDate orderDate;
 	@Column(name = "order_status")
@@ -33,11 +33,11 @@ public class Orderdetails {
 	@OneToOne(mappedBy = "orderdetails")
 	private Bill bill;
 
-	public int getOrderId() {
+	public Long getOrderId() {
 		return orderId;
 	}
 
-	public void setOrderId(int orderId) {
+	public void setOrderId(Long orderId) {
 		this.orderId = orderId;
 	}
 

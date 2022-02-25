@@ -58,4 +58,9 @@ public class ItemsController {
 	public Items getById(@PathVariable(value = "itemId") Long itemId) throws ResourceNotFoundException{
 		return itemService.findById(itemId);
 	}
+	
+	@PostMapping("addItems/{restaurantName}")
+	public Items AddItemsByRestName(@PathVariable(value = "restaurantName") String restaurantName,@RequestBody Items items) {
+		return itemService.AddItemsByRestName(restaurantName,items);
+	}
 }

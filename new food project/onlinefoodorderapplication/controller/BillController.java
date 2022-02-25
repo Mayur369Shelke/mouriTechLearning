@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.mouritech.onlinefoodorderapplication.entity.Bill;
+import com.mouritech.onlinefoodorderapplication.service.BillService;
+
 
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -38,7 +41,7 @@ public class BillController {
 		}
 		//update bills
 		@PutMapping("/bills/{id}")
-		public ResponseEntity<Bill> updateBill(@PathVariable(value = "id") int billId) throws BillNotFound {
+		public ResponseEntity<Bill> updateBill(@PathVariable(value = "id") int billId) {
 		
 			return billService.updateBills(billId);
 		
@@ -47,7 +50,7 @@ public class BillController {
 		@DeleteMapping("/bills/{billId}")
 		public ResponseEntity<?> deleteBill( 
 				@PathVariable(value = "billId") int billId)
-		throws BillNotFound{
+		{
 			return billService.deleteBill(billId);
 			
 		}
@@ -55,7 +58,7 @@ public class BillController {
 		//get bill by billId
 		@GetMapping("/bills/{id}")
 	  public ResponseEntity<Bill> getBillById(@PathVariable(value = "id") int billId)
-	      throws BillNotFound {
+	      {
 			return billService.getBillById(billId);
 			
 			
