@@ -1,6 +1,9 @@
 package com.mouritech.onlinefoodorderapplication.entity;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,13 +12,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
+@Table(name = "items")
 public class Items {
 
 	@Id
@@ -31,10 +34,11 @@ public class Items {
 		
 		private int itemQuantity;
 		
-		@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-		@JoinColumn(name = "restaurant_id")
+		@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+		@JoinColumn(name = "restaurant_id", nullable = false)
 		 @JsonIgnore
 		private Restaurant restaurant;
+		
 
 		public long getItemId() {
 			return itemId;
@@ -83,31 +87,6 @@ public class Items {
 		public void setRestaurant(Restaurant restaurant) {
 			this.restaurant = restaurant;
 		}
-
-		public Items() {
-			super();
-			// TODO Auto-generated constructor stub
-		}
-
-		public Items(String itemName, int itemPrice, String itemDescription, int itemQuantity, Restaurant restaurant) {
-			super();
-			this.itemName = itemName;
-			this.itemPrice = itemPrice;
-			this.itemDescription = itemDescription;
-			this.itemQuantity = itemQuantity;
-			this.restaurant = restaurant;
-		}
-
-		public Items(String itemName, int itemPrice, String itemDescription, int itemQuantity) {
-			super();
-			this.itemName = itemName;
-			this.itemPrice = itemPrice;
-			this.itemDescription = itemDescription;
-			this.itemQuantity = itemQuantity;
-		}
-
-	
-		
 		
 		
 
