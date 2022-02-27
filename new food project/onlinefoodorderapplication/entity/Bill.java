@@ -1,7 +1,7 @@
 package com.mouritech.onlinefoodorderapplication.entity;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -72,6 +71,30 @@ public class Bill {
 	public void setOrderdetails(Orderdetails orderdetails) {
 		this.orderdetails = orderdetails;
 	}
+
+	public Bill() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Bill(Long billId, LocalDate billDate, int totalItem, double totalCost, Orderdetails orderdetails) {
+		super();
+		this.billId = billId;
+		this.billDate = billDate;
+		this.totalItem = totalItem;
+		this.totalCost = totalCost;
+		this.orderdetails = orderdetails;
+	}
+
+	public Bill(LocalDate billDate, int totalItem, double totalCost, Orderdetails orderdetails) {
+		super();
+		this.billDate = billDate;
+		this.totalItem = totalItem;
+		this.totalCost = totalCost;
+		this.orderdetails = orderdetails;
+	}
+
+
 	
 	
 }

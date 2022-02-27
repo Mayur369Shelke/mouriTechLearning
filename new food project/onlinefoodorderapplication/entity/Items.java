@@ -1,6 +1,6 @@
 package com.mouritech.onlinefoodorderapplication.entity;
 
-import java.util.List;
+
 
 import javax.persistence.CascadeType;
 
@@ -12,7 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -35,7 +34,7 @@ public class Items {
 		private int itemQuantity;
 		
 		@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-		@JoinColumn(name = "restaurant_id", nullable = false)
+		@JoinColumn(name = "restaurant_id")
 		 @JsonIgnore
 		private Restaurant restaurant;
 		

@@ -63,4 +63,10 @@ public class ItemsController {
 	public Items AddItemsByRestName(@PathVariable(value = "restaurantName") String restaurantName,@RequestBody Items items) {
 		return itemService.AddItemsByRestName(restaurantName,items);
 	}
+	
+	@GetMapping("/getItems/{restaurantName}")
+	public List<Items> getItemsByRestaurantName(@PathVariable(value = "restaurantName") String restaurantName){
+		
+		return itemService.getItemsByRestaurantName(restaurantName);
+	}
 }

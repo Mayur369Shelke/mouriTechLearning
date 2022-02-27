@@ -1,7 +1,4 @@
 package com.mouritech.onlinefoodorderapplication.entity;
-
-import java.time.LocalDate;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,7 +11,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "order")
+@Table(name = "orderdetails")
 public class Orderdetails {
 	
 	@Id
@@ -22,7 +19,7 @@ public class Orderdetails {
 	@Column(name = "order_id")
 	private Long orderId;
 	@Column(name = "order_date")
-	private LocalDate orderDate;
+	private String orderDate;
 	@Column(name = "order_status")
 	private String orderStatus;
 	
@@ -41,11 +38,11 @@ public class Orderdetails {
 		this.orderId = orderId;
 	}
 
-	public LocalDate getOrderDate() {
+	public String getOrderDate() {
 		return orderDate;
 	}
 
-	public void setOrderDate(LocalDate orderDate) {
+	public void setOrderDate(String orderDate) {
 		this.orderDate = orderDate;
 	}
 
@@ -63,6 +60,14 @@ public class Orderdetails {
 
 	public void setCart(FoodCart cart) {
 		this.cart = cart;
+	}
+
+	public Bill getBill() {
+		return bill;
+	}
+
+	public void setBill(Bill bill) {
+		this.bill = bill;
 	}
 	
 	

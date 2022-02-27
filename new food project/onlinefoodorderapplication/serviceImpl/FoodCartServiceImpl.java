@@ -36,6 +36,7 @@ public class FoodCartServiceImpl implements FoodCartService {
 	public FoodCart updateCartById(Long cartId, FoodCart cart) throws ResourceNotFoundException  {
 		// TODO Auto-generated method stub
 		FoodCart existingCart = cartRepository.findById(cartId).orElseThrow(()-> new ResourceNotFoundException());
+		existingCart.setCardName(cart.getCardName());
 		existingCart.setItems(cart.getItems());
 		cartRepository.save(existingCart);
 		return existingCart;
@@ -46,50 +47,29 @@ public class FoodCartServiceImpl implements FoodCartService {
 		
 	}
 
-	@Override
-	public ResponseEntity<List<FoodCart>> getAllCartsByItemId(Long ItemId){
 	
-		
-		List<FoodCart> carts = cartRepository.findByItemId(ItemId);
-		return new ResponseEntity<List<FoodCart>>(carts,HttpStatus.OK);
-	}
 	
 
 	public ResponseEntity<List<FoodCart>> getAllCartsByitemId(long itemId) {
-		List<FoodCart> carts = cartRepository.findByItemId(itemId);
+		List<FoodCart> carts = cartRepository.findByItems_ItemId(itemId);
 		return new ResponseEntity<List<FoodCart>>(carts,HttpStatus.OK);
 	}
+	
+	
 	@Override
-	public ResponseEntity<List<FoodCart>> getAllCartsByprodId(long itemId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public void deleteCartById(long cartId) throws ResourceNotFoundException {
 
-	@Override
-	public ResponseEntity<FoodCart> createCart(Long itemId, FoodCart newCart)  {
-		// TODO Auto-generated method stub
-		return null;
+		FoodCart existingCart = cartRepository.findById(cartId).orElseThrow(()-> new ResourceNotFoundException());
+
+		cartRepository.delete(existingCart);
 	}
-	@Override
-	public Items addItems(Long restaurantId, Items item)  {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public FoodCart showCartById(String cartId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public FoodCart updateCartById(String cartId, FoodCart cart) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public void deleteCartById(String cartId) {
-		// TODO Auto-generated method stub
-		
-	}
+	
+
+	
+	
+	
+	
+	
 
 
 }

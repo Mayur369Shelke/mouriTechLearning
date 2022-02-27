@@ -23,6 +23,8 @@ public interface ItemService {
 
 	Items AddItemsByRestName(String restaurantName, Items items);
 
+	List<Items> getItemsByRestaurantName(String restaurantName);
+
 
 
 	

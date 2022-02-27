@@ -15,7 +15,7 @@ public interface RestaurantService {
 
 	ResponseEntity<?> updaterestaurantinfobyname(Restaurant restaurant);
 
-	boolean findRestaurantByEmailAndPassword(String restaurantEmail, String restaurantPassword);
+	Restaurant findRestaurantByEmailAndPassword(String restaurantEmail, String restaurantPassword);
 
 	ResponseEntity<?> checkRestauramtEmailAndPassword(RestaurantvarificationDto restaurantDto);
 

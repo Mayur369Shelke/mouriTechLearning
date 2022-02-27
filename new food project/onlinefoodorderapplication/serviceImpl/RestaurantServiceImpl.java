@@ -65,15 +65,14 @@ RestaurantItemsMapper restaurantItemsMapper;
 }
 
 	@Override
-	public boolean findRestaurantByEmailAndPassword(String restaurantEmail, String restaurantPassword) {
-		boolean flag =false;
+	public Restaurant findRestaurantByEmailAndPassword(String restaurantEmail, String restaurantPassword) {
 		
 		Restaurant restaurant = restaurantRepository.findByRestaurantEmailAndRestaurantPassword(restaurantEmail,restaurantPassword);
 		if(restaurant==null) {
-			return flag;
+			return null;
 		}
 		else {
-			return flag=true;
+			return restaurant;
 		}
 
 	}

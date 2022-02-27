@@ -16,13 +16,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mouritech.onlinefoodorderapplication.entity.Bill;
+import com.mouritech.onlinefoodorderapplication.exception.ResourceNotFoundException;
 import com.mouritech.onlinefoodorderapplication.service.BillService;
 
 
-
-@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/bills")
-public class BillController {
+public class BillController { 
 
 	@Autowired
 	private BillService billService;
@@ -40,10 +39,10 @@ public class BillController {
 			return billService.getAllBills();
 		}
 		//update bills
-		@PutMapping("/bills/{id}")
-		public ResponseEntity<Bill> updateBill(@PathVariable(value = "id") int billId) {
+		@PutMapping("/bills/{billId}")
+		public ResponseEntity<Bill> updateBill(@PathVariable(value = "billId") Long billId,@RequestBody Bill bill) throws ResourceNotFoundException {
 		
-			return billService.updateBills(billId);
+			return billService.updateBills(billId,bill);
 		
 		}
 		//delete bill
@@ -57,7 +56,7 @@ public class BillController {
 
 		//get bill by billId
 		@GetMapping("/bills/{id}")
-	  public ResponseEntity<Bill> getBillById(@PathVariable(value = "id") int billId)
+	  public ResponseEntity<Bill> getBillById(@PathVariable(value = "id") Long billId) throws ResourceNotFoundException
 	      {
 			return billService.getBillById(billId);
 			

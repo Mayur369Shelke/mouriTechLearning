@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mouritech.onlinefoodorderapplication.entity.Orderdetails;
+import com.mouritech.onlinefoodorderapplication.exception.ResourceNotFoundException;
 import com.mouritech.onlinefoodorderapplication.service.OrderDetailsService;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public class OrderDetailsController {
 	private OrderDetailsService orderService;
 	
 	//save an order
-		@PostMapping("/orders")
+		@PostMapping("/Addorders")
 		public Orderdetails saveOrder(@Valid @RequestBody Orderdetails order)
 		{
 			return orderService.saveOrder(order);
@@ -38,22 +39,20 @@ public class OrderDetailsController {
 		}
 		//update orders
 		@PutMapping("/orders/{orderId}")
-		public ResponseEntity<Orderdetails> updateOrder(@PathVariable(value = "orderId") Long orderId,@RequestBody Orderdetails orderdetails)  {
+		public ResponseEntity<Orderdetails> updateOrder(@PathVariable(value = "orderId") Long orderId,@RequestBody Orderdetails orderdetails) throws ResourceNotFoundException  {
 		
-		//	return orderService.updateOrders(orderId,orderdetails);
+			return orderService.updateOrders(orderId,orderdetails);
 		
 		}
-		//delete order
 		@DeleteMapping("/orders/{orderId}")
-		public ResponseEntity<?> deleteOrder( 
-				@PathVariable(value = "orderId") int orderId)
+		public ResponseEntity<?> deleteOrder(@PathVariable(value = "orderId") Long orderId) throws ResourceNotFoundException
 		{
 			return orderService.deleteOrder(orderId);
 			
 		}
-		//get order by orderId
+
 		@GetMapping("/orders/{id}")
-	  public ResponseEntity<Orderdetails> getOrderById(@PathVariable(value = "id") int orderId)
+	  public ResponseEntity<Orderdetails> getOrderById(@PathVariable(value = "id") long orderId) throws ResourceNotFoundException
 	      {
 			return orderService.getOrderById(orderId);
 			

@@ -1,15 +1,13 @@
 package com.mouritech.onlinefoodorderapplication.entity;
 
 import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.NotEmpty;
 
-import com.sun.istack.NotNull;
 
 @Entity
 @Table(name="customer")
@@ -144,6 +142,42 @@ public class Customer {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+	public Customer(Long customerId, String customerName, int customerAge, String customerEmail,
+			String customerPassword, String customerMobileNumber, String customerAddress, String customerCity,
+			String customerState, String customerCountry, String customerPincode) {
+		super();
+		this.customerId = customerId;
+		this.customerName = customerName;
+		this.customerAge = customerAge;
+		this.customerEmail = customerEmail;
+		this.customerPassword = customerPassword;
+		this.customerMobileNumber = customerMobileNumber;
+		this.customerAddress = customerAddress;
+		this.customerCity = customerCity;
+		this.customerState = customerState;
+		this.customerCountry = customerCountry;
+		this.customerPincode = customerPincode;
+	}
+
+	public Customer(String customerName, int customerAge, String customerEmail, String customerPassword,
+			String customerMobileNumber, String customerAddress, String customerCity, String customerState,
+			String customerCountry, String customerPincode) {
+		super();
+		this.customerName = customerName;
+		this.customerAge = customerAge;
+		this.customerEmail = customerEmail;
+		this.customerPassword = customerPassword;
+		this.customerMobileNumber = customerMobileNumber;
+		this.customerAddress = customerAddress;
+		this.customerCity = customerCity;
+		this.customerState = customerState;
+		this.customerCountry = customerCountry;
+		this.customerPincode = customerPincode;
+	}
+
 	
+	
+
 	
 }

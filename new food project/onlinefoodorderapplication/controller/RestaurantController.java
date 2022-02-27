@@ -48,9 +48,9 @@ public class RestaurantController {
 	public ResponseEntity<?> findRestaurantByEmailAndPassword(@PathVariable(value = "restaurantEmail") String restaurantEmail,
 			@PathVariable(value ="restaurantPassword") String restaurantPassword){
 		
-		boolean result = restaurantService.findRestaurantByEmailAndPassword(restaurantEmail,restaurantPassword);
-		if(result==true) {
-			return ResponseEntity.ok().body("login successful");
+		Restaurant result = restaurantService.findRestaurantByEmailAndPassword(restaurantEmail,restaurantPassword);
+		if(result!=null) {
+			return ResponseEntity.ok().body(result.getRestaurantName());
 		}
 	
 		else {
@@ -131,5 +131,6 @@ public Restaurant deleteRestaurant(@PathVariable(value = "restaurantId") Long re
 public Items addItems(@PathVariable(value = "restaurantId") Long restaurantId,@RequestBody Items items) throws ResourceNotFoundException {
 	return itemService.addItems(restaurantId,items);
 }
+
 
 }

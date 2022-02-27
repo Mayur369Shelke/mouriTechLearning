@@ -12,5 +12,8 @@ public interface OrderDetailsService {
     
     Orderdetails saveOrder(Orderdetails order);
 	List<Orderdetails> getAllOrders();
+	ResponseEntity<Orderdetails> updateOrders(Long orderId, Orderdetails orderdetails) throws ResourceNotFoundException;
+	ResponseEntity<?> deleteOrder(Long orderId) throws ResourceNotFoundException;
+	ResponseEntity<Orderdetails> getOrderById(long orderId) throws ResourceNotFoundException;
 
 }

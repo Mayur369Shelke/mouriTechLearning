@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mouritech.onlinefoodorderapplication.entity.FoodCart;
+import com.mouritech.onlinefoodorderapplication.exception.ResourceNotFoundException;
 import com.mouritech.onlinefoodorderapplication.service.FoodCartService;
 
 @RestController
@@ -31,27 +32,18 @@ public class FoodCartController {
 		return cartService.showAllCarts();
 	}
 	@GetMapping("Cart/{cid}")
-	public FoodCart showCartById(@PathVariable("cid") String CartId)  {
+	public FoodCart showCartById(@PathVariable("cid") Long CartId) throws ResourceNotFoundException  {
 		return cartService.showCartById(CartId);
 	}
 	@PutMapping("Cart/{cid}")
-	public FoodCart updateCartById(@PathVariable("cid") String CartId, @RequestBody FoodCart Cart)
+	public FoodCart updateCartById(@PathVariable("cid") Long CartId, @RequestBody FoodCart Cart) throws ResourceNotFoundException
 			{
 		return cartService.updateCartById(CartId, Cart);
 	}
 	@DeleteMapping("Cart/{cid}")
-	public String deleteCartById(@PathVariable("cid") String CartId)  {
+	public String deleteCartById(@PathVariable("cid") long CartId) throws ResourceNotFoundException  {
 		cartService.deleteCartById(CartId);
 		return "deleted the Cart";
 	}
-	@GetMapping("/Carts/{itemid}")
-	public ResponseEntity<List<FoodCart>> getAllCartsBySellerId(@PathVariable("itemid") long itemId)
-			 {
-		return cartService.getAllCartsByprodId(itemId);
-	}
-	@PostMapping("/Carts/{itemid}/item")
-	public ResponseEntity<FoodCart> createCart(@PathVariable("itemid") long itemId, @RequestBody FoodCart newCart)
-			 {
-		return cartService.createCart(itemId, newCart);
-	}
+
 }

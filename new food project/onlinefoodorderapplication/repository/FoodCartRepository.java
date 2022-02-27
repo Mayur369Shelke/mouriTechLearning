@@ -10,6 +10,7 @@ import com.mouritech.onlinefoodorderapplication.entity.FoodCart;
 @Repository
 public interface FoodCartRepository extends JpaRepository<FoodCart, Long>{
 
-	List<FoodCart> findByItemId(long itemId);
+	List<FoodCart> findByItems_ItemId(long itemId);
+
 
 }
