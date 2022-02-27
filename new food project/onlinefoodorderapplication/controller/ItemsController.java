@@ -69,4 +69,10 @@ public class ItemsController {
 		
 		return itemService.getItemsByRestaurantName(restaurantName);
 	}
+	@DeleteMapping("/deleteByName/{itemName}")
+	public Items deleteByName(@PathVariable(value = "itemName") String itemName) {
+		return itemService.deleteByName(itemName);
+	}
+	
+	
 }

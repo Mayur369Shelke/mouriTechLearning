@@ -90,4 +90,13 @@ public class ItemServiceImpl implements ItemService {
 		return items;
 	}
 
+	@Override
+	public Items deleteByName(String itemName) {
+		
+		Items items = itemsRepository.findByItemName(itemName);
+		itemsRepository.delete(items);
+
+		return items;
+	}
+
 }

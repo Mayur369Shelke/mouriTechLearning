@@ -25,6 +25,8 @@ public interface ItemService {
 
 	List<Items> getItemsByRestaurantName(String restaurantName);
 
+	Items deleteByName(String itemName);
+
 
 
 	

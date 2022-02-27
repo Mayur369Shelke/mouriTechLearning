@@ -1,5 +1,6 @@
 package com.mouritech.onlinefoodorderapplication.controller;
 
+import java.security.PublicKey;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -132,5 +133,28 @@ public Items addItems(@PathVariable(value = "restaurantId") Long restaurantId,@R
 	return itemService.addItems(restaurantId,items);
 }
 
+@GetMapping("/getRestaurantandItems/{restaurantName}")
+public ResponseEntity<Restaurant> getrestaurantInfoAndItems(@PathVariable(value = "restaurantName") String restaurantName){
+	return restaurantService.getrestaurantInfoAndItems(restaurantName);
+	
+}
+
+@DeleteMapping("/deleteItems/{restaurantName}/{itemName}")
+public ResponseEntity<Restaurant>deleteByItemsusingRestaurantName(@PathVariable(value = "restaurantName") String restaurantName,@PathVariable(value = "itemName") String itemName) throws ResourceNotFoundException{
+	
+	return restaurantService.deleteByItemsusingRestaurantName(restaurantName,itemName);
+}
+
+@PutMapping("updateItems/{restaurantName}/{itemName}")
+public ResponseEntity<Restaurant>updateByItemsusingRestaurantName(@PathVariable(value = "restaurantName") String restaurantName,@PathVariable(value = "itemName") String itemName,@RequestBody Items items) throws ResourceNotFoundException{
+
+	
+	return restaurantService.updateByItemsusingRestaurantName(restaurantName,itemName,items);
+}
+@GetMapping("/getrestaurantAndItemsByCity/{restaurantCity}")
+public List<Restaurant> getbyCity(@PathVariable(value = "restaurantCity") String restaurantCity){
+
+	return restaurantService.getAllByCity(restaurantCity);
+}
 
 }

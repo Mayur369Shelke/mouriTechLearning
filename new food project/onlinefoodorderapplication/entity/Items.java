@@ -14,6 +14,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -33,7 +36,7 @@ public class Items {
 		
 		private int itemQuantity;
 		
-		@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+		@ManyToOne(fetch = FetchType.EAGER)
 		@JoinColumn(name = "restaurant_id")
 		 @JsonIgnore
 		private Restaurant restaurant;

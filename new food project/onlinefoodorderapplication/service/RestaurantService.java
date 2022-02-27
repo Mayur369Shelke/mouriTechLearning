@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 
 import com.mouritech.onlinefoodorderapplication.dto.RestaurantItemsDto;
 import com.mouritech.onlinefoodorderapplication.dto.RestaurantvarificationDto;
+import com.mouritech.onlinefoodorderapplication.entity.Items;
 import com.mouritech.onlinefoodorderapplication.entity.Restaurant;
 import com.mouritech.onlinefoodorderapplication.exception.ResourceNotFoundException;
 
@@ -30,6 +31,15 @@ public interface RestaurantService {
 	Restaurant updateRestaurantById(Long restaurantId, Restaurant restaurant) throws ResourceNotFoundException;
 
 	Restaurant deleteRestaurant(Long restaurantId) throws ResourceNotFoundException;
+
+	ResponseEntity<Restaurant> getrestaurantInfoAndItems(String restaurantName);
+
+	ResponseEntity<Restaurant> deleteByItemsusingRestaurantName(String restaurantName, String itemName) throws ResourceNotFoundException;
+
+	ResponseEntity<Restaurant> updateByItemsusingRestaurantName(String restaurantName, String itemName, Items items) throws ResourceNotFoundException;
+
+	List<Restaurant> getAllByCity(String restaurantCity);
+
 
 
 

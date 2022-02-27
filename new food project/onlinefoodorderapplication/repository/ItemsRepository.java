@@ -11,6 +11,11 @@ import com.mouritech.onlinefoodorderapplication.entity.Restaurant;
 @Repository
 public interface ItemsRepository extends JpaRepository<Items, Long>{
 
+	void deleteByItemName(String itemName);
+
+
+	Items findByItemName(String itemName);
+
 
 
 }

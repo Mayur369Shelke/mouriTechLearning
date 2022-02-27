@@ -2,10 +2,13 @@ package com.mouritech.onlinefoodorderapplication.serviceImpl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
 
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.StreamingHttpOutputMessage.Body;
 import org.springframework.stereotype.Service;
 import com.mouritech.onlinefoodorderapplication.dto.RestaurantItemsDto;
 import com.mouritech.onlinefoodorderapplication.dto.RestaurantvarificationDto;
@@ -179,6 +182,86 @@ RestaurantItemsMapper restaurantItemsMapper;
 		restaurantRepository.delete(oldrestaurant);
 		return oldrestaurant;
 	}
+
+	@Override
+	@Transactional
+	public ResponseEntity<Restaurant> getrestaurantInfoAndItems(String restaurantName) {
+
+		Restaurant restaurant = restaurantRepository.findByRestaurantName(restaurantName);
+		 return ResponseEntity.ok(restaurant);
+
+
+	}
+
+	@Override
+	@Transactional
+	public ResponseEntity<Restaurant> deleteByItemsusingRestaurantName(String restaurantName, String itemName) throws ResourceNotFoundException {
+		
+		Restaurant restaurant = restaurantRepository.findByRestaurantName(restaurantName);
+
+		List<Items> itemsList= restaurant.getItems();
+		for (Items result : itemsList) {
+			if(result.getItemName().equals(itemName)) {
+				System.out.println(result.getItemName());
+
+				long existingItemId = result.getItemId();
+				
+				System.out.println(existingItemId);
+	
+				Items existingitems = itemsRepository.findById(existingItemId).orElseThrow(() -> new ResourceNotFoundException());
+				itemsRepository.delete(existingitems);
+
+				return getrestaurantInfoAndItems(restaurantName);
+			}
+			else {
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		
+		
+	}
+
+	@Override
+	public ResponseEntity<Restaurant> updateByItemsusingRestaurantName(String restaurantName, String itemName,
+			Items items) throws ResourceNotFoundException {
+		
+		Restaurant restaurant = restaurantRepository.findByRestaurantName(restaurantName);
+
+		List<Items> itemsList= restaurant.getItems();
+		for (Items result : itemsList) {
+			if(result.getItemName().equals(itemName)) {
+				long existingItemId = result.getItemId();
+				Items existingitems = itemsRepository.findById(existingItemId).orElseThrow(() -> new ResourceNotFoundException());
+				existingitems.setItemName(items.getItemName());
+				existingitems.setItemPrice(items.getItemPrice());
+				existingitems.setItemDescription(items.getItemDescription());
+				existingitems.setItemQuantity(items.getItemQuantity());
+				
+				itemsRepository.save(existingitems);
+				
+				return getrestaurantInfoAndItems(restaurantName);
+			
+			}
+			
+			else {
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
+			
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+
+	@Override
+	public List<Restaurant> getAllByCity(String restaurantCity) {
+
+		List<Restaurant> getAllRestaurantByCity = restaurantRepository.findByRestaurantCity(restaurantCity);
+		
+		
+		return getAllRestaurantByCity;
+	}
+
+
 
 
 
